@@ -4,9 +4,15 @@ import navLogo from '../assets/images/GD LOGO (BLACK & WHITE).png'
 
 function Navbar() {
   const [activeLink, setActiveLink] = useState('services')
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const handleClick = (linkName) => {
     setActiveLink(linkName)
+    setIsMenuOpen(false)
+  }
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen)
   }
 
   return (
@@ -41,7 +47,18 @@ function Navbar() {
         <div className="logo">
           <img src={navLogo} alt="Gravity Dots" className="logo-image" />
         </div>
-        <ul className="nav-links">
+        
+        <button 
+          className={`hamburger ${isMenuOpen ? 'active' : ''}`}
+          onClick={toggleMenu}
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
           <li><a href="#services" className={activeLink === 'services' ? 'nav-link active' : 'nav-link'} onClick={() => handleClick('services')}>Services</a></li>
           <li><a href="#about" className={activeLink === 'about' ? 'nav-link active' : 'nav-link'} onClick={() => handleClick('about')}>About us</a></li>
           <li><a href="#work" className={activeLink === 'work' ? 'nav-link active' : 'nav-link'} onClick={() => handleClick('work')}>Work</a></li>

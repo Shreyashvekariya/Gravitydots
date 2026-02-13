@@ -34,3 +34,41 @@
   display: block;
   filter: grayscale(100%);
 }
+
+@media (max-width: 768px) {
+  .clients {
+    padding: 40px 20px 20px;
+  }
+
+  .clients-grid {
+    gap: 30px;
+  }
+
+  .client-logo {
+    padding: 10px 15px;
+  }
+
+  .client-logo img {
+    max-height: 120px;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .clients {
+    padding: 30px 15px 15px;
+  }
+
+  .clients-grid {
+    gap: 20px;
+  }
+
+  .client-logo {
+    padding: 8px 12px;
+  }
+
+  .client-logo img {
+    max-height: 80px;
+    max-width: 200px;
+  }
+}

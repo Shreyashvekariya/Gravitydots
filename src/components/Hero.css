@@ -99,3 +99,49 @@
   height: 400px;
   object-fit: cover;
 }
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 60px 0 40px 0;
+    border-radius: 20px 20px 0 0;
+    min-height: 80vh;
+  }
+
+  .hero-content {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+  }
+
+  .hero-title {
+    letter-spacing: 2px;
+  }
+
+  .scroll-indicator {
+    margin-top: 40px;
+  }
+
+  .scroll-circle {
+    width: 40px;
+    height: 40px;
+  }
+
+  .hero-image img {
+    height: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 40px 0 30px 0;
+  }
+
+  .hero-content {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .hero-image img {
+    height: 200px;
+  }
+}

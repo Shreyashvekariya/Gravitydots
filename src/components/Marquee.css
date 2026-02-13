@@ -39,3 +39,33 @@
     transform: translateX(-100%);
   }
 }
+
+@media (max-width: 768px) {
+  .marquee-section {
+    margin-top: 40px;
+    padding: 15px 0;
+  }
+
+  .marquee-track span {
+    font-size: 28px;
+  }
+
+  .marquee-track {
+    gap: 20px;
+    padding-right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .marquee-section {
+    margin-top: 30px;
+  }
+
+  .marquee-track span {
+    font-size: 22px;
+  }
+
+  .marquee-track {
+    gap: 15px;
+  }
+}

@@ -74,6 +74,42 @@
   border-color: #000000;
 }
 
+@media (max-width: 768px) {
+  .why-choose-us-header {
+    padding: 30px 20px;
+  }
+
+  .why-pills-row {
+    gap: 15px;
+  }
+
+  .why-pill {
+    padding: 10px 20px;
+    font-size: 13px;
+    box-shadow: 4px 4px 0 0 #000000;
+  }
+}
+
+@media (max-width: 480px) {
+  .why-choose-us-header {
+    padding: 20px 15px;
+  }
+
+  .why-pills-container {
+    gap: 15px;
+  }
+
+  .why-pills-row {
+    gap: 10px;
+  }
+
+  .why-pill {
+    padding: 8px 16px;
+    font-size: 12px;
+    box-shadow: 3px 3px 0 0 #000000;
+  }
+}
+
 /* ===================================
    WHY CHOOSE US SECTION
    =================================== */
@@ -483,18 +519,20 @@
 
 @media (max-width: 900px) {
   .why-choose-us {
-    padding: 50px 30px;
+    padding: 40px 20px;
   }
 
   .bento-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
+    gap: 12px;
+    min-height: auto;
   }
 
   .case-study {
-    grid-column: 1;
+    grid-column: 1 / 3;
     grid-row: 1;
-    min-height: 400px;
+    min-height: 350px;
   }
 
   .video-card {
@@ -503,42 +541,159 @@
     min-height: 200px;
   }
 
-  .social-card {
-    grid-column: 1;
-    grid-row: 3;
-    min-height: 300px;
+  .pill-dark {
+    grid-column: 2;
+    grid-row: 2;
+    min-height: 200px;
   }
 
-  .pill-dark,
+  .social-card {
+    grid-column: 1 / 3;
+    grid-row: 3;
+    min-height: 250px;
+  }
+
   .pill-red,
   .sidebar-right-top,
   .preview-card {
     display: none;
   }
+
+  .case-study-header {
+    padding: 16px 24px 14px;
+  }
+
+  .case-study-title {
+    font-size: 32px;
+  }
+
+  .case-study-subtitle {
+    font-size: 22px;
+  }
+
+  .video-text {
+    font-size: 32px;
+  }
+
+  .social-section {
+    padding: 18px 24px;
+  }
+
+  .social-title {
+    font-size: 28px;
+  }
+
+  .social-hashtag {
+    font-size: 20px;
+  }
+
+  .profile-image {
+    width: 80px;
+    height: 80px;
+  }
+
+  .blogs-section {
+    padding: 0 24px;
+  }
+
+  .blogs-title {
+    font-size: 24px;
+  }
+
+  .arrow-button {
+    width: 48px;
+    height: 48px;
+  }
 }
 
 @media (max-width: 600px) {
   .why-choose-us {
-    padding: 40px 20px;
+    padding: 30px 15px;
+  }
+
+  .bento-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .case-study {
-    padding: 30px;
-    min-height: 350px;
+    grid-column: 1;
+    grid-row: 1;
+    min-height: 320px;
+  }
+
+  .video-card {
+    grid-column: 1;
+    grid-row: 2;
+    min-height: 180px;
+  }
+
+  .pill-dark {
+    grid-column: 1;
+    grid-row: 3;
+    min-height: 120px;
+    flex-direction: row;
+    padding: 20px 30px;
+  }
+
+  .pill-text {
+    writing-mode: horizontal-tb;
+    font-size: 28px;
+  }
+
+  .social-card {
+    grid-column: 1;
+    grid-row: 4;
+    min-height: 280px;
+  }
+
+  .case-study-header {
+    padding: 14px 20px 12px;
+  }
+
+  .case-study-title {
+    font-size: 28px;
+  }
+
+  .case-study-subtitle {
+    font-size: 18px;
+  }
+
+  .video-text {
+    font-size: 28px;
   }
 
   .social-section {
-    padding: 24px;
+    padding: 20px;
     flex-direction: column;
     text-align: center;
-    gap: 20px;
+    gap: 15px;
+  }
+
+  .social-title {
+    font-size: 24px;
+  }
+
+  .social-hashtag {
+    font-size: 18px;
   }
 
   .profile-image {
+    width: 70px;
+    height: 70px;
     margin-left: 0;
   }
 
   .blogs-section {
-    padding: 24px;
+    padding: 0 20px;
+  }
+
+  .blogs-title {
+    font-size: 20px;
+  }
+
+  .arrow-button {
+    width: 44px;
+    height: 44px;
   }
 }
