@@ -1,0 +1,544 @@
+/* ===================================
+   WHY CHOOSE US HEADER
+   =================================== */
+.why-choose-us-header {
+  background: #ffffff;
+  padding: 40px 60px 40px;
+  text-align: center;
+}
+
+.why-choose-us-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(32px, 5vw, 60px);
+  font-weight: 600;
+  color: transparent;
+  -webkit-text-stroke: 1.5px #000000;
+  letter-spacing: -1px;
+  margin: 0;
+}
+
+.why-choose-us-description {
+  font-family: 'Times New Roman', Georgia, serif;
+  color: #555;
+  font-size: clamp(18px, 2.5vw, 26px);
+  line-height: 1.6;
+  margin-bottom: 40px;
+  margin-top: 30px;
+  font-weight: 400;
+  font-style: italic;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.why-choose-us-tagline {
+  font-family: 'Times New Roman', Georgia, serif;
+  font-size: clamp(28px, 5vw, 48px);
+  color: #000000;
+  font-weight: 700;
+  letter-spacing: 2px;
+  margin: 0 0 40px;
+}
+
+.why-pills-container {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.why-pills-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.why-pill {
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 18px;
+  padding: 14px 28px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: #000000;
+  box-shadow: 6px 6px 0 0 #000000;
+  transition: all 0.3s ease;
+}
+
+.why-pill:hover {
+  background: #000000;
+  color: #ffffff;
+  border-color: #000000;
+}
+
+/* ===================================
+   WHY CHOOSE US SECTION
+   =================================== */
+.why-choose-us {
+  padding: 60px 120px;
+  background: #000000;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.why-choose-us-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* ===================================
+   BENTO GRID LAYOUT
+   =================================== */
+.bento-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1.1fr 0.15fr 0.4fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+  width: 100%;
+  min-height: 650px;
+}
+
+/* ===================================
+   SHARED CARD STYLES
+   =================================== */
+.card {
+  border-radius: 48px;
+  overflow: hidden;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.08);
+}
+
+/* ===================================
+   CASE STUDY CARD (LEFT COLUMN)
+   =================================== */
+.case-study {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  background: #000000;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.case-study-header {
+  background: #ffffff;
+  border-radius: 48px 48px 0 0;
+  padding: 18px 28px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+.menu-dots {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  padding-top: 6px;
+}
+
+.menu-dots:hover {
+  opacity: 0.6;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  background-color: #000000;
+  border-radius: 50%;
+}
+
+.case-study-content {
+  flex: 1;
+  text-align: center;
+  padding-right: 25px;
+}
+
+.case-study-title {
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  color: #000000;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.case-study-subtitle {
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 600;
+  color: var(--primary-red, #C41E3A);
+  line-height: 1.2;
+}
+
+.case-study-image {
+  flex: 1;
+  background: url('https://images.unsplash.com/photo-1528164344705-47542687000d?w=800&q=80') center/cover;
+  border-radius: 0 0 48px 48px;
+}
+
+/* ===================================
+   VIDEO CARD
+   =================================== */
+.video-card {
+  grid-column: 2;
+  grid-row: 1;
+  background: url('https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=1200&q=80') center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.video-text {
+  position: relative;
+  z-index: 1;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* ===================================
+   SOCIAL MEDIA CARD (COMBINED)
+   =================================== */
+.social-card {
+  grid-column: 2 / 4;
+  grid-row: 2;
+  background-color: #f5f5f5;
+  display: flex;
+  flex-direction: column;
+}
+
+.social-section {
+  flex: 1;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.social-content {
+  flex: 1;
+}
+
+.social-title {
+  font-size: clamp(20px, 2.5vw, 36px);
+  font-weight: 700;
+  color: #000000;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.social-hashtag {
+  font-size: clamp(14px, 1.8vw, 24px);
+  font-weight: 600;
+  color: #000000;
+}
+
+.profile-image {
+  width: clamp(60px, 8vw, 100px);
+  height: clamp(60px, 8vw, 100px);
+  border-radius: 50%;
+  background: url('https://images.unsplash.com/photo-1554844453-7ea2a562a6c8?w=400&q=80') center/cover;
+  flex-shrink: 0;
+  margin-left: 24px;
+}
+
+.blogs-section {
+  flex: 1;
+  padding: 0 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.blogs-title {
+  font-size: clamp(18px, 2.2vw, 32px);
+  font-weight: 700;
+  color: #6b7280;
+}
+
+.arrow-button {
+  width: clamp(36px, 4vw, 56px);
+  height: clamp(36px, 4vw, 56px);
+  border: 3px solid #000000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(16px, 2vw, 24px);
+  color: #000000;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: transparent;
+}
+
+.arrow-button:hover {
+  background-color: #000000;
+  color: #ffffff;
+  transform: translateX(6px);
+}
+
+/* ===================================
+   PILL CARDS (VERTICAL)
+   =================================== */
+.pill-dark,
+.pill-red {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30px 0;
+}
+
+.pill-dark {
+  grid-column: 3;
+  grid-row: 1;
+  background-color: #000000;
+  border: 3px solid #ffffff;
+  border-radius: 100px;
+}
+
+.pill-red {
+  grid-column: 4;
+  grid-row: 2;
+  background-color: var(--primary-red, #C41E3A);
+}
+
+.pill-text {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 500;
+  color: #ffffff;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  letter-spacing: -1px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-circle {
+  width: clamp(20px, 2vw, 28px);
+  height: clamp(20px, 2vw, 28px);
+  border: 3px solid #ffffff;
+  border-radius: 50%;
+  position: relative;
+}
+
+.search-handle {
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  width: 3px;
+  height: 12px;
+  background-color: #ffffff;
+  transform: rotate(-45deg);
+  border-radius: 2px;
+}
+
+/* ===================================
+   RIGHT SIDEBAR TOP CONTAINER
+   =================================== */
+.sidebar-right-top {
+  grid-column: 4;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ===================================
+   GLOBE CARD
+   =================================== */
+.globe-card {
+  flex: 1;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+}
+
+/* ===================================
+   VIDEO CARD 2 (Unused - kept for reference)
+   =================================== */
+.video-card-2 {
+  flex: 1;
+  background: linear-gradient(135deg, #5170FF 0%, #3a4fd9 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+.play-icon {
+  width: clamp(20px, 2vw, 28px);
+  height: clamp(20px, 2vw, 28px);
+  border: 2px solid #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.play-triangle {
+  width: 0;
+  height: 0;
+  border-left: clamp(6px, 0.6vw, 10px) solid #ffffff;
+  border-top: clamp(4px, 0.4vw, 6px) solid transparent;
+  border-bottom: clamp(4px, 0.4vw, 6px) solid transparent;
+  margin-left: 3px;
+}
+
+.globe-icon {
+  width: clamp(90px, 8vw, 130px);
+  height: clamp(90px, 8vw, 130px);
+  color: #000000;
+}
+
+/* ===================================
+   PREVIEW CARD
+   =================================== */
+.preview-card {
+  flex: 1;
+  background: url('https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=400&q=80') center/cover;
+  border-radius: 16px;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+   =================================== */
+@media (max-width: 1200px) {
+  .why-choose-us {
+    padding: 60px 40px;
+  }
+
+  .bento-grid {
+    grid-template-columns: 1fr 1.5fr 0.3fr;
+    grid-template-rows: auto auto auto;
+    min-height: auto;
+    gap: 16px;
+  }
+
+  .case-study {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    min-height: 500px;
+  }
+
+  .video-card {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 240px;
+  }
+
+  .social-card {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .pill-dark {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .sidebar-right-top {
+    display: none;
+  }
+
+  .preview-card {
+    display: none;
+  }
+
+  .pill-red {
+    grid-column: 3;
+    grid-row: 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .why-choose-us {
+    padding: 50px 30px;
+  }
+
+  .bento-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .case-study {
+    grid-column: 1;
+    grid-row: 1;
+    min-height: 400px;
+  }
+
+  .video-card {
+    grid-column: 1;
+    grid-row: 2;
+    min-height: 200px;
+  }
+
+  .social-card {
+    grid-column: 1;
+    grid-row: 3;
+    min-height: 300px;
+  }
+
+  .pill-dark,
+  .pill-red,
+  .sidebar-right-top,
+  .preview-card {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .why-choose-us {
+    padding: 40px 20px;
+  }
+
+  .case-study {
+    padding: 30px;
+    min-height: 350px;
+  }
+
+  .social-section {
+    padding: 24px;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .profile-image {
+    margin-left: 0;
+  }
+
+  .blogs-section {
+    padding: 24px;
+  }
+}
