@@ -4,7 +4,7 @@
 }
 
 .connect-bg {
-  background: #ffffff url('../assets/images/Untitled.png') center/cover no-repeat;
+  background: #ffffff;
   padding: 80px 0;
   position: relative;
   overflow: hidden;
@@ -25,20 +25,90 @@
 
 .watermark {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  opacity: 0.1;
-  font-family: 'Bebas Neue', cursive;
-  font-size: 60px;
-  color: var(--black);
+  top: -10%;
+  left: -10%;
+  right: -10%;
+  bottom: -10%;
+  opacity: 0.15;
+  font-family: 'Aller Display', sans-serif;
+  font-size: 55px;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--black);
+  text-stroke: 1.5px var(--black);
   pointer-events: none;
+  overflow: hidden;
+  transform: rotate(-15deg);
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  justify-content: center;
+}
+
+.watermark-row {
+  display: flex;
+  gap: 50px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.watermark-row:nth-child(odd) {
+  animation: watermarkScrollRight 30s linear infinite;
+}
+
+.watermark-row:nth-child(even) {
+  animation: watermarkScrollLeft 30s linear infinite;
+}
+
+.watermark-row span {
+  display: inline-block;
+  letter-spacing: 3px;
+  font-weight: 400;
+}
+
+@keyframes watermarkScrollRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes watermarkScrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .watermark {
+    font-size: 38px;
+    gap: 8px;
+    opacity: 0.14;
+    -webkit-text-stroke: 1.2px var(--black);
+    text-stroke: 1.2px var(--black);
+  }
+
+  .watermark-row {
+    gap: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .watermark {
+    font-size: 28px;
+    gap: 6px;
+    opacity: 0.13;
+    -webkit-text-stroke: 1px var(--black);
+    text-stroke: 1px var(--black);
+  }
+
+  .watermark-row {
+    gap: 25px;
+  }
 }
 
 .laptop-mockup {

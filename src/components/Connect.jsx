@@ -5,9 +5,160 @@ function Connect() {
     <section className="connect" id="contact">
       <div className="connect-bg">
         <div className="watermark">
-          <span>SIMPLE.</span>
-          <span>EFFECTIVE.</span>
-          <span>RESULT-ORIENTED.</span>
+          <div className="watermark-row">
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+          </div>
+          <div className="watermark-row">
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+          </div>
+          <div className="watermark-row">
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+          </div>
+          <div className="watermark-row">
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+          </div>
+          <div className="watermark-row">
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+          </div>
+          <div className="watermark-row">
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+          </div>
+          <div className="watermark-row">
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+          </div>
+          <div className="watermark-row">
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+          </div>
+          <div className="watermark-row">
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+          </div>
+          <div className="watermark-row">
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+          </div>
+          <div className="watermark-row">
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+          </div>
+          <div className="watermark-row">
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+          </div>
+          <div className="watermark-row">
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+          </div>
+          <div className="watermark-row">
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+            <span>SIMPLE.</span>
+            <span>EFFECTIVE.</span>
+            <span>RESULT-ORIENTED.</span>
+          </div>
         </div>
         <div className="laptop-mockup">
           <div className="laptop-screen">
