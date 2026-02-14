@@ -1,0 +1,11 @@
+.app {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.main-content {
+  position: relative;
+  z-index: 1;
+  background: var(--white);
+  margin-bottom: 380px;
+}
