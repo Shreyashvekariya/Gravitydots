@@ -1,0 +1,162 @@
+/* CASE STUDIES PAGE STYLES */
+.cs-page {
+    background-color: #fff;
+    color: #000;
+    min-height: 100vh;
+    padding: 120px 60px 80px;
+}
+
+.cs-header {
+    margin-bottom: 100px;
+    border-bottom: 2px solid #000;
+    padding-bottom: 40px;
+}
+
+.cs-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(40px, 6vw, 90px);
+    font-weight: 800;
+    margin: 0;
+    line-height: 1;
+}
+
+.cs-lead {
+    font-family: 'Times New Roman', serif;
+    font-size: 24px;
+    font-style: italic;
+    margin-top: 20px;
+    color: #555;
+}
+
+/* LIST ITEM */
+.cs-item {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    margin-bottom: 150px;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.cs-item.visible,
+.cs-title.visible,
+.cs-lead.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cs-item:nth-child(even) {
+    grid-template-columns: 1fr 1.2fr;
+    direction: rtl;
+    /* Swap order locally */
+}
+
+.cs-item:nth-child(even) .cs-content {
+    direction: ltr;
+    /* Reset text direction */
+}
+
+/* IMAGE */
+.cs-image-wrapper {
+    overflow: hidden;
+    border-radius: 0;
+}
+
+.cs-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.8s ease;
+}
+
+.cs-item:hover .cs-image {
+    transform: scale(1.03);
+}
+
+/* CONTENT */
+.cs-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.cs-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+}
+
+.cs-client {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cs-tags {
+    display: flex;
+    gap: 10px;
+}
+
+.cs-tag {
+    font-size: 12px;
+    background: #f0f0f0;
+    padding: 4px 10px;
+    border-radius: 4px;
+    color: #666;
+}
+
+.cs-project-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.cs-description {
+    font-family: 'Times New Roman', serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: #444;
+}
+
+.cs-read-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: gap 0.3s ease;
+}
+
+.cs-read-btn:hover {
+    gap: 20px;
+    color: var(--primary-red, #C41E3A);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+
+    .cs-item,
+    .cs-item:nth-child(even) {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        direction: ltr;
+        /* Reset */
+        margin-bottom: 100px;
+    }
+
+    .cs-page {
+        padding: 100px 20px 60px;
+    }
+}

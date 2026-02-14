@@ -283,28 +283,28 @@
   .casestudy {
     padding: 40px 16px;
   }
-  
+
   .bento-grid {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(6, 100px);
     gap: 12px;
   }
-  
+
   .main-card {
     grid-column: span 4;
     grid-row: span 2;
   }
-  
+
   .video-card {
     grid-column: span 4;
     grid-row: span 2;
   }
-  
+
   .website-card {
     grid-column: span 1;
     grid-row: span 1;
   }
-  
+
   .social-card {
     grid-column: span 4;
     grid-row: span 1;
@@ -316,13 +316,13 @@
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(8, 120px);
   }
-  
+
   .main-card,
   .video-card,
   .social-card {
     grid-column: span 2;
   }
-  
+
   .website-card,
   .globe-card,
   .small-image-card,

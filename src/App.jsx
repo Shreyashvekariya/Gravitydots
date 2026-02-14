@@ -1,12 +1,12 @@
 import { useEffect } from 'react'
 import Lenis from 'lenis'
 import Navbar from './components/Navbar'
-import Hero from './components/Hero'
-import Services from './components/Services'
-import Reviews from './components/Reviews'
-import WhyChooseUs from './components/WhyChooseUs'
-import Clients from './components/Clients'
-import Connect from './components/Connect'
+import { Routes, Route } from 'react-router-dom'
+import Home from './components/Home'
+import AboutUs from './components/AboutUs'
+import Work from './components/Work'
+import CaseStudies from './components/CaseStudies'
+import Contact from './components/Contact'
 import Footer from './components/Footer'
 import './App.css'
 
@@ -33,14 +33,15 @@ function App() {
 
   return (
     <div className="app">
+      <Navbar />
       <div className="main-content">
-        <Navbar />
-        <Hero />
-        <Services />
-        <Clients />
-        <WhyChooseUs />
-        <Reviews />
-        <Connect />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="/casestudies" element={<CaseStudies />} />
+          <Route path="/contact" element={<Contact />} />
+        </Routes>
       </div>
       <Footer />
     </div>

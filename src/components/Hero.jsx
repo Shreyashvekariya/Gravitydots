@@ -3,7 +3,7 @@ import Marquee from './Marquee'
 
 function Hero() {
   return (
-    <section className="hero">
+    <section className="hero" id="hero">
       <div className="hero-content">
         <h1 className="hero-title bebas">
           LAUNCH YOUR BRAND INTO<br />

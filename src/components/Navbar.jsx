@@ -1,15 +1,11 @@
 import { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import './Navbar.css'
 import navLogo from '../assets/images/GD LOGO (BLACK & WHITE).png'
 
 function Navbar() {
-  const [activeLink, setActiveLink] = useState('services')
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-
-  const handleClick = (linkName) => {
-    setActiveLink(linkName)
-    setIsMenuOpen(false)
-  }
+  const location = useLocation()
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -45,10 +41,12 @@ function Navbar() {
       </div>
       <nav className="navbar">
         <div className="logo">
-          <img src={navLogo} alt="Gravity Dots" className="logo-image" />
+          <Link to="/">
+            <img src={navLogo} alt="Gravity Dots" className="logo-image" />
+          </Link>
         </div>
-        
-        <button 
+
+        <button
           className={`hamburger ${isMenuOpen ? 'active' : ''}`}
           onClick={toggleMenu}
           aria-label="Toggle menu"
@@ -59,11 +57,26 @@ function Navbar() {
         </button>
 
         <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-          <li><a href="#services" className={activeLink === 'services' ? 'nav-link active' : 'nav-link'} onClick={() => handleClick('services')}>Services</a></li>
-          <li><a href="#about" className={activeLink === 'about' ? 'nav-link active' : 'nav-link'} onClick={() => handleClick('about')}>About us</a></li>
-          <li><a href="#work" className={activeLink === 'work' ? 'nav-link active' : 'nav-link'} onClick={() => handleClick('work')}>Work</a></li>
-          <li><a href="#casestudy" className={activeLink === 'casestudy' ? 'nav-link active' : 'nav-link'} onClick={() => handleClick('casestudy')}>Casestudy</a></li>
-          <li><a href="#contact" className={activeLink === 'contact' ? 'nav-link active' : 'nav-link'} onClick={() => handleClick('contact')}>Contact us</a></li>
+          <li>
+            {/* If on home, anchor link. If on other page, Link to /#id */}
+            {location.pathname === '/' ? (
+              <a href="#hero" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>Services</a>
+            ) : (
+              <Link to="/#hero" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>Services</Link>
+            )}
+          </li>
+          <li>
+            <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>About us</Link>
+          </li>
+          <li>
+            <Link to="/work" className={`nav-link ${location.pathname === '/work' ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>Work</Link>
+          </li>
+          <li>
+            <Link to="/casestudies" className={`nav-link ${location.pathname === '/casestudies' ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>Casestudy</Link>
+          </li>
+          <li>
+            <Link to="/contact" className={`nav-link ${location.pathname === '/contact' ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>Contact us</Link>
+          </li>
         </ul>
       </nav>
     </header>
