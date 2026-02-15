@@ -57,6 +57,7 @@
     position: relative;
     aspect-ratio: 4/3;
     border-radius: 4px;
+    background-color: #1a1a1a;
 }
 
 .work-image {
@@ -65,6 +66,7 @@
     object-fit: cover;
     transition: transform 0.7s ease;
     filter: grayscale(100%);
+    display: block;
 }
 
 .work-image-container:hover .work-image {
