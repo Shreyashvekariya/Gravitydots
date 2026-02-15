@@ -20,7 +20,7 @@ const cases = [
         title: 'The Light of Innovation',
         description: 'Launching a smart home brand from scratch, establishing a visual identity that speaks to modern minimalism.',
         tags: ['Branding', 'IoT', 'Launch'],
-        image: 'https://images.unsplash.com/photo-1558002038-10912cba1b8b?w=1200&q=80'
+        image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
     }
 ];
 

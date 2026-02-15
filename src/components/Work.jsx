@@ -68,41 +68,43 @@ const Work = () => {
     }, []);
 
     return (
-        <section className="work-page" ref={sectionRef}>
-            <div className="work-header">
-                <h1 className="work-title fade-up">SELECTED WORK</h1>
-                <p className="work-subtitle fade-up">A curated collection of our most impactful endeavors.</p>
-            </div>
+        <div className="work-bg-wrapper">
+            <section className="work-page" ref={sectionRef}>
+                <div className="work-header">
+                    <h1 className="work-title fade-up">SELECTED WORK</h1>
+                    <p className="work-subtitle fade-up">A curated collection of our most impactful endeavors.</p>
+                </div>
 
-            <div className="work-grid">
-                {projects.map((project) => (
-                    <div key={project.id} className="work-item fade-up">
-                        <div className="work-image-container">
-                            <img
-                                src={project.image}
-                                alt={project.title}
-                                className="work-image"
-                                loading="lazy"
-                                onError={(e) => {
-                                    e.target.style.display = 'block';
-                                    e.target.style.backgroundColor = '#1a1a1a';
-                                }}
-                            />
-                            <div className="work-overlay">
-                                <span className="view-project">VIEW PROJECT</span>
+                <div className="work-grid">
+                    {projects.map((project) => (
+                        <div key={project.id} className="work-item fade-up">
+                            <div className="work-image-container">
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="work-image"
+                                    loading="lazy"
+                                    onError={(e) => {
+                                        e.target.style.display = 'block';
+                                        e.target.style.backgroundColor = '#1a1a1a';
+                                    }}
+                                />
+                                <div className="work-overlay">
+                                    <span className="view-project">VIEW PROJECT</span>
+                                </div>
+                            </div>
+                            <div className="work-info">
+                                <div className="work-info-left">
+                                    <h3 className="project-title">{project.title}</h3>
+                                    <span className="project-category">{project.category}</span>
+                                </div>
+                                <span className="project-year">{project.year}</span>
                             </div>
                         </div>
-                        <div className="work-info">
-                            <div className="work-info-left">
-                                <h3 className="project-title">{project.title}</h3>
-                                <span className="project-category">{project.category}</span>
-                            </div>
-                            <span className="project-year">{project.year}</span>
-                        </div>
-                    </div>
-                ))}
-            </div>
-        </section>
+                    ))}
+                </div>
+            </section>
+        </div>
     );
 };
 

@@ -4,7 +4,7 @@ import Services from './Services'
 import Clients from './Clients'
 import WhyChooseUs from './WhyChooseUs'
 import Reviews from './Reviews'
-import Connect from './Connect'
+import ConnectUs from './ConnectUs'
 
 const Home = () => {
     return (
@@ -14,7 +14,7 @@ const Home = () => {
             <Clients />
             <WhyChooseUs />
             <Reviews />
-            <Connect />
+            <ConnectUs />
         </>
     )
 }
