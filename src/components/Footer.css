@@ -20,6 +20,7 @@
     opacity: 0;
     transform: translateY(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -53,6 +54,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -222,4 +224,40 @@
   .copyright {
     font-size: 10px;
   }
+}
+
+
+/* ===============================
+   FOOTER – WHITE MODE (WORK PAGE)
+================================ */
+
+.footer.white-mode {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+/* 🔥 REMOVE THE 1px LINE COMPLETELY */
+.footer.white-mode .footer-bottom {
+  border-top: none !important;
+}
+
+/* LINKS */
+.footer.white-mode .footer-links a {
+  color: var(--black);
+}
+
+/* SOCIAL ICONS */
+.footer.white-mode .social-links a {
+  border-color: var(--black);
+  color: var(--black);
+}
+
+.footer.white-mode .social-links a:hover {
+  background-color: var(--black);
+  color: var(--white);
+}
+
+/* COPYRIGHT */
+.footer.white-mode .copyright {
+  color: var(--black);
 }

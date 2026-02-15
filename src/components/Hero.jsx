@@ -5,7 +5,7 @@ function Hero() {
   return (
     <section className="hero" id="hero">
       <div className="hero-content">
-        <h1 className="hero-title bebas">
+        <h1 className="hero-title">
           LAUNCH YOUR BRAND INTO<br />
           THE DIGITAL ORBIT WITH<br />
           GRAVITY DOTS

@@ -78,9 +78,9 @@ const Work = () => {
                 {projects.map((project) => (
                     <div key={project.id} className="work-item fade-up">
                         <div className="work-image-container">
-                            <img 
-                                src={project.image} 
-                                alt={project.title} 
+                            <img
+                                src={project.image}
+                                alt={project.title}
                                 className="work-image"
                                 loading="lazy"
                                 onError={(e) => {

@@ -1,10 +1,29 @@
-/* WORK PAGE STYLES */
+/* ===============================
+   WORK PAGE STYLES (FIXED)
+================================ */
+
 .work-page {
     background-color: #000;
     color: #fff;
-    min-height: 100vh;
+
+    /* FIX 1: prevent 1px overflow caused by border-radius + transform */
+    overflow: hidden;
+
+    /* FIX 2: safer height handling for sticky footer reveal */
+    min-height: calc(100vh - 1px);
+
     padding: 120px 60px 60px;
+    border-radius: 0 0 40px 40px;
+
+    /* FIX 3: eliminate subpixel gaps during scroll transforms */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
 }
+
+/* ===============================
+   HEADER
+================================ */
 
 .work-header {
     margin-bottom: 80px;
@@ -12,13 +31,18 @@
 }
 
 .work-title {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Aller Display', sans-serif;
     font-size: clamp(40px, 8vw, 120px);
     font-weight: 800;
     letter-spacing: -2px;
     margin: 0;
     line-height: 1;
-    background: linear-gradient(180deg, #C41E3A 0%, #FF6B6B 50%, #FFB4A2 100%);
+
+    background: linear-gradient(180deg,
+            #C41E3A 0%,
+            #FF6B6B 50%,
+            #FFB4A2 100%);
+
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -32,19 +56,26 @@
     margin-top: 20px;
 }
 
-/* GRID */
+/* ===============================
+   GRID
+================================ */
+
 .work-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 60px;
     max-width: 1400px;
     margin: 0 auto;
+
+    /* FIX 4: move bottom spacing inside grid instead of page */
+    padding-bottom: 60px;
 }
 
 .work-item {
     display: flex;
     flex-direction: column;
     gap: 20px;
+
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -52,14 +83,16 @@
 
 .work-item:nth-child(even) {
     margin-top: 100px;
-    /* Offset for masonry feel */
 }
 
-/* IMAGE */
+/* ===============================
+   IMAGE
+================================ */
+
 .work-image-container {
-    overflow: hidden;
     position: relative;
-    aspect-ratio: 4/3;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
     border-radius: 4px;
     background-color: #1a1a1a;
 }
@@ -68,9 +101,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.7s ease;
-    filter: grayscale(100%);
     display: block;
+
+    filter: grayscale(100%);
+    transition: transform 0.7s ease, filter 0.7s ease;
 }
 
 .work-image-container:hover .work-image {
@@ -80,14 +114,13 @@
 
 .work-overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: rgba(0, 0, 0, 0.3);
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     opacity: 0;
     transition: opacity 0.3s ease;
 }
@@ -101,17 +134,23 @@
     color: #fff;
     padding: 10px 20px;
     border-radius: 30px;
+
     font-family: 'Poppins', sans-serif;
     font-size: 12px;
     letter-spacing: 2px;
+
     backdrop-filter: blur(5px);
 }
 
-/* INFO */
+/* ===============================
+   INFO
+================================ */
+
 .work-info {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
+
     border-top: 1px solid #333;
     padding-top: 15px;
 }
@@ -136,17 +175,24 @@
     color: #666;
 }
 
-/* ANIMATION */
+/* ===============================
+   ANIMATION
+================================ */
+
 .fade-up.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* RESPONSIVE */
+/* ===============================
+   RESPONSIVE
+================================ */
+
 @media (max-width: 768px) {
     .work-grid {
         grid-template-columns: 1fr;
         gap: 40px;
+        padding-bottom: 40px;
     }
 
     .work-item:nth-child(even) {

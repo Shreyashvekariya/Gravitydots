@@ -1,12 +1,17 @@
 /* ===================================
    ABOUT US PAGE - SPLIT LAYOUT
    =================================== */
+.about-bg-wrapper-red {
+    background-color: var(--black);
+}
+
 .about-us-page {
     background-color: #ffffff;
     color: #000000;
     padding: 100px 60px;
     position: relative;
     min-height: 100vh;
+    border-radius: 0 0 40px 40px;
 }
 
 .about-container {
@@ -34,7 +39,7 @@
 }
 
 .about-title-outline {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Aller Display', sans-serif;
     font-size: clamp(60px, 8vw, 100px);
     font-weight: 800;
     line-height: 0.85;
@@ -45,7 +50,7 @@
 }
 
 .about-title-filled {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Aller Display', sans-serif;
     font-size: clamp(60px, 8vw, 100px);
     font-weight: 800;
     line-height: 0.85;
