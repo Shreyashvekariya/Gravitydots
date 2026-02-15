@@ -1,0 +1,153 @@
+/* WORK PAGE STYLES */
+.work-page {
+    background-color: #000;
+    color: #fff;
+    min-height: 100vh;
+    padding: 120px 60px 60px;
+}
+
+.work-header {
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.work-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(40px, 8vw, 120px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    margin: 0;
+    line-height: 1;
+}
+
+.work-subtitle {
+    font-family: 'Times New Roman', serif;
+    font-size: clamp(18px, 1.5vw, 24px);
+    font-style: italic;
+    color: #aaa;
+    margin-top: 20px;
+}
+
+/* GRID */
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.work-item {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.work-item:nth-child(even) {
+    margin-top: 100px;
+    /* Offset for masonry feel */
+}
+
+/* IMAGE */
+.work-image-container {
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 4/3;
+    border-radius: 4px;
+}
+
+.work-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+    filter: grayscale(100%);
+}
+
+.work-image-container:hover .work-image {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+}
+
+.work-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.work-image-container:hover .work-overlay {
+    opacity: 1;
+}
+
+.view-project {
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    backdrop-filter: blur(5px);
+}
+
+/* INFO */
+.work-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    border-top: 1px solid #333;
+    padding-top: 15px;
+}
+
+.project-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.project-category {
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--primary-red, #C41E3A);
+}
+
+.project-year {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #666;
+}
+
+/* ANIMATION */
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .work-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .work-item:nth-child(even) {
+        margin-top: 0;
+    }
+
+    .work-page {
+        padding: 100px 20px 40px;
+    }
+}
