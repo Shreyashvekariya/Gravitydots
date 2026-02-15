@@ -6,42 +6,42 @@ const projects = [
         id: 1,
         title: 'Neon Horizon',
         category: 'Branding',
-        image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
         year: '2025'
     },
     {
         id: 2,
         title: 'Minimalist Void',
         category: 'Web Design',
-        image: 'https://images.unsplash.com/photo-1454117096348-e4abb1768190?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
         year: '2024'
     },
     {
         id: 3,
         title: 'Urban Pulse',
         category: 'Campaign',
-        image: 'https://images.unsplash.com/photo-1481487484168-9b930d55208d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
         year: '2024'
     },
     {
         id: 4,
         title: 'Future Tech',
         category: 'Product Design',
-        image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
         year: '2023'
     },
     {
         id: 5,
         title: 'Eco Sphere',
         category: 'Strategy',
-        image: 'https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
         year: '2023'
     },
     {
         id: 6,
         title: 'Abstract Minds',
         category: 'Art Direction',
-        image: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
         year: '2022'
     }
 ];

@@ -134,53 +134,6 @@ const CaseStudies = () => {
                 </div>
             </section>
 
-            <section ref={contentRef} className="cs-hero-content-section">
-                <div className="cs-hero-content-container">
-                    <div className="cs-hero-content-grid">
-                        <div className="cs-hero-main-content">
-                            <div className="cs-hero-badge">
-                                <span>PropTech Innovation</span>
-                            </div>
-                            <h1 className="cs-hero-title">Transform Off-Plan Sales</h1>
-                            <p className="cs-hero-subtitle">
-                                Revolutionary platform enabling developers to sell unbuilt properties through
-                                immersive 3D experiences and real-time booking systems.
-                            </p>
-                            <div className="cs-hero-cta-group">
-                                <a href="#contact" className="cs-btn-primary">Schedule Demo</a>
-                                <a href="#solutions" className="cs-btn-secondary">View Platform</a>
-                            </div>
-                        </div>
-
-                        <div className="cs-hero-stats-section">
-                            <div className="cs-stats-container">
-                                <div className="cs-stat-item">
-                                    <div className="cs-stat-value">40%</div>
-                                    <div className="cs-stat-description">Faster sales cycles</div>
-                                </div>
-                                <div className="cs-stat-divider"></div>
-                                <div className="cs-stat-item">
-                                    <div className="cs-stat-value">3x</div>
-                                    <div className="cs-stat-description">Higher conversion</div>
-                                </div>
-                                <div className="cs-stat-divider"></div>
-                                <div className="cs-stat-item">
-                                    <div className="cs-stat-value">24/7</div>
-                                    <div className="cs-stat-description">Global access</div>
-                                </div>
-                            </div>
-                            <div className="cs-hero-description">
-                                <p>
-                                    From Dubai's skyline to global markets, VistaraX empowers developers with
-                                    cutting-edge technology to showcase and manage off-plan properties before
-                                    construction begins.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <section className="cs-page">
                 <div className="cs-header">
                     <h1 className="cs-title cs-fade">CASE STUDIES</h1>
