@@ -1,0 +1,206 @@
+/* ===============================
+   WORK PAGE STYLES (FIXED)
+================================ */
+
+.work-bg-wrapper {
+    background-color: #ffffff;
+}
+
+.work-page {
+    background-color: #000;
+    color: #fff;
+
+    /* FIX 1: prevent 1px overflow caused by border-radius + transform */
+    overflow: hidden;
+
+    /* FIX 2: safer height handling for sticky footer reveal */
+    min-height: calc(100vh - 1px);
+
+    padding: 100px 70px 60px;
+    border-radius: 40px 40px 90px 90px;
+
+    /* FIX 3: eliminate subpixel gaps during scroll transforms */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform;
+    position: relative;
+}
+
+/* ===============================
+   HEADER
+================================ */
+
+.work-header {
+    margin-bottom: 80px;
+    text-align: center;
+}
+
+.work-title {
+    font-family: 'Aller Display', sans-serif;
+    font-size: clamp(40px, 6vw, 80px);
+    line-height: 1.1;
+    letter-spacing: 5px;
+    margin: 0;
+
+    background: linear-gradient(180deg, rgba(196, 30, 58, 1) 0%, rgb(255, 255, 255) 95%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.work-subtitle {
+    font-family: 'Times New Roman', serif;
+    font-size: clamp(18px, 1.5vw, 24px);
+    font-style: italic;
+    color: #aaa;
+    margin-top: 20px;
+}
+
+/* ===============================
+   GRID
+================================ */
+
+.work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 60px;
+    max-width: 1400px;
+    margin: 0 auto;
+
+    /* FIX 4: move bottom spacing inside grid instead of page */
+    padding-bottom: 60px;
+}
+
+.work-item {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.work-item:nth-child(even) {
+    margin-top: 100px;
+}
+
+/* ===============================
+   IMAGE
+================================ */
+
+.work-image-container {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    border-radius: 4px;
+    background-color: #1a1a1a;
+}
+
+.work-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+
+    filter: grayscale(100%);
+    transition: transform 0.7s ease, filter 0.7s ease;
+}
+
+.work-image-container:hover .work-image {
+    transform: scale(1.05);
+    filter: grayscale(0%);
+}
+
+.work-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.work-image-container:hover .work-overlay {
+    opacity: 1;
+}
+
+.view-project {
+    border: 1px solid #fff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 30px;
+
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+
+    backdrop-filter: blur(5px);
+}
+
+/* ===============================
+   INFO
+================================ */
+
+.work-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    border-top: 1px solid #333;
+    padding-top: 15px;
+}
+
+.project-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.project-category {
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--primary-red, #C41E3A);
+}
+
+.project-year {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: #666;
+}
+
+/* ===============================
+   ANIMATION
+================================ */
+
+.fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 768px) {
+    .work-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-bottom: 40px;
+    }
+
+    .work-item:nth-child(even) {
+        margin-top: 0;
+    }
+
+    .work-page {
+        padding: 100px 20px 40px;
+        border-radius: 20px 20px 45px 45px;
+    }
+}
