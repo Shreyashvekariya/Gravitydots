@@ -10,7 +10,7 @@
   margin: 0 auto 30px;
   position: relative;
   z-index: 2;
-  padding: 20px 20px;
+  padding: 200px 20px;
   background: url('../assets/Service.png') center/cover no-repeat;
   overflow: hidden;
 }
@@ -214,7 +214,7 @@
   }
 
   .services-header {
-    padding: 20px 20px;
+    padding: 100px 20px;
     margin-bottom: 20px;
   }
 
@@ -293,7 +293,7 @@
   }
 
   .services-header {
-    padding: 15px 15px;
+    padding: 80px 15px;
     margin-bottom: 15px;
   }
 

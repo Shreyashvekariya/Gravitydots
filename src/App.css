@@ -1,12 +1,16 @@
 .app {
   width: 100%;
-  overflow-x: hidden;
   position: relative;
 }
 
 .main-content {
   position: relative;
-  z-index: 1;
-  background: var(--white);
+  background: transparent;
   margin-bottom: 380px;
+}
+
+.rest-of-sections {
+  position: relative;
+  z-index: 2000;
+  background: var(--white);
 }

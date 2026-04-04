@@ -65,7 +65,7 @@ function Reviews() {
 
                 {/* Right image */}
                 <div className="reviews-image">
-                    <img key={current} src={reviews[current].image} alt={reviews[current].name} />
+                    <img src={reviews[0].image} alt="Happy clients" />
                 </div>
             </div>
         </section>
