@@ -1,15 +1,15 @@
 .hero {
-  background: var(--dark-bg);
+  background: #ffffff;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: sticky;
-  top: 0;
-  padding: 60px 0 60px 0;
-  margin-top: 0;
-  border-radius: 40px 40px 0 0;
+  top: 155px;
+  padding: 50px 0 100px 0;
+  margin-top: -60px;
+  border-radius: 60px 60px 0 0;
   overflow: hidden;
   z-index: 1;
 }
@@ -18,7 +18,7 @@
   text-align: left;
   z-index: 2;
   padding-left: 80px;
-  padding-top: 30px;
+  padding-top: 0px;
   width: 100%;
 }
 
@@ -33,26 +33,7 @@
   background-clip: text;
 }
 
-.scroll-indicator {
-  margin-top: 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  animation: scrollBounce 1.5s ease-in-out infinite;
-}
 
-@keyframes scrollBounce {
-
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(12px);
-  }
-}
 
 .scroll-circle {
   width: 50px;

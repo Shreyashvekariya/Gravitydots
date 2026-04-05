@@ -37,7 +37,7 @@ html.lenis, html.lenis body {
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: var(--black);
+  background-color: var(--white);
   color: var(--black);
   overflow-x: hidden;
 }

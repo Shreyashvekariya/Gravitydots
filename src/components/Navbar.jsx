@@ -12,7 +12,7 @@ function Navbar() {
   }
 
   return (
-    <header className="navbar-wrapper">
+    <header className={`navbar-wrapper ${location.pathname === '/' ? 'sticky' : 'static'}`}>
       <div className="top-marquee">
         <div className="marquee-content">
           {/* First group */}

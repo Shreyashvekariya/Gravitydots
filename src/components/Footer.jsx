@@ -6,12 +6,14 @@ import darkLogo from '../assets/images/GD LOGO (BLACK & WHITE).png'
 function Footer() {
   const location = useLocation()
   const isWorkPage = location.pathname === '/work'
+  const isContactPage = location.pathname === '/contact'
+  const isWhiteMode = isWorkPage || isContactPage
 
   return (
-    <footer className={`footer ${isWorkPage ? 'white-mode' : ''}`}>
+    <footer className={`footer ${isWhiteMode ? 'white-mode' : ''}`}>
       <div className="footer-logo">
         <img
-          src={isWorkPage ? darkLogo : footerLogo}
+          src={isWhiteMode ? darkLogo : footerLogo}
           alt="Gravity Dots"
           className="footer-logo-image"
         />
@@ -41,7 +43,7 @@ function Footer() {
           <a href="https://youtube.com/@gravitydots" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
               <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z" />
-              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill={isWorkPage ? "black" : "white"} />
+              <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill={isWhiteMode ? "black" : "white"} />
             </svg>
           </a>
           <a href="https://pinterest.com/gravitydots" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
