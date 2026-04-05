@@ -11,8 +11,10 @@ function Navbar() {
     setIsMenuOpen(!isMenuOpen)
   }
 
+  const isWorkPage = location.pathname === '/work' || location.pathname === '/work-details'
+
   return (
-    <header className={`navbar-wrapper ${location.pathname === '/' ? 'sticky' : 'static'}`}>
+    <header className={`navbar-wrapper ${location.pathname === '/' ? 'sticky' : 'static'} ${isWorkPage ? 'no-shadow' : ''}`}>
       <div className="top-marquee">
         <div className="marquee-content">
           {/* First group */}

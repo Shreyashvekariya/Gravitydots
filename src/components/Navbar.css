@@ -20,6 +20,10 @@
   border-top: none;
 }
 
+.navbar-wrapper.no-shadow {
+  box-shadow: none;
+}
+
 .top-marquee {
   background: var(--dark-bg);
   padding: 12px 0;

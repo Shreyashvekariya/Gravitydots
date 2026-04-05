@@ -8,19 +8,51 @@ gsap.registerPlugin(ScrollTrigger);
 const cases = [
     {
         id: 1,
-        client: 'Apex Finance',
-        title: 'Redefining Digital Banking for the New Era',
-        description: 'A complete overhaul of the user experience, focusing on trust, speed, and transparency in a cluttered market.',
-        tags: ['UX/UI', 'Fintech', 'Strategy'],
+        client: 'Gir Culture',
+        title: 'Rebranding Gir Culture',
+        description: 'A complete overhaul of the user experience.',
+        tags: ['BRANDING'],
         image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=1200&q=80'
     },
     {
         id: 2,
-        client: 'Lumina',
-        title: 'The Light of Innovation',
-        description: 'Launching a smart home brand from scratch, establishing a visual identity that speaks to modern minimalism.',
-        tags: ['Branding', 'IoT', 'Launch'],
+        client: 'Gir Culture',
+        title: 'Gir Culture Marketing',
+        description: 'Launching a smart home brand from scratch.',
+        tags: ['BRANDING'],
         image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80'
+    },
+    {
+        id: 3,
+        client: 'Gir Culture',
+        title: 'Gir Culture SEO',
+        description: 'SEO optimization for Gir Culture.',
+        tags: ['BRANDING'],
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80'
+    },
+    {
+        id: 4,
+        client: 'Gir Culture',
+        title: 'Gir Culture Packaging',
+        description: 'Redesigning the packaging for better brand identity.',
+        tags: ['BRANDING'],
+        image: 'https://images.unsplash.com/photo-1524143986875-3b098d78b363?w=1200&q=80'
+    },
+    {
+        id: 5,
+        client: 'Gir Culture',
+        title: 'Gir Culture Socials',
+        description: 'Social media strategy for Gir Culture.',
+        tags: ['BRANDING'],
+        image: 'https://images.unsplash.com/photo-1481481600465-9f564dc5bd87?w=1200&q=80'
+    },
+    {
+        id: 6,
+        client: 'Gir Culture',
+        title: 'Gir Culture Content',
+        description: 'Content creation for Gir Culture.',
+        tags: ['BRANDING'],
+        image: 'https://images.unsplash.com/photo-1542744094-24638ea0b3b5?w=1200&q=80'
     }
 ];
 
@@ -136,28 +168,20 @@ const CaseStudies = () => {
 
             <section className="cs-page">
                 <div className="cs-header">
-                    <h1 className="cs-title cs-fade">CASE STUDIES</h1>
-                    <p className="cs-lead cs-fade">Deep dives into our process and results.</p>
+                    <h1 className="cs-main-title cs-fade">Results We're Proud Of</h1>
                 </div>
 
                 <div className="cs-list">
                     {cases.map((item) => (
                         <div key={item.id} className="cs-item cs-fade">
                             <div className="cs-image-wrapper">
-                                <img src={item.image} alt={item.title} className="cs-image" />
+                                <img src={item.image} alt={item.client} className="cs-image" />
                             </div>
                             <div className="cs-content">
-                                <div className="cs-meta">
-                                    <span className="cs-client">{item.client}</span>
-                                    <div className="cs-tags">
-                                        {item.tags.map(tag => <span key={tag} className="cs-tag">{tag}</span>)}
-                                    </div>
+                                <h3 className="cs-card-client">{item.client}</h3>
+                                <div className="cs-tags">
+                                    {item.tags.map(tag => <span key={tag} className="cs-card-tag">{tag}</span>)}
                                 </div>
-                                <h2 className="cs-project-title">{item.title}</h2>
-                                <p className="cs-description">{item.description}</p>
-                                <button className="cs-read-btn">
-                                    READ CASE STUDY <span className="arrow">→</span>
-                                </button>
                             </div>
                         </div>
                     ))}

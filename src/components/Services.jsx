@@ -1,15 +1,18 @@
+import { useNavigate } from 'react-router-dom'
 import './Services.css'
 
 function Services() {
+  const navigate = useNavigate()
+
   const services = [
-    { title: 'Customised', subtitle: 'Branding', bgColor: '#D53F52', description: 'Logo design, brand identity, packaging & creatives' },
-    { title: 'Graphic Designing', subtitle: 'Video Editing', bgColor: '#F5974E', description: 'Social media creatives, reels, ads & promotional videos' },
-    { title: 'Social Media', subtitle: 'Management', bgColor: '#5F94C9', description: 'Content creation, posting, engagement & growth strategy' },
-    { title: 'Performance Marketing', subtitle: '(Meta & Google)', bgColor: '#1800AD', description: 'High-converting ads with ROI-focused targeting' },
-    { title: 'SEO', subtitle: 'Search Engine Optimization', bgColor: '#7ED957', description: 'Improve rankings, traffic & visibility organically' },
-    { title: 'Influencer', subtitle: 'Marketing', bgColor: '#5170FF', description: 'Right creators, right audience, real impact' },
-    { title: 'Marketing', subtitle: 'Whatsapp & Email', bgColor: '#FF751F', description: 'Captions, visuals, reels & brand storytelling' },
-    { title: 'Website', subtitle: 'Development', bgColor: '#00B8BF', description: 'Fast, responsive & conversion-friendly websites' },
+    { title: 'Customised', subtitle: 'Branding', bgColor: '#D53F52', description: 'Logo design, brand identity, packaging & creatives', category: 'Branding' },
+    { title: 'Graphic Designing', subtitle: 'Video Editing', bgColor: '#F5974E', description: 'Social media creatives, reels, ads & promotional videos', category: 'Graphic Design & Video Editing' },
+    { title: 'Social Media', subtitle: 'Management', bgColor: '#5F94C9', description: 'Content creation, posting, engagement & growth strategy', category: 'Social Media Management' },
+    { title: 'Performance Marketing', subtitle: '(Meta & Google)', bgColor: '#1800AD', description: 'High-converting ads with ROI-focused targeting', category: 'Paid Ads' },
+    { title: 'SEO', subtitle: 'Search Engine Optimization', bgColor: '#7ED957', description: 'Improve rankings, traffic & visibility organically', category: 'Search Engine Optimization (SEO)' },
+    { title: 'Influencer', subtitle: 'Marketing', bgColor: '#5170FF', description: 'Right creators, right audience, real impact', category: 'Influencer Marketing' },
+    { title: 'Marketing', subtitle: 'Whatsapp & Email', bgColor: '#FF751F', description: 'Captions, visuals, reels & brand storytelling', category: 'Content Creation' },
+    { title: 'Website', subtitle: 'Development', bgColor: '#00B8BF', description: 'Fast, responsive & conversion-friendly websites', category: 'Website Development' },
   ]
 
   return (
@@ -21,7 +24,12 @@ function Services() {
       </div>
       <div className="services-grid">
         {services.map((service, index) => (
-          <div key={index} className="service-card">
+          <div
+            key={index}
+            className="service-card"
+            onClick={() => navigate('/work-details', { state: { category: service.category } })}
+            style={{ cursor: 'pointer' }}
+          >
             <div className="service-content">
               <span className="service-title">{service.title}</span>
               <span className="service-subtitle">{service.subtitle}</span>

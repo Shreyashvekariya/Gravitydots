@@ -1,104 +1,46 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Work.css';
 
 const projects = [
-    {
-        id: 1,
-        title: 'Neon Horizon',
-        category: 'Branding',
-        image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        year: '2025'
-    },
-    {
-        id: 2,
-        title: 'Minimalist Void',
-        category: 'Web Design',
-        image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        year: '2024'
-    },
-    {
-        id: 3,
-        title: 'Urban Pulse',
-        category: 'Campaign',
-        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        year: '2024'
-    },
-    {
-        id: 4,
-        title: 'Future Tech',
-        category: 'Product Design',
-        image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        year: '2023'
-    },
-    {
-        id: 5,
-        title: 'Eco Sphere',
-        category: 'Strategy',
-        image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        year: '2023'
-    },
-    {
-        id: 6,
-        title: 'Abstract Minds',
-        category: 'Art Direction',
-        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
-        year: '2022'
-    }
+    { title: 'Customised', subtitle: 'Branding', bgColor: '#D53F52', description: 'Logo design, brand identity, packaging & creatives', category: 'Branding' },
+    { title: 'Graphic Designing', subtitle: 'Video Editing', bgColor: '#F5974E', description: 'Social media creatives, reels, ads & promotional videos', category: 'Graphic Design & Video Editing' },
+    { title: 'Social Media', subtitle: 'Management', bgColor: '#5F94C9', description: 'Content creation, posting, engagement & growth strategy', category: 'Social Media Management' },
+    { title: 'Performance Marketing', subtitle: '(Meta & Google)', bgColor: '#1800AD', description: 'High-converting ads with ROI-focused targeting', category: 'Paid Ads' },
+    { title: 'SEO', subtitle: 'Search Engine Optimization', bgColor: '#7ED957', description: 'Improve rankings, traffic & visibility organically', category: 'Search Engine Optimization (SEO)' },
+    { title: 'Influencer', subtitle: 'Marketing', bgColor: '#5170FF', description: 'Right creators, right audience, real impact', category: 'Influencer Marketing' },
+    { title: 'Marketing', subtitle: 'Whatsapp & Email', bgColor: '#FF751F', description: 'Captions, visuals, reels & brand storytelling', category: 'Content Creation' },
+    { title: 'Website', subtitle: 'Development', bgColor: '#00B8BF', description: 'Fast, responsive & conversion-friendly websites', category: 'Website Development' },
 ];
 
 const Work = () => {
-    const sectionRef = useRef(null);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            },
-            { threshold: 0.1 }
-        );
-
-        const elements = sectionRef.current.querySelectorAll('.fade-up');
-        elements.forEach((el) => observer.observe(el));
-
-        return () => observer.disconnect();
-    }, []);
-
+    const navigate = useNavigate();
     return (
         <div className="work-bg-wrapper">
-            <section className="work-page" ref={sectionRef}>
-                <div className="work-header">
-                    <h1 className="work-title fade-up">SELECTED WORK</h1>
-                    <p className="work-subtitle fade-up">A curated collection of our most impactful endeavors.</p>
-                </div>
-
+            <section className="work-page">
                 <div className="work-grid">
-                    {projects.map((project) => (
-                        <div key={project.id} className="work-item fade-up">
-                            <div className="work-image-container">
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    className="work-image"
-                                    loading="lazy"
-                                    onError={(e) => {
-                                        e.target.style.display = 'block';
-                                        e.target.style.backgroundColor = '#1a1a1a';
-                                    }}
-                                />
-                                <div className="work-overlay">
-                                    <span className="view-project">VIEW PROJECT</span>
-                                </div>
+                    {projects.map((project, index) => (
+                        <div
+                            key={index}
+                            className="work-card"
+                            onClick={() => navigate('/work-details', { state: { category: project.category } })}
+                            style={{ cursor: 'pointer' }}
+                        >
+                            <div className="work-content">
+                                <span className="work-title">{project.title}</span>
+                                <span className="work-subtitle">{project.subtitle}</span>
                             </div>
-                            <div className="work-info">
-                                <div className="work-info-left">
-                                    <h3 className="project-title">{project.title}</h3>
-                                    <span className="project-category">{project.category}</span>
+                            <div className="work-overlay" style={{ background: project.bgColor }}>
+                                <span className="work-title">{project.title}</span>
+                                <span className="work-subtitle">{project.subtitle}</span>
+                                <p className="work-description">{project.description}</p>
+                                <div className="work-arrow">
+                                    <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="30" cy="30" r="28" stroke="#ffffff" strokeWidth="2.5" />
+                                        <line x1="16" y1="30" x2="40" y2="30" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" />
+                                        <polygon points="38,23 48,30 38,37" fill="#ffffff" />
+                                    </svg>
                                 </div>
-                                <span className="project-year">{project.year}</span>
                             </div>
                         </div>
                     ))}

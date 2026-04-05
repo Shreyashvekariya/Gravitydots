@@ -5,6 +5,7 @@ import Lenis from 'lenis'
 import Home from './components/Home'
 import AboutUs from './components/AboutUs'
 import Work from './components/Work'
+import WorkDetails from './components/WorkDetails'
 import CaseStudies from './components/CaseStudies'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
@@ -47,6 +48,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/work" element={<Work />} />
+          <Route path="/work-details" element={<WorkDetails />} />
           <Route path="/casestudies" element={<CaseStudies />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

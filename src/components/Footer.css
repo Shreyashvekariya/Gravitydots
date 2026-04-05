@@ -137,6 +137,16 @@
   background: #0A66C2;
 }
 
+/* YouTube hover - red */
+.social-links a:nth-child(4):hover::before {
+  background: #FF0000;
+}
+
+/* Pinterest hover - red */
+.social-links a:nth-child(5):hover::before {
+  background: #E60023;
+}
+
 .social-links a svg {
   position: relative;
   z-index: 1;

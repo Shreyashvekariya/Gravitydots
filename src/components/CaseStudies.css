@@ -238,141 +238,107 @@
 }
 
 .cs-header {
-    margin-bottom: 100px;
-    border-bottom: 2px solid #000;
-    padding-bottom: 40px;
+    margin-bottom: 60px;
+    padding-bottom: 20px;
 }
 
-.cs-title {
+.cs-main-title {
     font-family: 'Poppins', sans-serif;
-    font-size: clamp(40px, 6vw, 90px);
+    font-size: clamp(32px, 5vw, 60px);
     font-weight: 800;
     margin: 0;
-    line-height: 1;
+    line-height: 1.1;
+    color: #000;
 }
 
-.cs-lead {
-    font-family: 'Times New Roman', serif;
-    font-size: 24px;
-    font-style: italic;
-    margin-top: 20px;
-    color: #555;
-}
-
-/* LIST ITEM */
-.cs-item {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 80px;
-    margin-bottom: 150px;
-    align-items: center;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
-}
-
-.cs-item.visible,
-.cs-title.visible,
-.cs-lead.visible {
+.cs-main-title.visible {
     opacity: 1;
     transform: translateY(0);
 }
 
-.cs-item:nth-child(even) {
-    grid-template-columns: 1fr 1.2fr;
-    direction: rtl;
-    /* Swap order locally */
+/* LIST ITEM GRID */
+.cs-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
 }
 
-.cs-item:nth-child(even) .cs-content {
-    direction: ltr;
-    /* Reset text direction */
+.cs-item {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #777;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #fff;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s ease;
+}
+
+.cs-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.cs-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 /* IMAGE */
 .cs-image-wrapper {
+    width: 100%;
+    aspect-ratio: 4 / 3;
     overflow: hidden;
-    border-radius: 0;
+    position: relative;
+    border-bottom: 1px solid #777;
 }
 
 .cs-image {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
     transition: transform 0.8s ease;
 }
 
 .cs-item:hover .cs-image {
-    transform: scale(1.03);
+    transform: scale(1.05);
 }
 
 /* CONTENT */
 .cs-content {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-}
-
-.cs-meta {
-    display: flex;
     align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 15px;
+    justify-content: center;
+    padding: 24px;
+    gap: 8px;
+    background: #fff;
 }
 
-.cs-client {
+.cs-card-client {
     font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #000;
+    margin: 0;
+    text-align: center;
 }
 
 .cs-tags {
     display: flex;
-    gap: 10px;
+    gap: 8px;
+    justify-content: center;
 }
 
-.cs-tag {
-    font-size: 12px;
-    background: #f0f0f0;
-    padding: 4px 10px;
-    border-radius: 4px;
-    color: #666;
-}
-
-.cs-project-title {
+.cs-card-tag {
     font-family: 'Poppins', sans-serif;
-    font-size: clamp(32px, 4vw, 56px);
-    font-weight: 700;
-    line-height: 1.1;
-    margin: 0;
-}
-
-.cs-description {
-    font-family: 'Times New Roman', serif;
-    font-size: 18px;
-    line-height: 1.6;
-    color: #444;
-}
-
-.cs-read-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: gap 0.3s ease;
-}
-
-.cs-read-btn:hover {
-    gap: 20px;
-    color: var(--primary-red, #C41E3A);
+    font-size: 11px;
+    text-transform: uppercase;
+    color: #000;
+    font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
 /* RESPONSIVE */
@@ -419,16 +385,19 @@
         font-size: clamp(40px, 8vw, 80px);
     }
 
-    .cs-item,
-    .cs-item:nth-child(even) {
-        grid-template-columns: 1fr;
-        gap: 40px;
-        direction: ltr;
-        /* Reset */
-        margin-bottom: 100px;
+    .cs-list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
     }
 
     .cs-page {
         padding: 100px 20px 60px;
     }
 }
+
+@media (max-width: 600px) {
+    .cs-list {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
