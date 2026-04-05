@@ -5,6 +5,70 @@
   overflow: hidden;
 }
 
+/* Fade in animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Floating animation for cards */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
 /* Section 1: Hero with Mission */
 .about-hero {
   padding: 50px 60px;
@@ -20,6 +84,7 @@
   color: #000000;
   margin: 0 auto 60px;
   max-width: 1200px;
+  animation: fadeInUp 0.8s ease-out;
 }
 
 .about-cards-grid {
@@ -42,11 +107,29 @@
   align-items: center;
   text-align: center;
   transition: all 0.3s ease;
+  animation: scaleIn 0.6s ease-out backwards, float 4s ease-in-out infinite;
+}
+
+.about-card:nth-child(1) {
+  animation-delay: 0.2s, 0s;
+}
+
+.about-card:nth-child(2) {
+  animation-delay: 0.3s, 1s;
+}
+
+.about-card:nth-child(3) {
+  animation-delay: 0.4s, 2s;
+}
+
+.about-card:nth-child(4) {
+  animation-delay: 0.5s, 3s;
 }
 
 .about-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+  border-color: #C41E3A;
 }
 
 .card-badge {
@@ -377,4 +460,92 @@
   .why-description {
     font-size: 16px;
   }
+}
+
+/* Animation enhancements */
+.section-title {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.section-description {
+  animation: fadeIn 1s ease-out;
+}
+
+.founder-card {
+  animation: slideInLeft 0.8s ease-out;
+}
+
+.founder-card:nth-child(2) {
+  animation: slideInRight 0.8s ease-out;
+}
+
+.mv-card {
+  animation: scaleIn 0.8s ease-out backwards;
+  transition: all 0.3s ease;
+}
+
+.mv-card.mission {
+  animation-delay: 0.2s;
+}
+
+.mv-card.vision {
+  animation-delay: 0.3s;
+}
+
+.mv-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 40px rgba(196, 30, 58, 0.2);
+}
+
+.team-title {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.team-subtitle {
+  animation: fadeIn 1s ease-out 0.2s backwards;
+}
+
+.team-member {
+  animation: scaleIn 0.6s ease-out backwards;
+  transition: all 0.3s ease;
+}
+
+.team-member:nth-child(1) { animation-delay: 0.1s; }
+.team-member:nth-child(2) { animation-delay: 0.2s; }
+.team-member:nth-child(3) { animation-delay: 0.3s; }
+.team-member:nth-child(4) { animation-delay: 0.4s; }
+.team-member:nth-child(5) { animation-delay: 0.5s; }
+.team-member:nth-child(6) { animation-delay: 0.6s; }
+
+.team-member:hover {
+  transform: translateY(-10px) scale(1.05);
+}
+
+.team-member:hover .team-image-placeholder {
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+.why-title {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.why-item {
+  animation: fadeInUp 0.8s ease-out backwards;
+}
+
+.why-item:nth-child(1) { animation-delay: 0.1s; }
+.why-item:nth-child(2) { animation-delay: 0.2s; }
+.why-item:nth-child(3) { animation-delay: 0.3s; }
+.why-item:nth-child(4) { animation-delay: 0.4s; }
+.why-item:nth-child(5) { animation-delay: 0.5s; }
+.why-item:nth-child(6) { animation-delay: 0.6s; }
+.why-item:nth-child(7) { animation-delay: 0.7s; }
+
+.why-badge {
+  transition: all 0.3s ease;
+}
+
+.why-item:hover .why-badge {
+  transform: scale(1.05);
+  box-shadow: 6px 6px 0px #000000;
 }
