@@ -390,6 +390,7 @@
   min-width: 500px;
   max-width: 700px;
   line-height: 1.2;
+  white-space: nowrap;
 }
 
 .why-description {
@@ -413,6 +414,10 @@
 }
 
 @media (max-width: 768px) {
+  .about-page-wrapper {
+    border-radius: 0 0 60px 60px;
+  }
+
   .about-hero,
   .who-we-are,
   .founders-section,
@@ -422,12 +427,30 @@
   }
 
   .about-cards-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .about-card {
+    animation: scaleIn 0.6s ease-out backwards;
   }
 
   .founders-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .founder-image-placeholder {
+    width: 150px;
+    height: 150px;
+  }
+
+  .founder-name {
+    font-size: 20px;
+  }
+
+  .founder-role {
+    font-size: 14px;
   }
 
   .mission-vision-grid {
@@ -435,7 +458,21 @@
   }
 
   .team-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+
+  .team-image-placeholder {
+    width: 150px;
+    height: 150px;
+  }
+
+  .team-name {
+    font-size: 18px;
+  }
+
+  .team-role {
+    font-size: 13px;
   }
 }
 
@@ -448,13 +485,81 @@
     padding: 40px 20px;
   }
 
+  .about-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .about-card {
+    padding: 30px 15px;
+    min-height: 250px;
+    animation: scaleIn 0.6s ease-out backwards;
+  }
+
+  .card-badge {
+    font-size: 10px;
+    padding: 5px 12px;
+    margin-bottom: 15px;
+  }
+
+  .card-content h3 {
+    font-size: 15px;
+  }
+
+  .card-content p {
+    font-size: 12px;
+  }
+
+  .founders-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .founder-image-placeholder {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+  }
+
+  .founder-name {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  .founder-role {
+    font-size: 12px;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .team-image-placeholder {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+  }
+
+  .team-name {
+    font-size: 16px;
+    margin-bottom: 6px;
+  }
+
+  .team-role {
+    font-size: 11px;
+  }
+
   .why-badge {
     min-width: 280px;
     max-width: 90%;
-    padding: 6px 40px;
-    font-size: 18px;
+    padding: 6px 20px;
+    font-size: 14px;
     border-radius: 8px;
     box-shadow: 3px 3px 0px #000000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .why-description {

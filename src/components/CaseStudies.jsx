@@ -171,10 +171,10 @@ const CaseStudies = () => {
                     <h1 className="cs-main-title cs-fade">Results We're Proud Of</h1>
                     <div className="cs-filters">
                         <button className="cs-filter-btn active">Branding</button>
-                        <button className="cs-filter-btn">Graphic Design & Video Editing</button>
+                        <button className="cs-filter-btn">Graphic Design</button>
                         <button className="cs-filter-btn">Social Media Management</button>
                         <button className="cs-filter-btn">Paid Ads</button>
-                        <button className="cs-filter-btn">Search Engine Optimization (SEO)</button>
+                        <button className="cs-filter-btn">SEO</button>
                         <button className="cs-filter-btn">Influencer Marketing</button>
                         <button className="cs-filter-btn">Content Creation</button>
                         <button className="cs-filter-btn">Website Development</button>

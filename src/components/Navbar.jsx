@@ -58,6 +58,8 @@ function Navbar() {
           <span></span>
         </button>
 
+        {isMenuOpen && <div className="menu-backdrop" onClick={toggleMenu}></div>}
+
         <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
           <li>
             {/* If on home, anchor link. If on other page, Link to /#id */}

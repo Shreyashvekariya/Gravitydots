@@ -162,11 +162,12 @@
 @media (max-width: 768px) {
   .work-page {
     padding: 80px 0 60px 0;
-    border-radius: 40px 40px 50px 50px;
+    border-radius: 40px 40px 60px 60px;
   }
 
   .work-grid {
     grid-template-columns: repeat(2, 1fr);
+    border-radius: 40px 40px 60px 60px;
   }
 
   .work-card {
@@ -233,12 +234,13 @@
 @media (max-width: 480px) {
   .work-page {
     padding: 60px 0 40px 0;
-    border-radius: 40px 40px 40px 40px;
+    border-radius: 40px 40px 60px 60px;
   }
 
   .work-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 0;
+    border-radius: 40px 40px 60px 60px;
   }
 
   .work-card {

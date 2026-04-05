@@ -7,12 +7,14 @@ export default function WhyChooseUs() {
                 <h2 className="why-choose-us-title">WHY CHOOSE US</h2>
 
                 <div className="why-pills-container">
-                    <div className="why-pills-row">
+                    <div className="why-pills-row row-single">
                         <div className="why-pill">Experienced & passionate team</div>
+                    </div>
+                    <div className="why-pills-row row-double">
                         <div className="why-pill">Creative & strategy-driven approach</div>
                         <div className="why-pill">Focus on real results, not just numbers</div>
                     </div>
-                    <div className="why-pills-row">
+                    <div className="why-pills-row row-double">
                         <div className="why-pill">Customized solutions for every business</div>
                         <div className="why-pill">Transparent pricing & clear communication</div>
                     </div>

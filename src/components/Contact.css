@@ -531,6 +531,7 @@
 @media (max-width: 768px) {
     .contact-page {
         padding: 60px 20px 80px;
+        border-radius: 40px 40px 60px 60px;
     }
 
     .contact-info-section {
@@ -545,16 +546,22 @@
     }
 
     .contact-info-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
     }
 
     .contact-info-item {
         gap: 18px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contact-info-text {
+        text-align: center;
     }
 
     .contact-info-text p {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .contact-info-icon {
@@ -599,26 +606,33 @@
     }
 
     .contact-info-grid {
-        gap: 35px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
     }
 
     .contact-info-item {
-        gap: 15px;
+        gap: 12px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .contact-info-text {
+        text-align: center;
     }
 
     .contact-info-text p {
-        font-size: 15px;
+        font-size: 12px;
         line-height: 1.5;
     }
 
     .contact-info-icon {
-        width: 50px;
-        height: 50px;
+        width: 45px;
+        height: 45px;
     }
 
     .contact-info-icon svg {
-        width: 26px;
-        height: 26px;
+        width: 24px;
+        height: 24px;
     }
 }
 

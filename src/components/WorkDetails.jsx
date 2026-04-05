@@ -4,13 +4,13 @@ import './WorkDetails.css';
 
 const CATEGORIES = [
     { name: 'Branding', bgColor: '#D53F52' },
-    { name: 'Graphic Design & Video Editing', bgColor: '#F5974E' },
-    { name: 'Social Media Management', bgColor: '#5F94C9' },
     { name: 'Paid Ads', bgColor: '#1800AD' },
-    { name: 'Search Engine Optimization (SEO)', bgColor: '#7ED957' },
+    { name: 'Graphic Design', bgColor: '#F5974E' },
     { name: 'Influencer Marketing', bgColor: '#5170FF' },
     { name: 'Content Creation', bgColor: '#FF751F' },
-    { name: 'Website Development', bgColor: '#00B8BF' }
+    { name: 'Website Development', bgColor: '#00B8BF' },
+    { name: 'Social Media Management', bgColor: '#5F94C9' },
+    { name: 'Search Engine Optimization (SEO)', bgColor: '#7ED957' },
 ];
 
 const generateProjects = (category) => {
