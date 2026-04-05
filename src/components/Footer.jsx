@@ -9,7 +9,7 @@ function Footer() {
   const isWorkPage = location.pathname === '/work'
   const isContactPage = location.pathname === '/contact'
   const isAboutPage = location.pathname === '/about'
-  const isWhiteMode = isWorkPage || isContactPage
+  const isWhiteMode = isContactPage || isWorkPage
 
   return (
     <footer className={`footer ${isWhiteMode ? 'white-mode' : ''} ${isAboutPage ? 'about-page-footer' : ''}`}>

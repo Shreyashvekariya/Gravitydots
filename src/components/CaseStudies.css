@@ -229,8 +229,8 @@
     background-color: #fff;
     color: #000;
     min-height: 100vh;
-    padding: 120px 60px 80px;
-    border-radius: 90px 90px 90px 90px;
+    padding: 40px 60px 80px;
+    border-radius: 0 0 90px 90px;
     overflow: hidden;
     transform: translateZ(0);
     backface-visibility: hidden;
@@ -238,7 +238,7 @@
 }
 
 .cs-header {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     padding-bottom: 20px;
 }
 
@@ -246,9 +246,42 @@
     font-family: 'Poppins', sans-serif;
     font-size: clamp(32px, 5vw, 60px);
     font-weight: 800;
-    margin: 0;
+    margin: 0 0 30px 0;
     line-height: 1.1;
     color: #000;
+}
+
+.cs-filters {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.cs-filter-btn {
+    padding: 12px 30px;
+    background: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: #000000;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.cs-filter-btn:hover {
+    background: #000000;
+    color: #ffffff;
+}
+
+.cs-filter-btn.active {
+    background: #C41E3A;
+    color: #ffffff;
+    border-color: #C41E3A;
 }
 
 .cs-main-title.visible {
@@ -400,4 +433,4 @@
         grid-template-columns: 1fr;
         gap: 30px;
     }
-}
+}
