@@ -15,6 +15,11 @@
   position: static;
 }
 
+.navbar-wrapper.about-page-nav {
+  border: 2px solid #000000;
+  border-top: none;
+}
+
 .top-marquee {
   background: var(--dark-bg);
   padding: 12px 0;
@@ -116,6 +121,7 @@
   gap: clamp(30px, 3vw, 50px);
   align-items: center;
   margin-right: 0px;
+  margin-left: -80px;
 }
 
 .nav-links li {
@@ -124,7 +130,7 @@
 
 .nav-link {
   color: var(--black);
-  font-size: clamp(16px, 1.3vw, 22px);
+  font-size: clamp(22px, 1.5vw, 26px);
   font-weight: 500;
   text-decoration: none;
   transition: color 0.3s ease;
@@ -154,7 +160,7 @@
 .nav-link.active {
   background: var(--primary-red);
   color: var(--white);
-  padding: 8px 16px;
+  padding: 2px 16px;
   border-radius: 8px;
 }
 

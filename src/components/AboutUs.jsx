@@ -1,124 +1,200 @@
-import React, { useEffect, useRef } from 'react';
-import './AboutUs.css';
+import './AboutUs.css'
 
 const AboutUs = () => {
-    const sectionRef = useRef(null);
-
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            },
-            { threshold: 0.1 }
-        );
-
-        const elements = sectionRef.current.querySelectorAll('.fade-in-up');
-        elements.forEach((el) => observer.observe(el));
-
-        return () => observer.disconnect();
-    }, []);
-
-    const teamMembers = [
-        { name: 'Team Member 1', role: 'Strategist', image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&q=80' },
-        { name: 'Team Member 2', role: 'Designer', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80' },
-        { name: 'Team Member 3', role: 'Developer', image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&q=80' },
-        { name: 'Team Member 4', role: 'Marketer', image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=80' }
-    ];
-
-    const whyReasons = [
-        { title: 'Designed for Results', description: 'Every strategy, design, and campaign is built with measurable outcomes in mind.' },
-        { title: 'Experienced In-House Team', description: 'No outsourcing. Our dedicated team handles everything from start to finish.' },
-        { title: 'Agile & Fast Execution', description: 'We move quickly without compromising quality or strategic thinking.' },
-        { title: 'Strategy-Led Approach', description: 'We start with why, then build the how. Strategy always comes first.' },
-        { title: 'Clear, Transparent Communication', description: 'No jargon, no confusion. Just honest, straightforward updates.' },
-        { title: 'Scalable Digital Solutions', description: 'Built to grow with your business, not just for today but for tomorrow.' }
-    ];
-
-    return (
-        <div className="about-bg-wrapper-red">
-            <section className="about-us-page" id="about" ref={sectionRef}>
-                {/* Hero Section */}
-                <div className="about-hero fade-in-up">
-                    <h1 className="about-hero-title">WE BUILD BUSINESSES,<br />NOT JUST A BRAND!</h1>
-                </div>
-
-                {/* Who We Are */}
-                <div className="about-section fade-in-up">
-                    <h2 className="section-title">Who We Are</h2>
-                    <p className="section-text">
-                        GravityDots is a digital-first agency focused on creating meaningful, high-impact digital experiences. We work at the intersection of strategy, creativity, and technology to help brands stand out, perform better, and scale with confidence in an ever-evolving digital landscape.
-                    </p>
-                </div>
-
-                {/* The Problem We Solve */}
-                <div className="about-section problem-section fade-in-up">
-                    <h2 className="section-title">The Problem We Solve</h2>
-                    <div className="problem-content">
-                        <div className="problem-text">
-                            <p>In today's crowded digital space, most brands struggle with:</p>
-                            <ul className="problem-list">
-                                <li>Disconnected strategies</li>
-                                <li>Websites that look good but don't convert</li>
-                                <li>Marketing campaigns that generate traffic but not results</li>
-                                <li>Agencies that focus on activities instead of outcomes</li>
-                            </ul>
-                        </div>
-                        <div className="solution-box">
-                            <h3>Our Solution</h3>
-                            <p>We solve this by aligning strategy, design, and performance marketing into one cohesive system, so every digital effort works together toward measurable growth.</p>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Meet Our Team */}
-                <div className="about-section team-section fade-in-up">
-                    <h2 className="section-title">Meet Our Team</h2>
-                    <p className="section-subtitle">Behind GravityDots is a team of strategists, designers, developers, and performance marketers who share one goal.</p>
-                    <div className="team-grid">
-                        {teamMembers.map((member, index) => (
-                            <div key={index} className="team-card">
-                                <div className="team-image-wrapper">
-                                    <img src={member.image} alt={member.name} className="team-image" />
-                                </div>
-                                <h4 className="team-name">{member.name}</h4>
-                                <p className="team-role">{member.role}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Mission & Vision */}
-                <div className="mission-vision-wrapper fade-in-up">
-                    <div className="mission-box">
-                        <h3 className="box-title">Our Mission</h3>
-                        <p>To help brands unlock their true digital potential through smart strategy, creative execution, and performance-driven solutions that deliver real, measurable results.</p>
-                    </div>
-                    <div className="vision-box">
-                        <h3 className="box-title">Our Vision</h3>
-                        <p>To become a trusted digital growth partner for brands worldwide—known for clarity, transparency, and consistent performance rather than empty promises.</p>
-                    </div>
-                </div>
-
-                {/* Why GravityDots */}
-                <div className="about-section why-section fade-in-up">
-                    <h2 className="section-title">Why GravityDots</h2>
-                    <div className="why-grid">
-                        {whyReasons.map((reason, index) => (
-                            <div key={index} className="why-card">
-                                <div className="why-number">{String(index + 1).padStart(2, '0')}</div>
-                                <h4 className="why-title">{reason.title}</h4>
-                                <p className="why-description">{reason.description}</p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
+  return (
+    <div className="about-page-wrapper">
+      {/* Section 1: Hero with Mission Statement */}
+      <section className="about-hero">
+        <h2 className="about-mission">
+          To help businesses grow online with innovative, data-driven,
+          <br />
+          and affordable digital marketing solutions.
+        </h2>
+        
+        <div className="about-cards-grid">
+          <div className="about-card">
+            <div className="card-content">
+              <span className="card-badge">Approach</span>
+              <h3>Business Ka Kya<br />Future Hai Re Baba?</h3>
+            </div>
+          </div>
+          <div className="about-card">
+            <div className="card-content">
+              <span className="card-badge designer">Le Designer</span>
+              <h3>When Design Approves<br />on First Attempt!</h3>
+            </div>
+          </div>
+          <div className="about-card">
+            <div className="card-content">
+              <h3>Client Dreams vs. Client Wallets</h3>
+              <p>Arey bhai itne me itna hi hoga</p>
+            </div>
+          </div>
+          <div className="about-card">
+            <div className="card-content">
+              <h3>Ey hoshiyaar...</h3>
+            </div>
+          </div>
         </div>
-    );
-};
+      </section>
 
-export default AboutUs;
+      {/* Section 2: Who We Are */}
+      <section className="who-we-are">
+        <h2 className="section-title bold-title">Who We Are</h2>
+        <p className="section-description">
+          GravityDots is a digital-first agency focused on creating meaningful, high-impact digital
+          experiences. We work at the intersection of strategy, creativity, and technology to help brands
+          stand out, perform better, and scale with confidence in an ever-evolving digital landscape.
+        </p>
+
+        <h2 className="section-title">About GravityDots</h2>
+        <p className="section-description">
+          Welcome to GravityDots! Founded by <strong>Keyur Mehta</strong> and <strong>Jatin H. Kateliya</strong> in 2022, GravityDots is a
+          results driven digital marketing agency focused on building and scaling brands through
+          strategic and performance oriented solutions. We have successfully worked with <strong>103+ clients</strong> across national and international markets, helping businesses establish a strong digital
+          presence and achieve measurable growth.
+        </p>
+        <p className="section-description">
+          Our services include branding, website development, social media marketing, performance
+          advertising, SEO and influencer marketing, offering end to end solutions tailored to each client's
+          goals. We combine creativity with data driven strategies to deliver impactful campaigns and
+          long-term results.
+        </p>
+      </section>
+
+      {/* Section 3: Founders */}
+      <section className="founders-section">
+        <div className="founders-grid">
+          <div className="founder-card">
+            <div className="founder-image-placeholder"></div>
+            <h3 className="founder-name">Keyur Mehta</h3>
+            <p className="founder-role">Managing Director</p>
+          </div>
+          <div className="founder-card">
+            <div className="founder-image-placeholder"></div>
+            <h3 className="founder-name">Jatin H Kateliya</h3>
+            <p className="founder-role">Managing Director</p>
+          </div>
+        </div>
+
+        <div className="mission-vision-grid">
+          <div className="mv-card mission">
+            <h3 className="mv-title">MISSION</h3>
+            <p className="mv-text">
+              To help brands unlock their true digital potential through
+              smart strategy, creative execution, and performance
+              driven solutions that deliver real, measurable results.
+            </p>
+          </div>
+          <div className="mv-card vision">
+            <h3 className="mv-title">VISION</h3>
+            <p className="mv-text">
+              To become a trusted digital growth partner for brands
+              worldwide known for clarity, transparency, and consistent
+              performance rather than empty promises.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 4: Meet Our Core Team */}
+      <section className="team-section">
+        <h2 className="team-title">MEET OUR CORE TEAM</h2>
+        <p className="team-subtitle">
+          Behind GravityDots is a team of strategists, designers, developers, and performance marketers who share one goal.
+        </p>
+
+        <div className="team-grid">
+          <div className="team-member">
+            <div className="team-image-placeholder"></div>
+            <h4 className="team-name">Aayush Parikh</h4>
+            <p className="team-role">Sr. Designer</p>
+          </div>
+          <div className="team-member">
+            <div className="team-image-placeholder"></div>
+            <h4 className="team-name">Aashish Kateliya</h4>
+            <p className="team-role">Brand Manager</p>
+          </div>
+          <div className="team-member">
+            <div className="team-image-placeholder"></div>
+            <h4 className="team-name">Niyati Sojitra</h4>
+            <p className="team-role">Sales Executive</p>
+          </div>
+          <div className="team-member">
+            <div className="team-image-placeholder"></div>
+            <h4 className="team-name">Dileep Vala</h4>
+            <p className="team-role">Graphic Designer</p>
+          </div>
+          <div className="team-member">
+            <div className="team-image-placeholder"></div>
+            <h4 className="team-name">Pooja</h4>
+            <p className="team-role">SEO Expert</p>
+          </div>
+          <div className="team-member">
+            <div className="team-image-placeholder"></div>
+            <h4 className="team-name">Niyati Sojitra</h4>
+            <p className="team-role">BDE</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 5: Why Choose Us */}
+      <section className="why-choose-section">
+        <h2 className="why-title">WHY CHOOSE US ?</h2>
+
+        <div className="why-list">
+          <div className="why-item">
+            <div className="why-badge">Result-Oriented Approach</div>
+            <p className="why-description">
+              Every strategy is designed with a clear focus on leads, sales, and measurable ROI.
+            </p>
+          </div>
+
+          <div className="why-item">
+            <div className="why-badge">Data-Driven Decisions</div>
+            <p className="why-description">
+              We rely on analytics and insights, not assumptions, to optimize performance.
+            </p>
+          </div>
+
+          <div className="why-item">
+            <div className="why-badge">Transparent Reporting</div>
+            <p className="why-description">
+              Clear, honest, and easy-to-understand reports with real business metrics.
+            </p>
+          </div>
+
+          <div className="why-item">
+            <div className="why-badge">Proven Industry Experience</div>
+            <p className="why-description">
+              Hands-on experience across FMCG, events, fitness, education, and service-based businesses.
+            </p>
+          </div>
+
+          <div className="why-item">
+            <div className="why-badge">Dedicated Account Support</div>
+            <p className="why-description">
+              A focused team ensuring timely communication, execution, and support.
+            </p>
+          </div>
+
+          <div className="why-item">
+            <div className="why-badge">End-to-End Execution</div>
+            <p className="why-description">
+              From strategy and creatives to ads, tracking, and optimization under one roof.
+            </p>
+          </div>
+
+          <div className="why-item">
+            <div className="why-badge">Scalable Growth Focus</div>
+            <p className="why-description">
+              Strategies built to grow with your business, not just deliver short-term wins.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+export default AboutUs
