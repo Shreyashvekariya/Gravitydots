@@ -374,6 +374,7 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  cursor: pointer;
 }
 
 .why-badge {
@@ -391,6 +392,12 @@
   max-width: 700px;
   line-height: 1.2;
   white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+.why-item:hover .why-badge {
+  transform: scale(1.05);
+  box-shadow: 6px 6px 0px #000000;
 }
 
 .why-description {
@@ -400,6 +407,15 @@
   color: #000000;
   margin: 0;
   max-width: 900px;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.4s ease, max-height 0.4s ease;
+}
+
+.why-item:hover .why-description {
+  opacity: 1;
+  max-height: 200px;
 }
 
 /* Responsive */
@@ -636,21 +652,5 @@
 
 .why-item {
   animation: fadeInUp 0.8s ease-out backwards;
-}
-
-.why-item:nth-child(1) { animation-delay: 0.1s; }
-.why-item:nth-child(2) { animation-delay: 0.2s; }
-.why-item:nth-child(3) { animation-delay: 0.3s; }
-.why-item:nth-child(4) { animation-delay: 0.4s; }
-.why-item:nth-child(5) { animation-delay: 0.5s; }
-.why-item:nth-child(6) { animation-delay: 0.6s; }
-.why-item:nth-child(7) { animation-delay: 0.7s; }
-
-.why-badge {
   transition: all 0.3s ease;
-}
-
-.why-item:hover .why-badge {
-  transform: scale(1.05);
-  box-shadow: 6px 6px 0px #000000;
 }

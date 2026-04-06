@@ -531,7 +531,7 @@
 @media (max-width: 768px) {
     .contact-page {
         padding: 60px 20px 80px;
-        border-radius: 40px 40px 60px 60px;
+        border-radius: 20px 20px 40px 40px;
     }
 
     .contact-info-section {

@@ -12,9 +12,10 @@ function Navbar() {
   }
 
   const isWorkPage = location.pathname === '/work' || location.pathname === '/work-details'
+  const isHomePage = location.pathname === '/'
 
   return (
-    <header className={`navbar-wrapper ${location.pathname === '/' ? 'sticky' : 'static'} ${isWorkPage ? 'no-shadow' : ''}`}>
+    <header className={`navbar-wrapper ${isHomePage ? 'sticky' : 'static'} ${isWorkPage ? 'no-shadow' : ''} with-border`}>
       <div className="top-marquee">
         <div className="marquee-content">
           {/* First group */}
