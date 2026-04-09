@@ -9,6 +9,7 @@ import WorkDetails from './components/WorkDetails'
 import CaseStudies from './components/CaseStudies'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import CustomCursor from './components/CustomCursor'
 import './App.css'
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
 
   return (
     <div className="app">
+      <CustomCursor />
       <Navbar />
       <div className="main-content">
         <Routes>
