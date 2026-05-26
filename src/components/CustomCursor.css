@@ -1,0 +1,49 @@
+.custom-cursor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 999999;
+}
+
+.custom-cursor {
+  position: absolute;
+  pointer-events: none;
+  width: 48px;
+  height: 48px;
+  transition: transform 0.05s linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-cursor img {
+  width: 100%;
+  height: auto;
+  transition: transform 0.2s ease-out;
+}
+
+.custom-cursor.pointer img {
+  transform: scale(1.2);
+}
+
+/* Hide default cursor globally */
+@media (pointer: fine) {
+
+  html,
+  body,
+  *,
+  a,
+  button {
+    cursor: none !important;
+  }
+}
+
+/* Ensure default cursor shows on mobile/touch */
+@media (pointer: coarse) {
+  .custom-cursor-container {
+    display: none;
+  }
+}

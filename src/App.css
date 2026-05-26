@@ -1,0 +1,16 @@
+.app {
+  width: 100%;
+  position: relative;
+}
+
+.main-content {
+  position: relative;
+  background: transparent;
+  margin-bottom: 380px;
+}
+
+.rest-of-sections {
+  position: relative;
+  z-index: 2000;
+  background: var(--white);
+}

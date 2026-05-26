@@ -1,0 +1,53 @@
+.hero-image-section {
+  width: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  background: #000000;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  min-height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .hero-image {
+     width: 100%;
+     height: auto;
+     border-radius: 0;
+  }
+  
+  .hero-image img {
+    min-height: auto;
+    height: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-image {
+     width: 100%;
+     height: auto;
+     border-radius: 0;
+  }
+  
+  .hero-image img {
+    min-height: auto;
+    height: auto;
+  }
+}
