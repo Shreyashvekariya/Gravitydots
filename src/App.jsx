@@ -1,5 +1,5 @@
 import Navbar from './components/Navbar'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import Lenis from 'lenis'
 import Home from './components/Home'
@@ -62,6 +62,7 @@ function App() {
           <Route path="/work-details" element={<WorkDetails />} />
           <Route path="/casestudies" element={<CaseStudies />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
       <Footer />

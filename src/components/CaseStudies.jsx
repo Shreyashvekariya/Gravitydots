@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useInView } from 'framer-motion';
+import gdLogo from '../assets/images/GD LOGO (WHITE & RED).png';
+import hero from '../assets/images/hero.mp4';
 import './CaseStudies.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -31,8 +34,6 @@ Object.values(casestudiesLoadersMap).forEach(list => {
 });
 
 // ── SORTING SYSTEM ─────────────────────────────────────────────────────────────
-// Add folder names here in the exact order you want them to appear.
-// Any folders not listed here will automatically be added to the end.
 export const CASE_STUDIES_ORDER = [
     'CANDID',
     'TREASURE9',
@@ -50,7 +51,6 @@ export const CASE_STUDIES_ORDER = [
 
 const allProjects = [];
 
-// 1. Add projects in the specified order
 CASE_STUDIES_ORDER.forEach((folderName) => {
     if (casestudiesLoadersMap[folderName]) {
         allProjects.push({
@@ -63,18 +63,36 @@ CASE_STUDIES_ORDER.forEach((folderName) => {
 });
 
 
-
-
 const CaseStudies = () => {
     const heroRef = useRef(null);
     const lettersRef = useRef(null);
     const imgHolderRef = useRef(null);
+    const videoRef = useRef(null);
+    const bookSectionRef = useRef(null);
+    const bookRef = useRef(null);
+    const pagesRef = useRef([]);
 
     const [selectedProject, setSelectedProject] = useState(null);
     const [cardThumbnails, setCardThumbnails] = useState({});
     const [popupMedia, setPopupMedia] = useState({});
     const [loadingPopup, setLoadingPopup] = useState(false);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [scrollStarted, setScrollStarted] = useState(false);
+    
+    const isInView = useInView(videoRef, { margin: "-100px" });
 
+    // ── Video play/pause based on visibility ─────────────────────────────────
+    useEffect(() => {
+        if (videoRef.current) {
+            if (isInView) {
+                videoRef.current.play().catch(e => console.log("Play prevented by browser:", e));
+            } else {
+                videoRef.current.pause();
+            }
+        }
+    }, [isInView]);
+
+    // ── Hero scroll animation ────────────────────────────────────────────────
     useEffect(() => {
         const hero = heroRef.current;
         if (!hero) return;
@@ -137,29 +155,96 @@ const CaseStudies = () => {
         return () => ctx.revert();
     }, []);
 
-    // ── Load card thumbnails lazily on mount ──────────────────────────────────
+    // ── Load card thumbnails ─────────────────────────────────────────────────
     useEffect(() => {
-        const loadThumbnails = async () => {
-            allProjects.forEach(async (project) => {
-                if (project.loaders && project.loaders.length > 0) {
-                    const first = project.loaders[0];
-                    try {
-                        const mod = await first.importFn();
-                        const url = mod.default || mod;
-                        setCardThumbnails(prev => ({
-                            ...prev,
-                            [project.id]: { url, type: first.type }
-                        }));
-                    } catch (e) {
-                        console.error('Thumbnail load failed:', e);
+        allProjects.forEach(async (project) => {
+            if (project.loaders && project.loaders.length > 0) {
+                const first = project.loaders[0];
+                try {
+                    const mod = await first.importFn();
+                    const url = mod.default || mod;
+                    setCardThumbnails(prev => ({
+                        ...prev,
+                        [project.id]: { url, type: first.type }
+                    }));
+                } catch (e) {
+                    console.error('Thumbnail load failed:', e);
+                }
+            }
+        });
+    }, []);
+
+    // ── BOOK PAGE-FLIP SCROLL ANIMATION ──────────────────────────────────────
+    // Runs once on mount. Page DOM elements exist from first render (thumbnails
+    // only affect what's shown inside pages, not the page elements themselves).
+    useEffect(() => {
+        const section = bookSectionRef.current;
+        const pages = pagesRef.current.filter(Boolean);
+        if (!section || pages.length === 0) return;
+
+        const totalPages = pages.length;
+
+        const ctx = gsap.context(() => {
+            // Initialize ALL pages inside the context so GSAP tracks these
+            // values and can properly revert them on cleanup.
+            pages.forEach((page, i) => {
+                gsap.set(page, {
+                    rotateY: 0,
+                    zIndex: totalPages - i, // First page (CANDID) = highest z
+                });
+            });
+
+            const masterTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top top',
+                    end: () => `+=${totalPages * 100}%`,
+                    scrub: 0.8,
+                    pin: true,
+                    pinSpacing: true,
+                    anticipatePin: 1,
+                    onUpdate: (self) => {
+                        const progress = self.progress;
+                        const pageIndex = Math.min(
+                            Math.floor(progress * totalPages),
+                            totalPages - 1
+                        );
+                        setCurrentPage(pageIndex);
+                        if (progress > 0.01) {
+                            setScrollStarted(true);
+                        }
                     }
                 }
             });
-        };
-        loadThumbnails();
-    }, []);
 
-    // ── Open popup + lazy-load all media for that project ────────────────────
+            pages.forEach((page, i) => {
+                const startPct = i / totalPages;
+                const endPct = (i + 1) / totalPages;
+                const duration = endPct - startPct;
+
+                masterTl.to(page, {
+                    rotateY: -180,
+                    ease: 'power1.inOut',
+                    duration: duration,
+                    onStart: () => {
+                        // Bump z-index so the flipping page stays above
+                        // previously-flipped pages on the left side
+                        gsap.set(page, { zIndex: totalPages + i + 1 });
+                    },
+                    onReverseComplete: () => {
+                        // When scrolling back and page fully returns to
+                        // unflipped state, restore its original z-index
+                        gsap.set(page, { zIndex: totalPages - i });
+                    },
+                }, startPct);
+            });
+
+        }, section);
+
+        return () => ctx.revert();
+    }, []); // Mount only — page refs don't depend on thumbnails
+
+    // ── Popup open ───────────────────────────────────────────────────────────
     const openPopup = async (project) => {
         setSelectedProject(project);
 
@@ -193,6 +278,7 @@ const CaseStudies = () => {
         }
     };
 
+    // ── Popup close ──────────────────────────────────────────────────────────
     const closePopup = () => {
         const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
         document.body.style.position = '';
@@ -204,6 +290,7 @@ const CaseStudies = () => {
         setSelectedProject(null);
     };
 
+    // ── Popup keyboard / scroll handling ─────────────────────────────────────
     useEffect(() => {
         if (!selectedProject) return;
         const handleKeyDown = (e) => { if (e.key === 'Escape') closePopup(); };
@@ -227,21 +314,11 @@ const CaseStudies = () => {
         };
     }, [selectedProject]);
 
-    useEffect(() => {
-        // Simple fade in on load
-        const elements = document.querySelectorAll('.cs-fade');
-        elements.forEach((el) => el.classList.remove('visible'));
-        setTimeout(() => {
-            elements.forEach((el, index) => {
-                setTimeout(() => el.classList.add('visible'), index * 100);
-            });
-        }, 50);
-    }, []);
-
     const currentPopupMedia = selectedProject ? popupMedia[selectedProject.id] : null;
 
     return (
         <div className="case-studies-wrapper">
+            {/* ── Hero Animation ──────────────────────────────────────── */}
             <section ref={heroRef} className="cs-hero-animation-section">
                 <div ref={lettersRef} className="cs-hero-letters">
                     <div className="letters">
@@ -259,46 +336,125 @@ const CaseStudies = () => {
                     </div>
                 </div>
                 <div ref={imgHolderRef} className="cs-hero-img-holder">
-                    <img
-                        src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-                        alt="Modern Skyscrapers"
+                    <video
+                        ref={videoRef}
+                        src={hero}
+                        loop
+                        muted
+                        playsInline
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
                 </div>
             </section>
 
-            <section className="cs-page">
-                <div className="cs-header">
-                    <h1 className="cs-main-title cs-fade visible">Results We're Proud Of</h1>
-                </div>
+            {/* ── Book Section ─────────────────────────────────────────── */}
+            <section ref={bookSectionRef} className="cs-book-section">
+                <div className="cs-book-pin-wrapper">
+                    {/* Header */}
+                    <div className="cs-book-header">
+                        <h1 className="cs-book-main-title">Results We're Proud Of</h1>
+                    </div>
 
-                <div className="cs-list">
-                    {allProjects.map((item) => {
-                        const thumb = cardThumbnails[item.id] || null;
-                        return (
-                            <div key={item.id} className="cs-item cs-fade" onClick={() => openPopup(item)} style={{ cursor: 'pointer' }}>
-                                <div className="cs-image-wrapper">
-                                    {thumb ? (
-                                        thumb.type === 'video' ? (
-                                            <video src={thumb.url} className="cs-image" muted preload="metadata" style={{ objectFit: 'cover' }} />
-                                        ) : (
-                                            <img src={thumb.url} alt={item.title} className="cs-image" loading="lazy" />
-                                        )
-                                    ) : (
-                                        <div className="cs-image" style={{ background: '#e8e8e8' }}>
-                                            <div className="cs-skeleton-shimmer" />
-                                        </div>
-                                    )}
-                                </div>
-                                <div className="cs-content">
-                                    <h3 className="cs-card-client">{item.title}</h3>
-                                </div>
+                    {/* Scroll Hint */}
+                    <div className={`cs-scroll-hint ${scrollStarted ? 'hidden' : ''}`}>
+                        <span className="cs-scroll-hint-text">Scroll to flip</span>
+                        <div className="cs-scroll-hint-arrow" />
+                    </div>
+
+                    {/* The Book */}
+                    <div className="cs-book" ref={bookRef}>
+                        {/* Static left page (spine side) */}
+                        <div className="cs-book-left-static">
+                            <div className="cs-left-content">
+                                <img src={gdLogo} alt="Gravity Dots" className="cs-left-logo" />
                             </div>
-                        );
-                    })}
+                        </div>
+
+                        {/* Static right base (behind all pages) */}
+                        <div className="cs-book-right-static" />
+
+                        {/* Flippable Pages */}
+                        {allProjects.map((project, index) => {
+                            const thumb = cardThumbnails[project.id] || null;
+                            return (
+                                <div
+                                    key={project.id}
+                                    className="cs-book-page"
+                                    ref={el => pagesRef.current[index] = el}
+                                    style={{ zIndex: allProjects.length - index }}
+                                >
+                                    {/* FRONT FACE */}
+                                    <div className="cs-page-front">
+                                        <div className="cs-page-front-img">
+                                            {thumb ? (
+                                                thumb.type === 'video' ? (
+                                                    <video
+                                                        src={thumb.url}
+                                                        muted
+                                                        preload="metadata"
+                                                    />
+                                                ) : (
+                                                    <img
+                                                        src={thumb.url}
+                                                        alt={project.title}
+                                                        loading="lazy"
+                                                    />
+                                                )
+                                            ) : (
+                                                <div className="cs-page-skeleton">
+                                                    <div className="cs-page-skeleton-shimmer" />
+                                                </div>
+                                            )}
+                                        </div>
+                                        <div className="cs-page-front-overlay" />
+                                        <div className="cs-page-front-edge" />
+                                        <div className="cs-page-front-content">
+                                            <span className="cs-page-number">
+                                                Page {String(index + 1).padStart(2, '0')} / {String(allProjects.length).padStart(2, '0')}
+                                            </span>
+                                            <h3 className="cs-page-title">{project.title}</h3>
+                                            <div
+                                                className="cs-page-cta"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    openPopup(project);
+                                                }}
+                                            >
+                                                <span>View Case Study</span>
+                                                <span className="cs-page-cta-icon">
+                                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                                        <line x1="5" y1="12" x2="19" y2="12" />
+                                                        <polyline points="12,5 19,12 12,19" />
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* BACK FACE */}
+                                    <div className="cs-page-back">
+                                        <div className="cs-page-back-content">
+                                            <img src={gdLogo} alt="Gravity Dots" className="cs-page-back-logo" />
+                                        </div>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+
+                    {/* Page dot indicators */}
+                    <div className="cs-page-dots">
+                        {allProjects.map((_, i) => (
+                            <div
+                                key={i}
+                                className={`cs-page-dot ${i === currentPage ? 'active' : ''}`}
+                            />
+                        ))}
+                    </div>
                 </div>
             </section>
 
-            {/* Popup / Lightbox Modal */}
+            {/* ── Popup / Lightbox Modal ───────────────────────────────── */}
             {selectedProject && (
                 <div className="cs-popup-overlay" onClick={closePopup}>
                     <div className="cs-popup-content" onClick={(e) => e.stopPropagation()}>
@@ -352,4 +508,3 @@ const CaseStudies = () => {
 };
 
 export default CaseStudies;
-

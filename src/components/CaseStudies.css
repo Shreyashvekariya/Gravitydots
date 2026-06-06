@@ -6,7 +6,9 @@
     background-color: var(--black);
 }
 
-/* HERO ANIMATION SECTION */
+/* =============================================
+   HERO ANIMATION SECTION (unchanged)
+   ============================================= */
 .cs-hero-animation-section {
     position: relative;
     width: 100%;
@@ -58,345 +60,625 @@
     object-fit: cover;
 }
 
-/* HERO CONTENT SECTION */
-.cs-hero-content-section {
-    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
-    color: #fff;
-    padding: 120px 60px;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-}
+/* =============================================
+   BOOK SECTION
+   ============================================= */
 
-.cs-hero-content-container {
-    max-width: 1400px;
-    margin: 0 auto;
+.cs-book-section {
+    position: relative;
     width: 100%;
+    min-height: 100vh;
+    background: #111;
+    overflow: hidden;
 }
 
-.cs-hero-content-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 80px;
-    align-items: start;
-}
-
-.cs-hero-main-content {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-}
-
-.cs-hero-badge {
-    display: inline-block;
-    align-self: flex-start;
-}
-
-.cs-hero-badge span {
-    background: rgba(196, 30, 58, 0.1);
-    color: #C41E3A;
-    padding: 10px 24px;
-    border-radius: 50px;
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border: 1px solid rgba(196, 30, 58, 0.3);
-}
-
-.cs-hero-title {
-    font-family: 'Poppins', sans-serif;
-    font-size: clamp(48px, 6vw, 80px);
-    font-weight: 900;
-    line-height: 1.1;
-    margin: 0;
-    background: linear-gradient(135deg, #fff 0%, #e0e0e0 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.cs-hero-subtitle {
-    font-size: clamp(18px, 2vw, 24px);
-    line-height: 1.6;
-    color: #b0b0b0;
-    margin: 0;
-}
-
-.cs-hero-cta-group {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.cs-btn-primary,
-.cs-btn-secondary {
-    padding: 16px 40px;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 8px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    display: inline-block;
-    font-family: 'Poppins', sans-serif;
-}
-
-.cs-btn-primary {
-    background: #C41E3A;
-    color: #fff;
-    border: 2px solid #C41E3A;
-}
-
-.cs-btn-primary:hover {
-    background: #a01830;
-    border-color: #a01830;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(196, 30, 58, 0.3);
-}
-
-.cs-btn-secondary {
-    background: transparent;
-    color: #fff;
-    border: 2px solid #fff;
-}
-
-.cs-btn-secondary:hover {
-    background: #fff;
-    color: #000;
-    transform: translateY(-2px);
-}
-
-.cs-hero-stats-section {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-}
-
-.cs-stats-container {
+/* ── Pinned viewport (GSAP fills this) ──── */
+.cs-book-pin-wrapper {
+    width: 100%;
+    height: 100vh;
     display: flex;
     align-items: center;
-    gap: 30px;
-    padding: 40px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    justify-content: center;
+    position: relative;
 }
 
-.cs-stat-item {
-    flex: 1;
+/* ── Header ──────────────────────────────── */
+.cs-book-header {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
     text-align: center;
+    pointer-events: none;
 }
 
-.cs-stat-value {
-    font-size: clamp(36px, 4vw, 56px);
-    font-weight: 900;
+.cs-book-main-title {
     font-family: 'Poppins', sans-serif;
-    color: #C41E3A;
-    line-height: 1;
-    margin-bottom: 8px;
-}
-
-.cs-stat-description {
-    font-size: 14px;
-    color: #b0b0b0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.cs-stat-divider {
-    width: 1px;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.cs-hero-description {
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-    border-left: 4px solid #C41E3A;
-}
-
-.cs-hero-description p {
-    font-size: 16px;
-    line-height: 1.8;
-    color: #d0d0d0;
+    font-size: clamp(22px, 3vw, 36px);
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.85);
     margin: 0;
+    letter-spacing: -0.5px;
 }
 
-/* CASE STUDIES PAGE STYLES */
-.cs-page {
-    background-color: #fff;
-    color: #000;
-    min-height: 100vh;
-    padding: 40px 60px 80px;
-    border-radius: 0 0 90px 90px;
+/* ── Page counter ────────────────────────── */
+.cs-page-counter {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    pointer-events: none;
+}
+
+.cs-page-counter-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.cs-page-counter-current {
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+.cs-page-counter-divider {
+    width: 40px;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* ── Scroll hint ─────────────────────────── */
+.cs-scroll-hint {
+    position: absolute;
+    bottom: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: cs-hint-pulse 2s ease-in-out infinite;
+    pointer-events: none;
+    opacity: 0.6;
+    transition: opacity 0.5s ease;
+}
+
+.cs-scroll-hint.hidden {
+    opacity: 0;
+}
+
+.cs-scroll-hint-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.cs-scroll-hint-arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 2px solid rgba(255, 255, 255, 0.4);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+    transform: rotate(45deg);
+}
+
+@keyframes cs-hint-pulse {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+}
+
+/* =============================================
+   THE BOOK
+   ============================================= */
+
+.cs-book {
+    width: 82vw;
+    max-width: 1100px;
+    height: 72vh;
+    max-height: 650px;
+    min-height: 420px;
+    position: relative;
+    perspective: 2500px;
+    transform-style: preserve-3d;
+}
+
+/* ── Spine / binding shadow ──────────────── */
+.cs-book::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 4%;
+    bottom: 4%;
+    width: 6px;
+    transform: translateX(-50%);
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(0, 0, 0, 0.5) 15%,
+        rgba(0, 0, 0, 0.7) 50%,
+        rgba(0, 0, 0, 0.5) 85%,
+        transparent 100%
+    );
+    z-index: 200;
+    border-radius: 3px;
+    filter: blur(2px);
+    pointer-events: none;
+}
+
+/* Spine highlight */
+.cs-book::after {
+    content: '';
+    position: absolute;
+    left: calc(50% - 1px);
+    top: 4%;
+    bottom: 4%;
+    width: 2px;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.06) 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        rgba(255, 255, 255, 0.06) 70%,
+        transparent 100%
+    );
+    z-index: 201;
+    pointer-events: none;
+}
+
+/* ── Static left page (cover / back) ─────── */
+.cs-book-left-static {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: #1a1917;
+    border-radius: 12px 0 0 12px;
     overflow: hidden;
-    transform: translateZ(0);
-    backface-visibility: hidden;
+    z-index: 1;
+    box-shadow:
+        inset -20px 0 40px rgba(0, 0, 0, 0.3),
+        -6px 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Paper texture overlay */
+.cs-book-left-static::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 28px,
+            rgba(255, 255, 255, 0.015) 28px,
+            rgba(255, 255, 255, 0.015) 29px
+        );
+    pointer-events: none;
+}
+
+.cs-left-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    gap: 20px;
+}
+
+.cs-left-logo {
+    width: clamp(160px, 28vw, 320px);
+    max-width: 85%;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.9;
+    filter: drop-shadow(0 4px 20px rgba(255, 255, 255, 0.08));
+}
+
+.cs-left-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.08);
+    text-align: center;
+    line-height: 1.1;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+}
+
+.cs-left-line {
+    width: 50px;
+    height: 2px;
+    background: var(--primary-red, #C41E3A);
+    opacity: 0.5;
+    border-radius: 1px;
+}
+
+.cs-left-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.18);
+    text-align: center;
+    line-height: 1.6;
+    max-width: 280px;
+}
+
+/* ── Right static base (visible behind all pages) */
+.cs-book-right-static {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    background: #1e1d1b;
+    border-radius: 0 12px 12px 0;
+    z-index: 0;
+    box-shadow:
+        inset 20px 0 40px rgba(0, 0, 0, 0.2),
+        6px 8px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* =============================================
+   BOOK PAGES
+   ============================================= */
+
+.cs-book-page {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+    height: 100%;
+    transform-origin: left center;
+    transform-style: preserve-3d;
+    transition: none; /* GSAP handles all transforms */
     will-change: transform;
 }
 
-.cs-header {
-    margin-bottom: 40px;
-    padding-bottom: 20px;
+/* ── FRONT face of each page ─────────────── */
+.cs-page-front {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 0 12px 12px 0;
+    overflow: hidden;
+    background: #f5f0e8;
+    box-shadow:
+        inset 15px 0 30px rgba(0, 0, 0, 0.08),
+        2px 0 8px rgba(0, 0, 0, 0.15);
 }
 
-.cs-main-title {
-    font-family: 'Poppins', sans-serif;
-    font-size: clamp(32px, 5vw, 60px);
-    font-weight: 800;
-    margin: 0 0 30px 0;
-    line-height: 1.1;
-    color: #000;
-}
-
-.cs-filters {
+/* Page image */
+.cs-page-front-img {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    background: #f5f0e8;
     display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    padding-top: 5%;
 }
 
-.cs-filter-btn {
-    padding: 12px 30px;
-    background: #ffffff;
-    border: 2px solid #000000;
-    border-radius: 50px;
-    font-family: 'Poppins', sans-serif;
-    font-size: 16px;
-    font-weight: 500;
-    color: #000000;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-}
-
-.cs-filter-btn:hover {
-    background: #000000;
-    color: #ffffff;
-}
-
-.cs-filter-btn.active {
-    background: #C41E3A;
-    color: #ffffff;
-    border-color: #C41E3A;
-}
-
-.cs-main-title.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* LIST ITEM GRID */
-.cs-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-}
-
-.cs-item {
-    display: flex;
-    flex-direction: column;
-    border: 1px solid #777;
-    border-radius: 20px;
-    overflow: hidden;
-    background: #fff;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.5s ease;
-}
-
-.cs-item.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-/* IMAGE */
-.cs-image-wrapper {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    position: relative;
-    border-bottom: 1px solid #777;
-}
-
-.cs-image {
+.cs-page-front-img img,
+.cs-page-front-img video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    object-position: top center;
     display: block;
-    transition: transform 0.8s ease;
 }
 
+/* Gradient overlay on front */
+.cs-page-front-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0.02) 0%,
+        rgba(0, 0, 0, 0.0) 30%,
+        rgba(0, 0, 0, 0.25) 60%,
+        rgba(0, 0, 0, 0.75) 85%,
+        rgba(0, 0, 0, 0.92) 100%
+    );
+    z-index: 2;
+}
 
-/* CONTENT */
-.cs-content {
+/* Paper grain texture */
+.cs-page-front::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+        url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    z-index: 3;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+}
+
+/* Edge shadow during flip */
+.cs-page-front-edge {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 30px;
+    background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.15) 0%,
+        transparent 100%
+    );
+    z-index: 4;
+    pointer-events: none;
+}
+
+/* Content on the front */
+.cs-page-front-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 36px 32px;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.cs-page-number {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.cs-page-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(20px, 2.5vw, 32px);
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    line-height: 1.2;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+}
+
+.cs-page-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 6px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.75);
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.cs-page-cta:hover {
+    color: #fff;
+}
+
+.cs-page-cta-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+}
+
+.cs-page-cta:hover .cs-page-cta-icon {
+    background: var(--primary-red, #C41E3A);
+    transform: translateX(3px);
+}
+
+/* ── BACK face of each page ──────────────── */
+.cs-page-back {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: rotateY(180deg);
+    border-radius: 12px 0 0 12px;
+    overflow: hidden;
+    background: #1e1d1b;
+    box-shadow:
+        inset -15px 0 30px rgba(0, 0, 0, 0.12);
+}
+
+/* Paper texture on back */
+.cs-page-back::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 28px,
+            rgba(255, 255, 255, 0.012) 28px,
+            rgba(255, 255, 255, 0.012) 29px
+        );
+    pointer-events: none;
+}
+
+.cs-page-back-content {
+    position: absolute;
+    inset: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 24px;
-    gap: 8px;
-    background: #fff;
+    padding: 40px;
+    gap: 16px;
 }
 
-.cs-card-client {
-    font-family: 'Poppins', sans-serif;
-    font-size: 20px;
-    font-weight: 500;
-    color: #000;
-    margin: 0;
-    text-align: center;
+.cs-page-back-logo {
+    width: clamp(140px, 24vw, 280px);
+    max-width: 80%;
+    height: auto;
+    object-fit: contain;
+    opacity: 0.9;
+    filter: drop-shadow(0 4px 20px rgba(255, 255, 255, 0.08));
 }
 
-.cs-tags {
+/* ── Skeleton shimmer ────────────────────── */
+.cs-page-skeleton {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #e8e4dc 0%, #ddd8cf 50%, #e8e4dc 100%);
+}
+
+.cs-page-skeleton-shimmer {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        transparent 100%
+    );
+    animation: cs-shimmer 1.8s ease-in-out infinite;
+}
+
+@keyframes cs-shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* ── Page dot indicators ─────────────────── */
+.cs-page-dots {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
     display: flex;
     gap: 8px;
-    justify-content: center;
+    align-items: center;
 }
 
-.cs-card-tag {
-    font-family: 'Poppins', sans-serif;
-    font-size: 11px;
-    text-transform: uppercase;
-    color: #000;
-    font-weight: 500;
-    letter-spacing: 0.5px;
+.cs-page-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: default;
 }
 
-/* RESPONSIVE */
-@media (max-width: 900px) {
-    .cs-hero-content-section {
-        padding: 80px 20px;
+.cs-page-dot.active {
+    background: var(--primary-red, #C41E3A);
+    width: 24px;
+    border-radius: 4px;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+@media (max-width: 1024px) {
+    .cs-book {
+        width: 90vw;
+        height: 65vh;
     }
 
-    .cs-hero-content-grid {
-        grid-template-columns: 1fr;
-        gap: 60px;
+    .cs-page-front-content {
+        padding: 28px 24px;
     }
 
-    .cs-hero-cta-group {
-        flex-direction: column;
+    .cs-page-title {
+        font-size: clamp(18px, 2.5vw, 26px);
     }
 
-    .cs-btn-primary,
-    .cs-btn-secondary {
-        width: 100%;
-        text-align: center;
+    .cs-left-content {
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cs-book {
+        width: 95vw;
+        height: 55vh;
+        min-height: 360px;
     }
 
-    .cs-stats-container {
-        flex-direction: column;
-        gap: 30px;
-        padding: 30px 20px;
+    .cs-book-header {
+        top: 20px;
     }
 
-    .cs-stat-divider {
-        width: 60px;
-        height: 1px;
+    .cs-book-main-title {
+        font-size: 18px;
+    }
+
+    .cs-page-front-content {
+        padding: 20px 18px;
+    }
+
+    .cs-page-title {
+        font-size: 18px;
+    }
+
+    .cs-page-number {
+        font-size: 10px;
+    }
+
+    .cs-page-cta {
+        font-size: 12px;
+    }
+
+    .cs-left-content {
+        padding: 20px;
+    }
+
+    .cs-left-title {
+        font-size: 24px;
+    }
+
+    .cs-left-brand {
+        font-size: 9px;
+    }
+
+    .cs-left-subtitle {
+        font-size: 11px;
+        display: none;
+    }
+
+    .cs-page-dots {
+        bottom: 24px;
+    }
+
+    .cs-page-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .cs-page-dot.active {
+        width: 18px;
+    }
+
+    .cs-scroll-hint {
+        bottom: 56px;
     }
 
     .cs-hero-letters {
@@ -410,50 +692,53 @@
     .cs-hero-letters .letters div {
         font-size: clamp(40px, 8vw, 80px);
     }
+}
 
-    .cs-filters {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+@media (max-width: 480px) {
+    .cs-book {
+        width: 98vw;
+        height: 50vh;
+        min-height: 320px;
     }
 
-    .cs-filter-btn {
-        padding: 10px 20px;
-        font-size: 13px;
-        text-align: center;
-        width: 100%;
+    .cs-book-main-title {
+        font-size: 15px;
     }
 
-    .cs-list {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 30px;
+    .cs-page-front-content {
+        padding: 16px 14px;
     }
 
-    .cs-page {
-        padding: 100px 20px 60px;
-        border-radius: 0 0 60px 60px;
+    .cs-page-title {
+        font-size: 16px;
+    }
+
+    .cs-page-cta {
+        font-size: 11px;
+        gap: 6px;
+    }
+
+    .cs-page-cta-icon {
+        width: 24px;
+        height: 24px;
+    }
+
+    .cs-left-title {
+        font-size: 18px;
+    }
+
+    .cs-left-line {
+        width: 30px;
+    }
+
+    .cs-page-counter-text {
+        font-size: 11px;
     }
 }
 
-@media (max-width: 600px) {
-    .cs-filters {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
-    .cs-filter-btn {
-        padding: 10px 16px;
-        font-size: 12px;
-    }
-
-    .cs-list {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-}
 
 /* =============================================
-   POPUP / LIGHTBOX MODAL STYLES (Adapted from WorkDetails)
+   POPUP / LIGHTBOX MODAL STYLES
    ============================================= */
 
 .cs-popup-overlay {
@@ -532,13 +817,12 @@
     flex-direction: column;
     padding: 28px 32px 40px 32px;
     box-sizing: border-box;
-    /* Hide scrollbar */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 .cs-popup-scroll-body::-webkit-scrollbar {
-    display: none; /* Chrome, Safari and Opera */
+    display: none;
 }
 
 .cs-popup-header {

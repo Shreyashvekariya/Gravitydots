@@ -40,6 +40,13 @@ body {
   background-color: var(--white);
   color: var(--black);
   overflow-x: hidden;
+  cursor: url('/src/assets/Cursor.png'), auto;
+}
+
+*,
+*::before,
+*::after {
+  cursor: url('/src/assets/Cursor.png'), auto !important;
 }
 
 .bebas {
