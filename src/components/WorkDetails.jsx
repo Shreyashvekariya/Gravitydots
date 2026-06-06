@@ -17,7 +17,7 @@ const CATEGORIES = [
 ];
 
 // ── Non-eager glob: gives us { glbPath: () => import(...) } ──────────────────
-const brandingFilesLazy = import.meta.glob('../assets/Work/Branding/**/*.{webp,mp4}');
+const brandingFilesLazy = import.meta.glob('../assets/Work/Branding/**/*.{webp,jpg,jpeg,png,gif,mp4}');
 
 // Build per-folder loader lists
 const brandingLoadersMap = {};
@@ -57,8 +57,144 @@ const brandingProjects = Object.keys(brandingLoadersMap).map((folderName, index)
     thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
 }));
 
+// ── Non-eager glob for Graphic Design ─────────────────────────────────────────
+const graphicDesignFilesLazy = import.meta.glob('../assets/Work/Graphic Design/**/*.{webp,jpg,jpeg,png,mp4}');
+
+const graphicDesignLoadersMap = {};
+Object.keys(graphicDesignFilesLazy).forEach(glbPath => {
+    const parts = glbPath.split('/');
+    const fileName = parts.pop();
+    const folderName = parts.pop();
+    if (!graphicDesignLoadersMap[folderName]) graphicDesignLoadersMap[folderName] = [];
+    graphicDesignLoadersMap[folderName].push({
+        glbPath,
+        importFn: graphicDesignFilesLazy[glbPath],
+        fileName,
+        type: fileName.endsWith('.mp4') ? 'video' : 'image',
+    });
+});
+
+Object.values(graphicDesignLoadersMap).forEach(list => {
+    list.sort((a, b) => {
+        const na = parseFloat(a.fileName.match(/[\d.]+/)?.[0] || 0) || 0;
+        const nb = parseFloat(b.fileName.match(/[\d.]+/)?.[0] || 0) || 0;
+        return na - nb;
+    });
+});
+
+const graphicDesignProjects = Object.keys(graphicDesignLoadersMap).map((folderName, index) => ({
+    id: `graphic-design-${index}`,
+    title: folderName,
+    category: 'GRAPHIC DESIGN',
+    loaders: graphicDesignLoadersMap[folderName],
+    thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
+}));
+
+// ── Non-eager glob for Social Media ─────────────────────────────────────────
+const socialMediaFilesLazy = import.meta.glob('../assets/Work/SOCIAL MEDIA/**/*.{webp,jpg,jpeg,png,mp4}');
+
+const socialMediaLoadersMap = {};
+Object.keys(socialMediaFilesLazy).forEach(glbPath => {
+    const parts = glbPath.split('/');
+    const fileName = parts.pop();
+    const folderName = parts.pop();
+    if (!socialMediaLoadersMap[folderName]) socialMediaLoadersMap[folderName] = [];
+    socialMediaLoadersMap[folderName].push({
+        glbPath,
+        importFn: socialMediaFilesLazy[glbPath],
+        fileName,
+        type: fileName.endsWith('.mp4') ? 'video' : 'image',
+    });
+});
+
+Object.values(socialMediaLoadersMap).forEach(list => {
+    list.sort((a, b) => {
+        const na = parseFloat(a.fileName.match(/[\d.]+/)?.[0] || 0) || 0;
+        const nb = parseFloat(b.fileName.match(/[\d.]+/)?.[0] || 0) || 0;
+        return na - nb;
+    });
+});
+
+const socialMediaProjects = Object.keys(socialMediaLoadersMap).map((folderName, index) => ({
+    id: `social-media-${index}`,
+    title: folderName,
+    category: 'SOCIAL MEDIA MANAGEMENT',
+    loaders: socialMediaLoadersMap[folderName],
+    thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
+}));
+
+// ── Non-eager glob for Website Development ─────────────────────────────────────────
+const websiteDevelopmentFilesLazy = import.meta.glob('../assets/Work/Website Development/**/*.{webp,jpg,jpeg,png,mp4}');
+
+const websiteDevelopmentLoadersMap = {};
+Object.keys(websiteDevelopmentFilesLazy).forEach(glbPath => {
+    const parts = glbPath.split('/');
+    const fileName = parts.pop();
+    const folderName = parts.pop();
+    if (!websiteDevelopmentLoadersMap[folderName]) websiteDevelopmentLoadersMap[folderName] = [];
+    websiteDevelopmentLoadersMap[folderName].push({
+        glbPath,
+        importFn: websiteDevelopmentFilesLazy[glbPath],
+        fileName,
+        type: fileName.endsWith('.mp4') ? 'video' : 'image',
+    });
+});
+
+Object.values(websiteDevelopmentLoadersMap).forEach(list => {
+    list.sort((a, b) => {
+        const na = parseFloat(a.fileName.match(/[\d.]+/)?.[0] || 0) || 0;
+        const nb = parseFloat(b.fileName.match(/[\d.]+/)?.[0] || 0) || 0;
+        return na - nb;
+    });
+});
+
+const websiteDevelopmentProjects = Object.keys(websiteDevelopmentLoadersMap).map((folderName, index) => ({
+    id: `website-development-${index}`,
+    title: folderName,
+    category: 'WEBSITE DEVELOPMENT',
+    loaders: websiteDevelopmentLoadersMap[folderName],
+    thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
+}));
+
+// ── Non-eager glob for Paid Ads ─────────────────────────────────────────
+const paidAdsFilesLazy = import.meta.glob('../assets/Work/PAID ADS/**/*.{webp,jpg,jpeg,png,mp4}');
+
+const paidAdsLoadersMap = {};
+Object.keys(paidAdsFilesLazy).forEach(glbPath => {
+    const parts = glbPath.split('/');
+    const fileName = parts.pop();
+    const folderName = parts.pop();
+    if (!paidAdsLoadersMap[folderName]) paidAdsLoadersMap[folderName] = [];
+    paidAdsLoadersMap[folderName].push({
+        glbPath,
+        importFn: paidAdsFilesLazy[glbPath],
+        fileName,
+        type: fileName.endsWith('.mp4') ? 'video' : 'image',
+    });
+});
+
+Object.values(paidAdsLoadersMap).forEach(list => {
+    list.sort((a, b) => {
+        const na = parseFloat(a.fileName.match(/[\d.]+/)?.[0] || 0) || 0;
+        const nb = parseFloat(b.fileName.match(/[\d.]+/)?.[0] || 0) || 0;
+        return na - nb;
+    });
+});
+
+const paidAdsProjects = Object.keys(paidAdsLoadersMap).map((folderName, index) => ({
+    id: `paid-ads-${index}`,
+    title: folderName,
+    category: 'PAID ADS',
+    loaders: paidAdsLoadersMap[folderName],
+    thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
+}));
+
 const generateProjects = (category) => {
     if (category === 'Branding' && brandingProjects.length > 0) return brandingProjects;
+    if (category === 'Graphic Design' && graphicDesignProjects.length > 0) return graphicDesignProjects;
+    if (category === 'Social Media Management' && socialMediaProjects.length > 0) return socialMediaProjects;
+    if (category === 'Website Development' && websiteDevelopmentProjects.length > 0) return websiteDevelopmentProjects;
+    if (category === 'Paid Ads' && paidAdsProjects.length > 0) return paidAdsProjects;
     return Array(6).fill(null).map((_, i) => ({
         id: i,
         title: 'Placeholder Project',
@@ -91,27 +227,35 @@ const WorkDetails = () => {
 
     // ── Load card thumbnails lazily on mount ──────────────────────────────────
     useEffect(() => {
-        brandingProjects.forEach(async (project) => {
-            if (project.thumbnailOverride) {
-                setCardThumbnails(prev => ({
-                    ...prev,
-                    [project.id]: project.thumbnailOverride,
-                }));
-            } else if (project.loaders && project.loaders.length > 0) {
-                // Load only the FIRST file as thumbnail
-                const first = project.loaders[0];
-                try {
-                    const mod = await first.importFn();
-                    const url = mod.default || mod;
+        const loadThumbnails = async (projects) => {
+            projects.forEach(async (project) => {
+                if (project.thumbnailOverride) {
                     setCardThumbnails(prev => ({
                         ...prev,
-                        [project.id]: { url, type: first.type },
+                        [project.id]: project.thumbnailOverride,
                     }));
-                } catch (e) {
-                    console.error('Thumbnail load failed:', e);
+                } else if (project.loaders && project.loaders.length > 0) {
+                    // Load only the FIRST file as thumbnail
+                    const first = project.loaders[0];
+                    try {
+                        const mod = await first.importFn();
+                        const url = mod.default || mod;
+                        setCardThumbnails(prev => ({
+                            ...prev,
+                            [project.id]: { url, type: first.type },
+                        }));
+                    } catch (e) {
+                        console.error('Thumbnail load failed:', e);
+                    }
                 }
-            }
-        });
+            });
+        };
+
+        loadThumbnails(brandingProjects);
+        loadThumbnails(graphicDesignProjects);
+        loadThumbnails(socialMediaProjects);
+        loadThumbnails(websiteDevelopmentProjects);
+        loadThumbnails(paidAdsProjects);
     }, []);
 
     // ── Open popup + lazy-load all media for that project ────────────────────
@@ -226,7 +370,10 @@ const WorkDetails = () => {
                                                 <video
                                                     src={thumb.url}
                                                     className="work-details-image-placeholder"
-                                                    style={{ objectFit: 'cover' }}
+                                                    style={{
+                                                        objectFit: 'cover',
+                                                        objectPosition: project.category === 'WEBSITE DEVELOPMENT' ? 'left center' : 'center'
+                                                    }}
                                                     muted
                                                     preload="metadata"
                                                 />
@@ -235,7 +382,10 @@ const WorkDetails = () => {
                                                     src={thumb.url}
                                                     alt={project.title}
                                                     className="work-details-image-placeholder"
-                                                    style={{ objectFit: 'cover' }}
+                                                    style={{
+                                                        objectFit: 'cover',
+                                                        objectPosition: project.category === 'WEBSITE DEVELOPMENT' ? 'left center' : 'center'
+                                                    }}
                                                     loading="lazy"
                                                     decoding="async"
                                                 />
@@ -247,7 +397,6 @@ const WorkDetails = () => {
                                         )}
                                         <div className="work-details-info">
                                             <h4>{project.title}</h4>
-                                            <p>{project.category}</p>
                                         </div>
                                     </div>
                                 );
@@ -271,7 +420,6 @@ const WorkDetails = () => {
                         <div className="wd-popup-scroll-body">
                             <div className="wd-popup-header">
                                 <h2 className="wd-popup-title">{selectedProject.title}</h2>
-                                <span className="wd-popup-category">{selectedProject.category}</span>
                             </div>
 
                             <div className="wd-popup-image-area">

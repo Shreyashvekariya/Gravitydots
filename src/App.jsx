@@ -1,5 +1,5 @@
 import Navbar from './components/Navbar'
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import Lenis from 'lenis'
 import Home from './components/Home'
@@ -12,6 +12,15 @@ import Footer from './components/Footer'
 import './App.css'
 
 function App() {
+  const location = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    // If lenis is available globally, we can reset its scroll too
+    if (window.lenis) {
+      window.lenis.scrollTo(0, { immediate: true })
+    }
+  }, [location.pathname])
   useEffect(() => {
     // Initialize Lenis
     const lenis = new Lenis({
@@ -25,6 +34,8 @@ function App() {
       touchMultiplier: 2,
       infinite: false,
     })
+
+    window.lenis = lenis;
 
     // Animation frame loop
     function raf(time) {
