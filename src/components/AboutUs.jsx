@@ -1,4 +1,11 @@
 import './AboutUs.css'
+import ayushImg from '../assets/images/Team/Ayush.webp';
+import bhagirathImg from '../assets/images/Team/Bhagirath.webp';
+import aashishImg from '../assets/images/Team/Aashish.webp';
+import niyatiImg from '../assets/images/Team/Niyati.webp';
+import dileepImg from '../assets/images/Team/Dileep.webp';
+import jatinimg from '../assets/images/Team/Jatin.webp';
+import keyurimg from '../assets/images/Team/Keyur.webp';
 
 const AboutUs = () => {
   return (
@@ -10,7 +17,7 @@ const AboutUs = () => {
           <br />
           and affordable digital marketing solutions.
         </h2>
-        
+
         <div className="about-cards-grid">
           <div className="about-card">
             <div className="card-content">
@@ -66,12 +73,12 @@ const AboutUs = () => {
       <section className="founders-section">
         <div className="founders-grid">
           <div className="founder-card">
-            <div className="founder-image-placeholder"></div>
+            <div className="founder-image-placeholder"><img src={jatinimg} alt="Jatin Kateliya" /></div>
             <h3 className="founder-name">Keyur Mehta</h3>
             <p className="founder-role">Managing Director</p>
           </div>
           <div className="founder-card">
-            <div className="founder-image-placeholder"></div>
+            <div className="founder-image-placeholder"><img src={keyurimg} alt="Aayush Parekh" /></div>
             <h3 className="founder-name">Jatin H Kateliya</h3>
             <p className="founder-role">Managing Director</p>
           </div>
@@ -106,22 +113,27 @@ const AboutUs = () => {
 
         <div className="team-grid">
           <div className="team-member">
-            <div className="team-image-placeholder"></div>
-            <h4 className="team-name">Aayush Parikh</h4>
+            <div className="team-image-placeholder"><img src={ayushImg} alt="Aayush Parekh" /></div>
+            <h4 className="team-name">Aayush Parekh</h4>
             <p className="team-role">Sr. Designer</p>
           </div>
           <div className="team-member">
-            <div className="team-image-placeholder"></div>
+            <div className="team-image-placeholder"><img src={bhagirathImg} alt="Bhagirath Baldaniya" /></div>
+            <h4 className="team-name">Bhagirath Baldaniya</h4>
+            <p className="team-role">Performance Marketer</p>
+          </div>
+          <div className="team-member">
+            <div className="team-image-placeholder"><img src={aashishImg} alt="Aashish Kateliya" /></div>
             <h4 className="team-name">Aashish Kateliya</h4>
             <p className="team-role">Brand Manager</p>
           </div>
           <div className="team-member">
-            <div className="team-image-placeholder"></div>
+            <div className="team-image-placeholder"><img src={niyatiImg} alt="Niyati Sojitra" /></div>
             <h4 className="team-name">Niyati Sojitra</h4>
             <p className="team-role">Sales Executive</p>
           </div>
           <div className="team-member">
-            <div className="team-image-placeholder"></div>
+            <div className="team-image-placeholder"><img src={dileepImg} alt="Dileep Vala" /></div>
             <h4 className="team-name">Dileep Vala</h4>
             <p className="team-role">Graphic Designer</p>
           </div>
@@ -129,11 +141,6 @@ const AboutUs = () => {
             <div className="team-image-placeholder"></div>
             <h4 className="team-name">Pooja</h4>
             <p className="team-role">SEO Expert</p>
-          </div>
-          <div className="team-member">
-            <div className="team-image-placeholder"></div>
-            <h4 className="team-name">Niyati Sojitra</h4>
-            <p className="team-role">BDE</p>
           </div>
         </div>
       </section>

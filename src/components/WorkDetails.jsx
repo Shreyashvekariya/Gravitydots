@@ -9,11 +9,11 @@ const CATEGORIES = [
     { name: 'Branding', bgColor: '#D53F52' },
     { name: 'Graphic Design', bgColor: '#F5974E' },
     { name: 'Social Media Management', bgColor: '#5F94C9' },
-    { name: 'Paid Ads', bgColor: '#1800AD' },
+    { name: 'Performance Marketing', bgColor: '#1800AD' },
     { name: 'Search Engine Optimization (SEO)', bgColor: '#7ED957' },
     { name: 'Influencer Marketing', bgColor: '#5170FF' },
-    { name: 'Content Creation', bgColor: '#FF751F' },
     { name: 'Website Development', bgColor: '#00B8BF' },
+    { name: 'Whatsapp Marketing', bgColor: '#FF751F' },
 ];
 
 // ── Non-eager glob: gives us { glbPath: () => import(...) } ──────────────────

@@ -1,6 +1,11 @@
 import "./WhyChooseUs.css";
+import casestudyImg from "../assets/images/Grid Photo main.webp";
+import GridVideo from "../assets/images/Grid video.mp4";
+import gdLogo from "../assets/images/GD LOGO (WHITE & RED).png";
+import { useNavigate } from 'react-router-dom';
 
 export default function WhyChooseUs() {
+    const navigate = useNavigate();
     return (
         <>
             <div className="why-choose-us-header">
@@ -24,7 +29,7 @@ export default function WhyChooseUs() {
                 <div className="why-choose-us-container">
                     <div className="bento-grid">
                         {/* LEFT BIG CARD - Case Study */}
-                        <div className="card case-study">
+                        <div className="card case-study" onClick={() => { navigate('/casestudies'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
                             {/* White Header Box */}
                             <div className="case-study-header">
                                 <div className="menu-dots">
@@ -38,29 +43,37 @@ export default function WhyChooseUs() {
                                 </div>
                             </div>
                             {/* Image Section */}
-                            <div className="case-study-image"></div>
+                            <div className="case-study-image">
+                                <img src={casestudyImg} alt="Casestudy" />
+                            </div>
                         </div>
 
                         {/* VIDEO CARD */}
                         <div className="card video-card">
+                            <video
+                                src={GridVideo}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                                className="video-card-bg"
+                            />
                             <div className="video-overlay"></div>
-                            <span className="video-text">Video (GIF)</span>
+                            {/* <span className="video-text">Video (GIF)</span> */}
                         </div>
 
                         {/* WEBSITE PILL */}
-                        <div className="card pill-dark">
+                        <div className="card pill-dark" onClick={() => { navigate('/'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
                             <span className="pill-text">Website</span>
                             <div className="search-icon">
-                                <div className="search-circle">
-                                    <div className="search-handle"></div>
-                                </div>
+                                <img src="https://cdn-icons-png.flaticon.com/512/9479/9479251.png" alt="Search" className="flaticon-search" />
                             </div>
                         </div>
 
                         {/* RIGHT SIDEBAR TOP - Globe + Preview Image */}
                         <div className="sidebar-right-top">
                             {/* GLOBE ICON */}
-                            <div className="card globe-card">
+                            <div className="card globe-card" onClick={() => { navigate('/'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
                                 <svg className="globe-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="2.5" />
                                     <ellipse cx="32" cy="32" rx="12" ry="28" stroke="currentColor" strokeWidth="2.5" />
@@ -71,7 +84,13 @@ export default function WhyChooseUs() {
                             </div>
 
                             {/* PREVIEW IMAGE */}
-                            <div className="card preview-card"></div>
+                            <div className="card preview-card" onClick={() => { navigate('/'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
+                                <img
+                                    src={gdLogo}
+                                    alt="GD Logo"
+                                    className="preview-logo-bg"
+                                />
+                            </div>
                         </div>
 
                         {/* SOCIAL MEDIA CARD */}
@@ -90,12 +109,10 @@ export default function WhyChooseUs() {
                         </div>
 
                         {/* GRAPHICS PILL */}
-                        <div className="card pill-red">
+                        <div className="card pill-red" onClick={() => { navigate('/work-details', { state: { category: 'Graphic Design' } }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
                             <span className="pill-text">Graphics</span>
                             <div className="search-icon">
-                                <div className="search-circle">
-                                    <div className="search-handle"></div>
-                                </div>
+                                <img src="https://cdn-icons-png.flaticon.com/512/9479/9479251.png" alt="Search" className="flaticon-search-black" />
                             </div>
                         </div>
                     </div>

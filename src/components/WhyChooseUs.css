@@ -156,7 +156,6 @@
 .why-choose-us {
   padding: 60px 120px;
   background: #000000;
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -177,7 +176,7 @@
   grid-template-rows: 1fr 1fr;
   gap: 20px;
   width: 100%;
-  min-height: 650px;
+  min-height: 500px;
 }
 
 /* ===================================
@@ -211,9 +210,9 @@
 .case-study-header {
   background: #ffffff;
   border-radius: 48px 48px 0 0;
-  padding: 18px 28px 16px;
+  padding: 10px 28px 8px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 15px;
   flex-shrink: 0;
 }
@@ -224,7 +223,6 @@
   gap: 5px;
   cursor: pointer;
   transition: opacity 0.3s ease;
-  padding-top: 6px;
 }
 
 .menu-dots:hover {
@@ -250,6 +248,7 @@
   color: #000000;
   line-height: 1.1;
   margin-bottom: 4px;
+  cursor: text;
 }
 
 .case-study-subtitle {
@@ -257,12 +256,22 @@
   font-weight: 600;
   color: var(--primary-red, #C41E3A);
   line-height: 1.2;
+  cursor: text;
 }
 
 .case-study-image {
   flex: 1;
-  background: url('https://images.unsplash.com/photo-1528164344705-47542687000d?w=800&q=80') center/cover;
-  border-radius: 0 0 48px 48px;
+  overflow: hidden;
+  border-bottom-left-radius: 48px;
+  border-bottom-right-radius: 48px;
+  min-height: 0;
+}
+
+.case-study-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 /* ===================================
@@ -271,10 +280,21 @@
 .video-card {
   grid-column: 2;
   grid-row: 1;
-  background: url('https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=1200&q=80') center/cover;
+  background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-card-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
 }
 
 .video-overlay {
@@ -290,6 +310,7 @@
   font-weight: 700;
   color: #ffffff;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  cursor: text;
 }
 
 /* ===================================
@@ -322,12 +343,14 @@
   color: #000000;
   line-height: 1.25;
   margin-bottom: 8px;
+  cursor: text;
 }
 
 .social-hashtag {
   font-size: clamp(14px, 1.8vw, 24px);
   font-weight: 600;
   color: #000000;
+  cursor: text;
 }
 
 .profile-image {
@@ -351,6 +374,7 @@
   font-size: clamp(18px, 2.2vw, 32px);
   font-weight: 700;
   color: #6b7280;
+  cursor: text;
 }
 
 .arrow-button {
@@ -397,7 +421,7 @@
 .pill-red {
   grid-column: 4;
   grid-row: 2;
-  background-color: var(--primary-red, #C41E3A);
+  background-color: var(--primary-red, #CC1417);
 }
 
 .pill-text {
@@ -408,6 +432,7 @@
   text-orientation: mixed;
   letter-spacing: -1px;
   font-family: 'Poppins', sans-serif;
+  cursor: text;
 }
 
 .search-icon {
@@ -419,7 +444,7 @@
 .search-circle {
   width: clamp(20px, 2vw, 28px);
   height: clamp(20px, 2vw, 28px);
-  border: 3px solid #ffffff;
+  border: 3px solid #000000;
   border-radius: 50%;
   position: relative;
 }
@@ -430,9 +455,23 @@
   left: -7px;
   width: 3px;
   height: 12px;
-  background-color: #ffffff;
+  background-color: #000000;
   transform: rotate(-45deg);
   border-radius: 2px;
+}
+
+.flaticon-search {
+  width: clamp(24px, 2.5vw, 32px);
+  height: clamp(24px, 2.5vw, 32px);
+  filter: brightness(0) invert(1);
+  object-fit: contain;
+}
+
+.flaticon-search-black {
+  width: clamp(24px, 2.5vw, 32px);
+  height: clamp(24px, 2.5vw, 32px);
+  filter: brightness(0);
+  object-fit: contain;
 }
 
 /* ===================================
@@ -502,8 +541,21 @@
    =================================== */
 .preview-card {
   flex: 1;
-  background: url('https://images.unsplash.com/photo-1513407030348-c983a97b98d8?w=400&q=80') center/cover;
+  background-color: #000;
   border-radius: 16px;
+  border: 8px solid #C41E3A;
+  position: relative;
+  overflow: hidden;
+}
+
+.preview-logo-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 15px;
+  z-index: 0;
 }
 
 /* ===================================

@@ -3,7 +3,7 @@ import HeroImage from './HeroImage'
 import Services from './Services'
 import Clients from './Clients'
 import WhyChooseUs from './WhyChooseUs'
-import Reviews from './Reviews'
+import Testimonials from './Testimonials'
 import ConnectUs from './ConnectUs'
 
 const Home = () => {
@@ -15,7 +15,7 @@ const Home = () => {
                 <Services />
                 <Clients />
                 <WhyChooseUs />
-                <Reviews />
+                <Testimonials />
                 <ConnectUs />
             </div>
         </div>
