@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar'
+import Preloader from './components/Preloader'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import Lenis from 'lenis'
@@ -53,6 +54,7 @@ function App() {
 
   return (
     <div className="app">
+      <Preloader />
       <Navbar />
       <div className="main-content">
         <Routes>

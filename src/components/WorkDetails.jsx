@@ -16,6 +16,32 @@ const CATEGORIES = [
     { name: 'Whatsapp Marketing', bgColor: '#FF751F' },
 ];
 
+// ── Custom Folder Ordering ───────────────────────────────────────────────────
+// Add folder names in the arrays below to enforce their specific order. 
+// Folders not listed will be sorted alphabetically at the end.
+export const PROJECT_ORDER = {
+    'Branding': [
+        // e.g., 'Treasure9 Branding',
+
+        "Global Spice Connect Branding"
+    ],
+    'Social Media Management': [4, 2],
+    'Website Development': [],
+    'Paid Ads': [],
+};
+
+const sortProjects = (projects, categoryName) => {
+    const order = PROJECT_ORDER[categoryName] || [];
+    return projects.sort((a, b) => {
+        const indexA = order.indexOf(a.title);
+        const indexB = order.indexOf(b.title);
+        if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+        if (indexA !== -1) return -1;
+        if (indexB !== -1) return 1;
+        return a.title.localeCompare(b.title);
+    });
+};
+
 // ── Non-eager glob: gives us { glbPath: () => import(...) } ──────────────────
 const brandingFilesLazy = import.meta.glob('../assets/Work/Branding/**/*.{webp,jpg,jpeg,png,gif,mp4}');
 
@@ -49,13 +75,13 @@ const THUMBNAIL_OVERRIDES = {
 };
 
 // Static project list (no URLs yet — just metadata + loader functions)
-const brandingProjects = Object.keys(brandingLoadersMap).map((folderName, index) => ({
+const brandingProjects = sortProjects(Object.keys(brandingLoadersMap).map((folderName, index) => ({
     id: `branding-${index}`,
     title: folderName,
     category: 'BRANDING',
     loaders: brandingLoadersMap[folderName],
     thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
-}));
+})), 'Branding');
 
 // ── Non-eager glob for Graphic Design ─────────────────────────────────────────
 const graphicDesignFilesLazy = import.meta.glob('../assets/Work/Graphic Design/**/*.{webp,jpg,jpeg,png,mp4}');
@@ -82,13 +108,13 @@ Object.values(graphicDesignLoadersMap).forEach(list => {
     });
 });
 
-const graphicDesignProjects = Object.keys(graphicDesignLoadersMap).map((folderName, index) => ({
+const graphicDesignProjects = sortProjects(Object.keys(graphicDesignLoadersMap).map((folderName, index) => ({
     id: `graphic-design-${index}`,
     title: folderName,
     category: 'GRAPHIC DESIGN',
     loaders: graphicDesignLoadersMap[folderName],
     thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
-}));
+})), 'Graphic Design');
 
 // ── Non-eager glob for Social Media ─────────────────────────────────────────
 const socialMediaFilesLazy = import.meta.glob('../assets/Work/SOCIAL MEDIA/**/*.{webp,jpg,jpeg,png,mp4}');
@@ -115,13 +141,13 @@ Object.values(socialMediaLoadersMap).forEach(list => {
     });
 });
 
-const socialMediaProjects = Object.keys(socialMediaLoadersMap).map((folderName, index) => ({
+const socialMediaProjects = sortProjects(Object.keys(socialMediaLoadersMap).map((folderName, index) => ({
     id: `social-media-${index}`,
     title: folderName,
     category: 'SOCIAL MEDIA MANAGEMENT',
     loaders: socialMediaLoadersMap[folderName],
     thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
-}));
+})), 'Social Media Management');
 
 // ── Non-eager glob for Website Development ─────────────────────────────────────────
 const websiteDevelopmentFilesLazy = import.meta.glob('../assets/Work/Website Development/**/*.{webp,jpg,jpeg,png,mp4}');
@@ -148,13 +174,13 @@ Object.values(websiteDevelopmentLoadersMap).forEach(list => {
     });
 });
 
-const websiteDevelopmentProjects = Object.keys(websiteDevelopmentLoadersMap).map((folderName, index) => ({
+const websiteDevelopmentProjects = sortProjects(Object.keys(websiteDevelopmentLoadersMap).map((folderName, index) => ({
     id: `website-development-${index}`,
     title: folderName,
     category: 'WEBSITE DEVELOPMENT',
     loaders: websiteDevelopmentLoadersMap[folderName],
     thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
-}));
+})), 'Website Development');
 
 // ── Non-eager glob for Paid Ads ─────────────────────────────────────────
 const paidAdsFilesLazy = import.meta.glob('../assets/Work/PAID ADS/**/*.{webp,jpg,jpeg,png,mp4}');
@@ -181,13 +207,13 @@ Object.values(paidAdsLoadersMap).forEach(list => {
     });
 });
 
-const paidAdsProjects = Object.keys(paidAdsLoadersMap).map((folderName, index) => ({
+const paidAdsProjects = sortProjects(Object.keys(paidAdsLoadersMap).map((folderName, index) => ({
     id: `paid-ads-${index}`,
     title: folderName,
     category: 'PAID ADS',
     loaders: paidAdsLoadersMap[folderName],
     thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
-}));
+})), 'Paid Ads');
 
 const generateProjects = (category) => {
     if (category === 'Branding' && brandingProjects.length > 0) return brandingProjects;

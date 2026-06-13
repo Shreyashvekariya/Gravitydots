@@ -38,8 +38,8 @@
 }
 
 .contact-main-title {
-    font-family: 'Aller Display', sans-serif !important;
-    font-size: clamp(40px, 6vw, 80px);
+    font-family: 'Poppins', sans-serif !important;
+    font-size: clamp(30px, 4vw, 70px);
     line-height: 1.1;
     letter-spacing: 5px;
     margin: 0 0 20px 0;
@@ -51,7 +51,7 @@
 
 .contact-hero-subtitle {
     font-family: 'Times New Roman', serif;
-    font-size: clamp(18px, 2vw, 24px);
+    font-size: clamp(15px, 2vw, 20px);
     color: #aaa;
     font-style: italic;
     max-width: 700px;
@@ -336,7 +336,7 @@
 }
 
 .map-title {
-    font-family: 'Aller Display', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: clamp(36px, 5vw, 60px);
     font-weight: 400;
     margin: 0 0 15px 0;

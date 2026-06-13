@@ -8,7 +8,6 @@ function HeroImage() {
   const videoRef = useRef(null)
   const isInView = useInView(videoRef, { margin: "-100px" })
 
-  // Scale up the image as the user scrolls
   const scaleImage = useTransform(scrollY, [0, 600], [0.8, 1])
 
   useEffect(() => {

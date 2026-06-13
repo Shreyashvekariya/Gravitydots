@@ -63,7 +63,7 @@ export default function WhyChooseUs() {
                         </div>
 
                         {/* WEBSITE PILL */}
-                        <div className="card pill-dark" onClick={() => { navigate('/'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
+                        <div className="card pill-dark" onClick={() => { navigate('/work-details', { state: { category: 'Website Development' } }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
                             <span className="pill-text">Website</span>
                             <div className="search-icon">
                                 <img src="https://cdn-icons-png.flaticon.com/512/9479/9479251.png" alt="Search" className="flaticon-search" />
@@ -73,7 +73,7 @@ export default function WhyChooseUs() {
                         {/* RIGHT SIDEBAR TOP - Globe + Preview Image */}
                         <div className="sidebar-right-top">
                             {/* GLOBE ICON */}
-                            <div className="card globe-card" onClick={() => { navigate('/'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
+                            <div className="card globe-card" onClick={() => { navigate('/work-details', { state: { category: 'Website Development' } }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
                                 <svg className="globe-icon" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <circle cx="32" cy="32" r="28" stroke="currentColor" strokeWidth="2.5" />
                                     <ellipse cx="32" cy="32" rx="12" ry="28" stroke="currentColor" strokeWidth="2.5" />
@@ -94,7 +94,7 @@ export default function WhyChooseUs() {
                         </div>
 
                         {/* SOCIAL MEDIA CARD */}
-                        <div className="card social-card">
+                        <div className="card social-card" onClick={() => { navigate('/work-details', { state: { category: 'Social Media Management' } }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
                             <div className="social-section">
                                 <div className="social-content">
                                     <h3 className="social-title">Social Media<br />Management</h3>
@@ -102,7 +102,7 @@ export default function WhyChooseUs() {
                                 </div>
                                 <div className="profile-image"></div>
                             </div>
-                            <div className="blogs-section">
+                            <div className="blogs-section" onClick={() => { navigate('/casestudies'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
                                 <span className="blogs-title">Blogs</span>
                                 <button className="arrow-button">→</button>
                             </div>
