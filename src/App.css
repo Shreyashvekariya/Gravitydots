@@ -1,13 +1,12 @@
 .app {
   width: 100%;
   position: relative;
-  cursor: url('/src/assets/Cursor.png'), auto;
 }
 
 .app *,
 .app *::before,
 .app *::after {
-  cursor: url('/src/assets/Cursor.png'), auto !important;
+  cursor: none !important;
 }
 
 .main-content {

@@ -44,7 +44,6 @@ body {
   background-color: var(--white);
   color: var(--black);
   overflow-x: hidden;
-  cursor: url('/src/assets/Cursor.png'), auto;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -66,12 +65,6 @@ video {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-}
-
-*,
-*::before,
-*::after {
-  cursor: url('/src/assets/Cursor.png'), auto !important;
 }
 
 .bebas {
