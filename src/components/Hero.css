@@ -96,13 +96,13 @@
     margin-top: 0;
     margin-bottom: -2px;
     justify-content: flex-start;
-    padding-top: 120px;
+    padding-top: 40px;
   }
 
   .hero-content {
     padding-left: 20px;
     padding-right: 20px;
-    padding-top: 60px;
+    padding-top: 20px;
     padding-bottom: 10px;
   }
 
@@ -129,14 +129,14 @@
 @media (max-width: 480px) {
   .hero {
     padding: 20px 0 10px 0;
-    padding-top: 100px;
+    padding-top: 30px;
     min-height: auto;
   }
 
   .hero-content {
     padding-left: 15px;
     padding-right: 15px;
-    padding-top: 50px;
+    padding-top: 15px;
     padding-bottom: 10px;
   }
 

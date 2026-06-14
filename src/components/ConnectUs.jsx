@@ -1,4 +1,5 @@
 import './ConnectUs.css'
+import laptopGif from '../assets/images/Laptop.gif'
 
 function ConnectUs() {
   return (
@@ -160,13 +161,8 @@ function ConnectUs() {
             <span>RESULT-ORIENTED.</span>
           </div>
         </div>
-        <div className="connect-us-laptop-mockup">
-          <div className="connect-us-laptop-screen">
-            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800" alt="Project Preview" />
-          </div>
-          <div className="connect-us-laptop-base">
-            <div className="connect-us-laptop-notch"></div>
-          </div>
+        <div className="connect-us-laptop-image">
+          <img src={laptopGif} alt="Project Preview" />
         </div>
       </div>
 

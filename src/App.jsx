@@ -21,6 +21,58 @@ function App() {
       window.lenis.scrollTo(0, { immediate: true })
     }
   }, [location.pathname])
+
+  useEffect(() => {
+    // Disable right-click
+    const handleContextMenu = (e) => {
+      e.preventDefault()
+      return false
+    }
+
+    // Disable keyboard shortcuts for screenshots and dev tools
+    const handleKeyDown = (e) => {
+      // Disable F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S
+      if (
+        e.keyCode === 123 || // F12
+        (e.ctrlKey && e.shiftKey && e.keyCode === 73) || // Ctrl+Shift+I
+        (e.ctrlKey && e.shiftKey && e.keyCode === 74) || // Ctrl+Shift+J
+        (e.ctrlKey && e.keyCode === 85) || // Ctrl+U
+        (e.ctrlKey && e.keyCode === 83) || // Ctrl+S
+        (e.metaKey && e.shiftKey && e.keyCode === 73) || // Cmd+Shift+I (Mac)
+        (e.metaKey && e.shiftKey && e.keyCode === 74) || // Cmd+Shift+J (Mac)
+        (e.metaKey && e.keyCode === 85) || // Cmd+U (Mac)
+        (e.metaKey && e.keyCode === 83) // Cmd+S (Mac)
+      ) {
+        e.preventDefault()
+        return false
+      }
+
+      // Disable Print Screen
+      if (e.keyCode === 44) {
+        e.preventDefault()
+        return false
+      }
+    }
+
+    // Disable drag on images
+    const handleDragStart = (e) => {
+      e.preventDefault()
+      return false
+    }
+
+    // Add event listeners
+    document.addEventListener('contextmenu', handleContextMenu)
+    document.addEventListener('keydown', handleKeyDown)
+    document.addEventListener('dragstart', handleDragStart)
+
+    // Cleanup
+    return () => {
+      document.removeEventListener('contextmenu', handleContextMenu)
+      document.removeEventListener('keydown', handleKeyDown)
+      document.removeEventListener('dragstart', handleDragStart)
+    }
+  }, [])
+
   useEffect(() => {
     // Initialize Lenis
     const lenis = new Lenis({

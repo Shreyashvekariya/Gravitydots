@@ -200,6 +200,14 @@
     padding: 40px 20px 60px;
   }
 
+  .footer::before {
+    display: none;
+  }
+
+  .footer-logo {
+    padding-top: 40px;
+  }
+
   .footer-logo-image {
     height: 80px;
   }
@@ -234,11 +242,16 @@
 
 @media (max-width: 480px) {
   .footer {
-    padding: 30px 15px 50px;
+    padding: 30px 15px 20px;
+  }
+
+  .footer::before {
+    display: none;
   }
 
   .footer-logo {
     margin-bottom: 40px;
+    padding-top: 20px;
   }
 
   .footer-logo-image {
