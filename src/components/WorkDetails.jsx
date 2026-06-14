@@ -361,74 +361,71 @@ const WorkDetails = () => {
         <div className="work-details-wrapper">
             <section className="work-details-page">
                 <div className="work-details-container">
-                    <h1 className="work-details-title">Work That Delivers</h1>
-                    <div className="work-details-layout">
-                        <aside className="work-details-sidebar">
-                            <ul className="details-category-list">
-                                {CATEGORIES.map(category => (
-                                    <li
-                                        key={category.name}
-                                        className={`details-category-item ${activeCategory === category.name ? 'active' : ''}`}
-                                        onClick={() => setActiveCategory(category.name)}
-                                        style={activeCategory === category.name ? {
-                                            backgroundColor: category.bgColor,
-                                            borderColor: category.bgColor,
-                                            boxShadow: `0 4px 15px ${category.bgColor}4D`
-                                        } : {}}
-                                    >
-                                        <span className="dot"></span> {category.name}
-                                    </li>
-                                ))}
-                            </ul>
-                        </aside>
-
-                        <main className="work-details-grid">
-                            {activeProjects.map((project) => {
-                                const thumb = cardThumbnails[project.id] || null;
-                                return (
-                                    <div
-                                        key={project.id}
-                                        className="work-details-card"
-                                        onClick={() => openPopup(project)}
-                                    >
-                                        {thumb ? (
-                                            thumb.type === 'video' ? (
-                                                <video
-                                                    src={thumb.url}
-                                                    className="work-details-image-placeholder"
-                                                    style={{
-                                                        objectFit: 'cover',
-                                                        objectPosition: project.category === 'WEBSITE DEVELOPMENT' ? 'left center' : 'center'
-                                                    }}
-                                                    muted
-                                                    preload="metadata"
-                                                />
-                                            ) : (
-                                                <img
-                                                    src={thumb.url}
-                                                    alt={project.title}
-                                                    className="work-details-image-placeholder"
-                                                    style={{
-                                                        objectFit: 'cover',
-                                                        objectPosition: project.category === 'WEBSITE DEVELOPMENT' ? 'left center' : 'center'
-                                                    }}
-                                                    loading="lazy"
-                                                    decoding="async"
-                                                />
-                                            )
+                    <h1 className="work-details-title">WORK THAT DELIVERS</h1>
+                    <nav className="work-details-category-bar">
+                        <ul className="details-category-list">
+                            {CATEGORIES.map(category => (
+                                <li
+                                    key={category.name}
+                                    className={`details-category-item ${activeCategory === category.name ? 'active' : ''}`}
+                                    onClick={() => setActiveCategory(category.name)}
+                                    style={activeCategory === category.name ? {
+                                        backgroundColor: category.bgColor,
+                                        borderColor: category.bgColor,
+                                        boxShadow: `0 4px 15px ${category.bgColor}4D`
+                                    } : {}}
+                                >
+                                    {category.name}
+                                </li>
+                            ))}
+                        </ul>
+                    </nav>
+                    <main className="work-details-grid">
+                        {activeProjects.map((project) => {
+                            const thumb = cardThumbnails[project.id] || null;
+                            return (
+                                <div
+                                    key={project.id}
+                                    className="work-details-card"
+                                    onClick={() => openPopup(project)}
+                                >
+                                    {thumb ? (
+                                        thumb.type === 'video' ? (
+                                            <video
+                                                src={thumb.url}
+                                                className="work-details-image-placeholder"
+                                                style={{
+                                                    objectFit: 'cover',
+                                                    objectPosition: project.category === 'WEBSITE DEVELOPMENT' ? 'left center' : 'center'
+                                                }}
+                                                muted
+                                                preload="metadata"
+                                            />
                                         ) : (
-                                            <div className="work-details-image-placeholder wd-thumb-skeleton">
-                                                <div className="wd-skeleton-shimmer" />
-                                            </div>
-                                        )}
-                                        <div className="work-details-info">
-                                            <h4>{project.title}</h4>
+                                            <img
+                                                src={thumb.url}
+                                                alt={project.title}
+                                                className="work-details-image-placeholder"
+                                                style={{
+                                                    objectFit: 'cover',
+                                                    objectPosition: project.category === 'WEBSITE DEVELOPMENT' ? 'left center' : 'center'
+                                                }}
+                                                loading="lazy"
+                                                decoding="async"
+                                            />
+                                        )
+                                    ) : (
+                                        <div className="work-details-image-placeholder wd-thumb-skeleton">
+                                            <div className="wd-skeleton-shimmer" />
                                         </div>
+                                    )}
+                                    <div className="work-details-info">
+                                        <h4>{project.title}</h4>
                                     </div>
-                                );
-                            })}
-                        </main>
-                    </div>
+                                </div>
+                            );
+                        })}
+                    </main>
                 </div>
             </section>
 

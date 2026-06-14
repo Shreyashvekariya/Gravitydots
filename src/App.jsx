@@ -5,7 +5,6 @@ import { useEffect } from 'react'
 import Lenis from 'lenis'
 import Home from './components/Home'
 import AboutUs from './components/AboutUs'
-import Work from './components/Work'
 import WorkDetails from './components/WorkDetails'
 import CaseStudies from './components/CaseStudies'
 import Contact from './components/Contact'
@@ -60,7 +59,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
-          <Route path="/work" element={<Work />} />
+          {/* <Route path="/work" element={<Navigate to="/work-details" replace />} /> */}
           <Route path="/work-details" element={<WorkDetails />} />
           <Route path="/casestudies" element={<CaseStudies />} />
           <Route path="/contact" element={<Contact />} />

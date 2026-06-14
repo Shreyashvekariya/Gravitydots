@@ -74,7 +74,7 @@ function Navbar() {
             <Link to="/about" className={`nav-link ${location.pathname === '/about' ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>About us</Link>
           </li>
           <li>
-            <Link to="/work" className={`nav-link ${location.pathname === '/work' ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>Work</Link>
+            <Link to="/work-details" className={`nav-link ${isWorkPage ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>Work</Link>
           </li>
           <li>
             <Link to="/casestudies" className={`nav-link ${location.pathname === '/casestudies' ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>Casestudy</Link>

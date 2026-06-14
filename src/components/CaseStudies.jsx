@@ -26,20 +26,23 @@ Object.values(casestudiesLoadersMap).forEach(list => {
     });
 });
 
-// ── Custom Folder Ordering ───────────────────────────────────────────────────
-export const PROJECT_ORDER = ['SATVIK',
-    'KINEIN',
-    'ATS',
-    'GLOBAL SPICE CONNECT',
-    'CANDID',
-    'TREASURE9',
-    'GHEEYONNAISE',
-    'GIRCULTURE',
-    'OM HRIM RUDRAKSH',
-    'PANGHAT',
-    'THE TIMELESS HUES STUDIO',
-    'VIBEWIT'
-];
+// ── Custom Folder Ordering & Descriptions ────────────────────────────────────
+const PROJECT_DATA = {
+    'SATVIK': 'Scaled from ₹0 website sales to 2.1+ million sales within 7 months',
+    'KINEIN': 'Rebuilding A 900+ Product Website With A Clean & User-Friendly Experience',
+    'ATS': 'How ATS Trading LLC Achieved 2.6X ROAS & Built A Strong Digital Presence In UAE',
+    'GLOBAL SPICE CONNECT': 'Building a global brand presence for premium spice exports',
+    'CANDID': 'Transforming brand identity with bold creative storytelling',
+    'TREASURE9': 'Driving engagement and growth through strategic digital marketing',
+    'GHEEYONNAISE': 'Launching a unique food brand with viral social media campaigns',
+    'GIRCULTURE': 'Empowering cultural connection through authentic brand narratives',
+    'OM HRIM RUDRAKSH': 'Establishing spiritual brand authority with compelling content',
+    'PANGHAT': 'Creating a vibrant digital identity for traditional Indian cuisine',
+    'THE TIMELESS HUES STUDIO': 'Crafting a premium visual identity for a creative studio',
+    'VIBEWIT': 'Building brand awareness through creative digital strategies',
+};
+
+export const PROJECT_ORDER = Object.keys(PROJECT_DATA);
 
 const sortProjects = (projects) => {
     return projects.sort((a, b) => {
@@ -55,6 +58,7 @@ const sortProjects = (projects) => {
 const allProjects = sortProjects(Object.keys(casestudiesLoadersMap).map((folderName, index) => ({
     id: `cs-${index}`,
     title: folderName,
+    description: PROJECT_DATA[folderName] || '',
     loaders: casestudiesLoadersMap[folderName]
 })));
 
@@ -156,6 +160,7 @@ const CaseStudies = () => {
     const currentPopupMedia = selectedProject ? popupMedia[selectedProject.id] : null;
 
     return (
+        <div className="cs-bg-wrapper">
         <div className="case-studies-wrapper">
             <div className="cs-header-container">
                 <h1 className="cs-main-title">Results We're Proud Of</h1>
@@ -179,7 +184,7 @@ const CaseStudies = () => {
                             </div>
                             <div className="cs-card-content">
                                 <h3>{project.title}</h3>
-                                <p>BRANDING</p>
+                                <p>{project.description}</p>
                             </div>
                         </div>
                     );
@@ -235,6 +240,7 @@ const CaseStudies = () => {
                     </div>
                 </div>
             )}
+        </div>
         </div>
     );
 };
