@@ -94,15 +94,15 @@ export default function WhyChooseUs() {
                         </div>
 
                         {/* SOCIAL MEDIA CARD */}
-                        <div className="card social-card" onClick={() => { navigate('/work-details', { state: { category: 'Social Media Management' } }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
-                            <div className="social-section">
+                        <div className="card social-card">
+                            <div className="social-section" onClick={() => { navigate('/work-details', { state: { category: 'Social Media Management' } }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
                                 <div className="social-content">
                                     <h3 className="social-title">Social Media<br />Management</h3>
                                     <p className="social-hashtag">#Japantrip</p>
                                 </div>
                                 <div className="profile-image"></div>
                             </div>
-                            <div className="blogs-section" onClick={() => { navigate('/casestudies'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
+                            <div className="blogs-section" onClick={(e) => { e.stopPropagation(); navigate('/casestudies'); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer' }}>
                                 <span className="blogs-title">Blogs</span>
                                 <button className="arrow-button">→</button>
                             </div>

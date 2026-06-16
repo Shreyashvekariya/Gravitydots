@@ -40,7 +40,6 @@ function Testimonials() {
                 {/* Review card */}
                 <div className="review-card">
                     <div className="review-card-back">
-                        <div className="review-card-back-bottom"></div>
                     </div>
                     <div className="review-card-inner" key={current}>
                         <div className="review-card-top">
@@ -52,13 +51,13 @@ function Testimonials() {
                             <h3 className="review-name">{reviews[current].name}</h3>
                             <p className="review-text">{reviews[current].text}</p>
                         </div>
-                        <div className="review-card-bottom" onClick={nextReview}>
-                            <div className="review-arrow">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" width="20" height="20">
-                                    <circle cx="12" cy="12" r="10" />
-                                    <path d="M10 8l4 4-4 4" />
-                                </svg>
-                            </div>
+                    </div>
+                    <div className="review-arrow-wrapper" onClick={nextReview}>
+                        <div className="review-arrow">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="#000000" strokeWidth="2" width="20" height="20">
+                                <circle cx="12" cy="12" r="10" />
+                                <path d="M10 8l4 4-4 4" />
+                            </svg>
                         </div>
                     </div>
                 </div>

@@ -23,7 +23,17 @@ Object.values(casestudiesLoadersMap).forEach(list => {
         const na = parseFloat(a.fileName.match(/[\d.]+/)?.[0] || 0) || 0;
         const nb = parseFloat(b.fileName.match(/[\d.]+/)?.[0] || 0) || 0;
         return na - nb;
-    });
+});
+});
+
+// ── Thumbnails Glob ────────────────────────────────────────────────────────
+const thumbnailFilesLazy = import.meta.glob('../assets/Work/Casestudies-Thumbnails/*.{webp,jpg,jpeg,png}');
+const thumbnailsMap = {};
+Object.keys(thumbnailFilesLazy).forEach(glbPath => {
+    const fileName = glbPath.split('/').pop();
+    const baseName = fileName.replace(/\.[^/.]+$/, "");
+    const title = baseName.replace(/\s-\s\d+$/, "");
+    thumbnailsMap[title] = thumbnailFilesLazy[glbPath];
 });
 
 // ── Custom Folder Ordering & Descriptions ────────────────────────────────────
@@ -71,7 +81,19 @@ const CaseStudies = () => {
     // ── Load card thumbnails ─────────────────────────────────────────────────
     useEffect(() => {
         allProjects.forEach(async (project) => {
-            if (project.loaders && project.loaders.length > 0) {
+            const thumbLoader = thumbnailsMap[project.title];
+            if (thumbLoader) {
+                try {
+                    const mod = await thumbLoader();
+                    const url = mod.default || mod;
+                    setCardThumbnails(prev => ({
+                        ...prev,
+                        [project.id]: { url, type: 'image' }
+                    }));
+                } catch (e) {
+                    console.error('Thumbnail load failed for', project.title, e);
+                }
+            } else if (project.loaders && project.loaders.length > 0) {
                 const first = project.loaders[0];
                 try {
                     const mod = await first.importFn();

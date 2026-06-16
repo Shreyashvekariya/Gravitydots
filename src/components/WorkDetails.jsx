@@ -4,6 +4,7 @@ import './WorkDetails.css';
 
 // Static import ONLY for the Treasure9 Branding thumbnail override
 import treasure9BrandingThumb from '../assets/Work/Branding/Treasure9 Branding/6.webp';
+import gridVideoPath from '../assets/images/Grid video.mp4';
 
 const CATEGORIES = [
     { name: 'Branding', bgColor: '#D53F52' },
@@ -14,6 +15,7 @@ const CATEGORIES = [
     { name: 'Influencer Marketing', bgColor: '#5170FF' },
     { name: 'Website Development', bgColor: '#00B8BF' },
     { name: 'Whatsapp Marketing', bgColor: '#FF751F' },
+    { name: 'Video Editing', bgColor: '#8E44AD' },
 ];
 
 // ── Custom Folder Ordering ───────────────────────────────────────────────────
@@ -215,12 +217,64 @@ const paidAdsProjects = sortProjects(Object.keys(paidAdsLoadersMap).map((folderN
     thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
 })), 'Paid Ads');
 
+// ── Non-eager glob for Performance Marketing ─────────────────────────────────
+const performanceMarketingFilesLazy = import.meta.glob('../assets/Work/performace/**/*.{webp,jpg,jpeg,png,mp4}');
+
+const performanceMarketingLoadersMap = {};
+Object.keys(performanceMarketingFilesLazy).forEach(glbPath => {
+    const parts = glbPath.split('/');
+    const fileName = parts.pop();
+    const folderName = parts.pop();
+    if (!performanceMarketingLoadersMap[folderName]) performanceMarketingLoadersMap[folderName] = [];
+    performanceMarketingLoadersMap[folderName].push({
+        glbPath,
+        importFn: performanceMarketingFilesLazy[glbPath],
+        fileName,
+        type: fileName.endsWith('.mp4') ? 'video' : 'image',
+    });
+});
+
+Object.values(performanceMarketingLoadersMap).forEach(list => {
+    list.sort((a, b) => {
+        const na = parseFloat(a.fileName.match(/[\d.]+/)?.[0] || 0) || 0;
+        const nb = parseFloat(b.fileName.match(/[\d.]+/)?.[0] || 0) || 0;
+        return na - nb;
+    });
+});
+
+const performanceMarketingProjects = sortProjects(Object.keys(performanceMarketingLoadersMap).map((folderName, index) => ({
+    id: `performance-marketing-${index}`,
+    title: folderName === 'performace' ? 'Performance Campaigns' : folderName,
+    category: 'PERFORMANCE MARKETING',
+    loaders: performanceMarketingLoadersMap[folderName],
+    thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
+})), 'Performance Marketing');
+
+const videoEditingProjects = [
+    {
+        id: 'video-editing-0',
+        title: 'Video Portfolio',
+        category: 'VIDEO EDITING',
+        loaders: [
+            {
+                glbPath: '../assets/images/Grid video.mp4',
+                importFn: () => Promise.resolve({ default: gridVideoPath }),
+                fileName: 'Grid video.mp4',
+                type: 'video',
+            }
+        ],
+        thumbnailOverride: null,
+    }
+];
+
 const generateProjects = (category) => {
     if (category === 'Branding' && brandingProjects.length > 0) return brandingProjects;
     if (category === 'Graphic Design' && graphicDesignProjects.length > 0) return graphicDesignProjects;
     if (category === 'Social Media Management' && socialMediaProjects.length > 0) return socialMediaProjects;
     if (category === 'Website Development' && websiteDevelopmentProjects.length > 0) return websiteDevelopmentProjects;
     if (category === 'Paid Ads' && paidAdsProjects.length > 0) return paidAdsProjects;
+    if (category === 'Performance Marketing' && performanceMarketingProjects.length > 0) return performanceMarketingProjects;
+    if (category === 'Video Editing' && videoEditingProjects.length > 0) return videoEditingProjects;
     return Array(6).fill(null).map((_, i) => ({
         id: i,
         title: 'Placeholder Project',
@@ -282,6 +336,8 @@ const WorkDetails = () => {
         loadThumbnails(socialMediaProjects);
         loadThumbnails(websiteDevelopmentProjects);
         loadThumbnails(paidAdsProjects);
+        loadThumbnails(performanceMarketingProjects);
+        loadThumbnails(videoEditingProjects);
     }, []);
 
     // ── Open popup + lazy-load all media for that project ────────────────────

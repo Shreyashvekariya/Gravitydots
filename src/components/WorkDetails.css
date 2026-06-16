@@ -62,19 +62,17 @@
 
 .details-category-list {
   list-style: none;
-  padding: 0;
+  padding: 1.5px;
   margin: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   width: 100%;
-  border-top: 1.5px solid #ddd;
-  border-bottom: 1.5px solid #ddd;
 }
 
 .details-category-item {
-  background: transparent;
+  background: #ffffff;
   color: #333;
   padding: 16px 28px;
   font-family: 'Montserrat', sans-serif;
@@ -86,17 +84,12 @@
   justify-content: center;
   transition: all 0.3s ease;
   position: relative;
-  border: none;
-  border-right: 1.5px solid #ddd;
+  border: 1.5px solid #ccc;
+  margin: -1.5px 0 0 -1.5px;
   border-radius: 0;
-  margin-bottom: 0;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   white-space: nowrap;
-}
-
-.details-category-item:last-child {
-  border-right: none;
 }
 
 .details-category-item:hover {

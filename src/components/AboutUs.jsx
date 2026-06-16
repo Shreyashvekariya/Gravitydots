@@ -1,11 +1,16 @@
 import './AboutUs.css'
-import ayushImg from '../assets/images/Team/Ayush.webp';
-import bhagirathImg from '../assets/images/Team/Bhagirath.webp';
-import aashishImg from '../assets/images/Team/Aashish.webp';
-import niyatiImg from '../assets/images/Team/Niyati.webp';
-import dileepImg from '../assets/images/Team/Dileep.webp';
-import jatinimg from '../assets/images/Team/Jatin.webp';
-import keyurimg from '../assets/images/Team/Keyur.webp';
+import Tilt from 'react-parallax-tilt';
+import ayushImg from '../assets/images/about/team/Ayush.webp';
+import bhagirathImg from '../assets/images/about/team/Bhagirath.webp';
+import aashishImg from '../assets/images/about/team/Aashish.webp';
+import niyatiImg from '../assets/images/about/team/Niyati.webp';
+import dileepImg from '../assets/images/about/team/Dileep.webp';
+import jatinimg from '../assets/images/about/team/Jatin.webp';
+import keyurimg from '../assets/images/about/team/Keyur.webp';
+import card1Img from '../assets/images/about/1.webp';
+import card2Img from '../assets/images/about/2.webp';
+import card3Img from '../assets/images/about/3.webp';
+import card4Img from '../assets/images/about/4.webp';
 
 const AboutUs = () => {
   return (
@@ -19,28 +24,17 @@ const AboutUs = () => {
         </h2>
 
         <div className="about-cards-grid">
-          <div className="about-card">
-            <div className="card-content">
-              <span className="card-badge">Approach</span>
-              <h3>Business Ka Kya<br />Future Hai Re Baba?</h3>
-            </div>
+          <div className="about-card" style={{ padding: 0, overflow: 'hidden' }}>
+            <img src={card1Img} alt="Card 1" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
-          <div className="about-card">
-            <div className="card-content">
-              <span className="card-badge designer">Le Designer</span>
-              <h3>When Design Approves<br />on First Attempt!</h3>
-            </div>
+          <div className="about-card" style={{ padding: 0, overflow: 'hidden' }}>
+            <img src={card2Img} alt="Card 2" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
-          <div className="about-card">
-            <div className="card-content">
-              <h3>Client Dreams vs. Client Wallets</h3>
-              <p>Arey bhai itne me itna hi hoga</p>
-            </div>
+          <div className="about-card" style={{ padding: 0, overflow: 'hidden' }}>
+            <img src={card3Img} alt="Card 3" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
-          <div className="about-card">
-            <div className="card-content">
-              <h3>Ey hoshiyaar...</h3>
-            </div>
+          <div className="about-card" style={{ padding: 0, overflow: 'hidden' }}>
+            <img src={card4Img} alt="Card 4" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
           </div>
         </div>
       </section>
@@ -72,16 +66,16 @@ const AboutUs = () => {
       {/* Section 3: Founders */}
       <section className="founders-section">
         <div className="founders-grid">
-          <div className="founder-card">
+          <Tilt className="founder-card" tiltMaxAngleX={15} tiltMaxAngleY={15} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.1} glareColor="#ffffff" glarePosition="all">
             <div className="founder-image-placeholder"><img src={jatinimg} alt="Jatin Kateliya" /></div>
+            <h3 className="founder-name">Jatin Kateliya</h3>
+            <p className="founder-role">Managing Director</p>
+          </Tilt>
+          <Tilt className="founder-card" tiltMaxAngleX={15} tiltMaxAngleY={15} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.1} glareColor="#ffffff" glarePosition="all">
+            <div className="founder-image-placeholder"><img src={keyurimg} alt="Keyur Mehta" /></div>
             <h3 className="founder-name">Keyur Mehta</h3>
             <p className="founder-role">Managing Director</p>
-          </div>
-          <div className="founder-card">
-            <div className="founder-image-placeholder"><img src={keyurimg} alt="Aayush Parekh" /></div>
-            <h3 className="founder-name">Jatin H Kateliya</h3>
-            <p className="founder-role">Managing Director</p>
-          </div>
+          </Tilt>
         </div>
 
         <div className="mission-vision-grid">
@@ -112,36 +106,36 @@ const AboutUs = () => {
         </p>
 
         <div className="team-grid">
-          <div className="team-member">
+          <Tilt className="team-member" tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.1} glareColor="#ffffff" glarePosition="all">
             <div className="team-image-placeholder"><img src={ayushImg} alt="Aayush Parekh" /></div>
             <h4 className="team-name">Aayush Parekh</h4>
             <p className="team-role">Sr. Designer</p>
-          </div>
-          <div className="team-member">
+          </Tilt>
+          <Tilt className="team-member" tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.1} glareColor="#ffffff" glarePosition="all">
             <div className="team-image-placeholder"><img src={bhagirathImg} alt="Bhagirath Baldaniya" /></div>
             <h4 className="team-name">Bhagirath Baldaniya</h4>
             <p className="team-role">Performance Marketer</p>
-          </div>
-          <div className="team-member">
+          </Tilt>
+          <Tilt className="team-member" tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.1} glareColor="#ffffff" glarePosition="all">
             <div className="team-image-placeholder"><img src={aashishImg} alt="Aashish Kateliya" /></div>
             <h4 className="team-name">Aashish Kateliya</h4>
             <p className="team-role">Brand Manager</p>
-          </div>
-          <div className="team-member">
+          </Tilt>
+          <Tilt className="team-member" tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.1} glareColor="#ffffff" glarePosition="all">
             <div className="team-image-placeholder"><img src={niyatiImg} alt="Niyati Sojitra" /></div>
             <h4 className="team-name">Niyati Sojitra</h4>
             <p className="team-role">Sales Executive</p>
-          </div>
-          <div className="team-member">
+          </Tilt>
+          <Tilt className="team-member" tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.1} glareColor="#ffffff" glarePosition="all">
             <div className="team-image-placeholder"><img src={dileepImg} alt="Dileep Vala" /></div>
             <h4 className="team-name">Dileep Vala</h4>
             <p className="team-role">Graphic Designer</p>
-          </div>
-          <div className="team-member">
+          </Tilt>
+          <Tilt className="team-member" tiltMaxAngleX={10} tiltMaxAngleY={10} scale={1.02} transitionSpeed={2000} glareEnable={true} glareMaxOpacity={0.1} glareColor="#ffffff" glarePosition="all">
             <div className="team-image-placeholder"></div>
             <h4 className="team-name">Pooja</h4>
             <p className="team-role">SEO Expert</p>
-          </div>
+          </Tilt>
         </div>
       </section>
 

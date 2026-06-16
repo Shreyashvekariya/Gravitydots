@@ -34,7 +34,7 @@
 .review-card {
     width: 320px;
     min-width: 320px;
-    min-height: 500px;
+    min-height: 550px;
     overflow: visible;
     /* Needed for stack effect */
     flex-shrink: 0;
@@ -86,22 +86,17 @@
     /* Clip bottom bar */
 }
 
-.review-card-back-bottom {
-    height: 80px;
-    background: #e0e0e0;
-    width: 100%;
-    border-top: 2px solid #000000;
-}
+/* Remove bottom bar styling */
 
 .review-card-top {
     background: #ffffff;
     padding: 60px 40px 40px;
     text-align: center;
     flex: 1;
-    /* Pushes bottom bar down */
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     animation: smoothSlide 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -146,48 +141,39 @@
     font-weight: 500;
 }
 
-.review-card-bottom {
-    background: #e0e0e0;
-    /* Gray bar */
-    height: 80px;
-    width: 100%;
+.review-arrow-wrapper {
+    position: absolute;
+    right: -170px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
     display: flex;
-    justify-content: center;
     align-items: center;
-    margin: 0;
-    border-top: 2px solid #000000;
-    /* Separator line */
+    justify-content: center;
     cursor: pointer;
-    transition: background 0.3s ease;
-    user-select: none;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
     -webkit-tap-highlight-color: transparent;
 }
 
-.review-card-bottom:hover {
-    background: #d0d0d0;
-}
-
 .review-arrow {
-    width: 40px;
-    height: 40px;
+    width: 64px;
+    height: 64px;
     border-radius: 50%;
     border: 2px solid #000000;
+    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, background 0.3s ease;
 }
 
 .review-arrow svg {
     stroke: #000000;
-    width: 20px;
-    height: 20px;
+    width: 32px;
+    height: 32px;
 }
 
-.review-card-bottom:hover .review-arrow {
+.review-arrow-wrapper:hover .review-arrow {
+    background: #f0f0f0;
     transform: translateX(4px);
 }
 
@@ -269,13 +255,21 @@
         font-size: 13px;
     }
 
-    .review-card-bottom {
-        height: 70px;
+    .review-arrow-wrapper {
+        right: auto;
+        left: 50%;
+        top: auto;
+        bottom: -30px;
+        transform: translateX(-50%);
+    }
+
+    .review-arrow-wrapper:hover .review-arrow {
+        transform: translateY(4px);
     }
 
     .review-arrow {
-        width: 36px;
-        height: 36px;
+        width: 46px;
+        height: 46px;
     }
 
     .reviews-image {
@@ -331,18 +325,14 @@
         line-height: 1.5;
     }
 
-    .review-card-bottom {
-        height: 65px;
-    }
-
     .review-arrow {
-        width: 32px;
-        height: 32px;
+        width: 42px;
+        height: 42px;
     }
 
     .review-arrow svg {
-        width: 18px;
-        height: 18px;
+        width: 20px;
+        height: 20px;
     }
 
     .reviews-image {
@@ -386,13 +376,9 @@
         font-size: 11px;
     }
 
-    .review-card-bottom {
-        height: 60px;
-    }
-
     .review-arrow {
-        width: 30px;
-        height: 30px;
+        width: 38px;
+        height: 38px;
     }
 
     .reviews-image {

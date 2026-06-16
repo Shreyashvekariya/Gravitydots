@@ -65,9 +65,9 @@ function Navbar() {
           <li>
             {/* If on home, anchor link. If on other page, Link to /#id */}
             {location.pathname === '/' ? (
-              <a href="#hero" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>Services</a>
+              <a href="#hero" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>Home</a>
             ) : (
-              <Link to="/#hero" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>Services</Link>
+              <Link to="/#hero" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`} onClick={() => setIsMenuOpen(false)}>Home</Link>
             )}
           </li>
           <li>

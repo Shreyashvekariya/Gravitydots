@@ -1,7 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import './Grid.css'
 import GridPhoto from '../assets/images/Gridphoto.webp'
 import GridVideo from '../assets/images/Grid video.mp4'
+
 function Grid() {
+  const navigate = useNavigate();
   return (
     <section className="casestudy" id="casestudy">
       <div className="bento-grid">
@@ -20,7 +23,11 @@ function Grid() {
         </div>
 
         {/* Video GIF Card */}
-        <div className="bento-item video-card">
+        <div 
+          className="bento-item video-card" 
+          onClick={() => { navigate('/work-details', { state: { category: 'Video Editing' } }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} 
+          style={{ cursor: 'pointer' }}
+        >
           <div className="video-header">
             <span className="video-label">Video (GIF)</span>
           </div>
