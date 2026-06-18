@@ -28,7 +28,7 @@
 }
 
 .work-details-container {
-  max-width: 1400px;
+  max-width: 1600px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -125,19 +125,12 @@
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  transition: transform 0.3s ease;
   /* Skip rendering off-screen cards entirely */
   content-visibility: auto;
   contain-intrinsic-size: 0 320px;
 }
 
-.work-details-card:hover {
-  transform: translateY(-4px);
-}
 
-.work-details-card:hover .work-details-image-placeholder {
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12);
-}
 
 /* Skeleton shimmer while thumbnail is loading */
 .wd-thumb-skeleton {
@@ -190,14 +183,13 @@
 
 .work-details-image-placeholder {
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   background: #f0f0f0;
   position: relative;
   overflow: hidden;
   border-radius: 16px;
-  border: none;
+  border: 2px solid #e0e0e0;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-  transition: box-shadow 0.3s ease;
 }
 
 .work-details-image-placeholder::before,

@@ -281,14 +281,17 @@
    FOOTER – WHITE MODE (WORK PAGE)
 ================================ */
 
-.footer.white-mode {
-  background-color: var(--white);
-  color: var(--black);
-}
+/* duplicate .footer.white-mode removed */
 
 /* 🔥 REMOVE THE 1px LINE COMPLETELY */
 .footer.white-mode .footer-bottom {
   border-top: none !important;
+}
+
+/* LINKS */
+.footer.white-mode {
+  background-color: var(--white);
+  color: var(--black);
 }
 
 /* LINKS */

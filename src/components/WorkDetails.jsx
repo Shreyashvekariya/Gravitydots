@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import './WorkDetails.css';
 
 // Static import ONLY for the Treasure9 Branding thumbnail override
-import treasure9BrandingThumb from '../assets/Work/Branding/Treasure9 Branding/6.webp';
+import treasure9BrandingThumb from '../assets/Work/Branding/Treasure9/6.webp';
 import gridVideoPath from '../assets/images/Grid video.mp4';
 
 const CATEGORIES = [
@@ -23,11 +23,15 @@ const CATEGORIES = [
 // Folders not listed will be sorted alphabetically at the end.
 export const PROJECT_ORDER = {
     'Branding': [
-        // e.g., 'Treasure9 Branding',
+        // e.g., 'Treasure9',
 
-        "Global Spice Connect Branding"
+        "Global Spice Connect"
     ],
-    'Social Media Management': [4, 2],
+    'Social Media Management': ["Satvik",
+        "Kinein",
+        "Ats",
+        "Global Spice Connect"
+    ],
     'Website Development': [],
     'Paid Ads': [],
 };
@@ -73,7 +77,7 @@ Object.values(brandingLoadersMap).forEach(list => {
 
 // Thumbnail overrides — only eagerly-imported images go here
 const THUMBNAIL_OVERRIDES = {
-    'Treasure9 Branding': { url: treasure9BrandingThumb, type: 'image' },
+    'Treasure9': { url: treasure9BrandingThumb, type: 'image' },
 };
 
 // Static project list (no URLs yet — just metadata + loader functions)
@@ -176,13 +180,30 @@ Object.values(websiteDevelopmentLoadersMap).forEach(list => {
     });
 });
 
-const websiteDevelopmentProjects = sortProjects(Object.keys(websiteDevelopmentLoadersMap).map((folderName, index) => ({
-    id: `website-development-${index}`,
-    title: folderName,
-    category: 'WEBSITE DEVELOPMENT',
-    loaders: websiteDevelopmentLoadersMap[folderName],
-    thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
-})), 'Website Development');
+const WEBSITE_DEV_THUMBS = {
+    'Dave & Sons Argo': '2.webp',
+    'Gheeyonnaise': '9.webp',
+    'GirCulture': '17.webp',
+    'VibeWit': '6.webp',
+    'The Timeless Hues': '24.webp',
+    'Satvik': '15.webp',
+    'Kinein': '11.webp',
+    'Global Spice Connect': '21.webp',
+};
+
+const websiteDevelopmentProjects = sortProjects(Object.keys(websiteDevelopmentLoadersMap).map((folderName, index) => {
+    const loaders = websiteDevelopmentLoadersMap[folderName];
+    const targetThumb = WEBSITE_DEV_THUMBS[folderName];
+    const thumbLoader = targetThumb ? loaders.find(l => l.fileName === targetThumb) : null;
+    return {
+        id: `website-development-${index}`,
+        title: folderName,
+        category: 'WEBSITE DEVELOPMENT',
+        loaders: loaders,
+        thumbLoader: thumbLoader,
+        thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
+    };
+}), 'Website Development');
 
 // ── Non-eager glob for Paid Ads ─────────────────────────────────────────
 const paidAdsFilesLazy = import.meta.glob('../assets/Work/PAID ADS/**/*.{webp,jpg,jpeg,png,mp4}');
@@ -267,6 +288,21 @@ const videoEditingProjects = [
     }
 ];
 
+const influencerMarketingProjects = [
+    {
+        id: 'influencer-marketing-0',
+        title: 'Instagram Reel Campaign',
+        category: 'INFLUENCER MARKETING',
+        loaders: [
+            {
+                type: 'instagram',
+                url: 'https://www.instagram.com/reel/DZfIxfgMeXq/',
+            }
+        ],
+        thumbnailOverride: null,
+    }
+];
+
 const generateProjects = (category) => {
     if (category === 'Branding' && brandingProjects.length > 0) return brandingProjects;
     if (category === 'Graphic Design' && graphicDesignProjects.length > 0) return graphicDesignProjects;
@@ -275,6 +311,7 @@ const generateProjects = (category) => {
     if (category === 'Paid Ads' && paidAdsProjects.length > 0) return paidAdsProjects;
     if (category === 'Performance Marketing' && performanceMarketingProjects.length > 0) return performanceMarketingProjects;
     if (category === 'Video Editing' && videoEditingProjects.length > 0) return videoEditingProjects;
+    if (category === 'Influencer Marketing' && influencerMarketingProjects.length > 0) return influencerMarketingProjects;
     return Array(6).fill(null).map((_, i) => ({
         id: i,
         title: 'Placeholder Project',
@@ -305,30 +342,36 @@ const WorkDetails = () => {
 
     useEffect(() => { window.scrollTo(0, 0); }, []);
 
-    // ── Load card thumbnails lazily on mount ──────────────────────────────────
+    // ── Load card thumbnails lazily on mount (batched to reduce re-renders) ────
     useEffect(() => {
         const loadThumbnails = async (projects) => {
-            projects.forEach(async (project) => {
-                if (project.thumbnailOverride) {
-                    setCardThumbnails(prev => ({
-                        ...prev,
-                        [project.id]: project.thumbnailOverride,
-                    }));
-                } else if (project.loaders && project.loaders.length > 0) {
-                    // Load only the FIRST file as thumbnail
-                    const first = project.loaders[0];
-                    try {
-                        const mod = await first.importFn();
-                        const url = mod.default || mod;
-                        setCardThumbnails(prev => ({
-                            ...prev,
-                            [project.id]: { url, type: first.type },
-                        }));
-                    } catch (e) {
-                        console.error('Thumbnail load failed:', e);
+            // Resolve all thumbnails for this category concurrently
+            const results = await Promise.allSettled(
+                projects.map(async (project) => {
+                    if (project.thumbnailOverride) {
+                        return { id: project.id, thumb: project.thumbnailOverride };
                     }
+                    if (project.loaders && project.loaders.length > 0) {
+                        const thumb = project.thumbLoader || project.loaders[0];
+                        if (thumb.type === 'instagram') return null;
+                        const mod = await thumb.importFn();
+                        const url = mod.default || mod;
+                        return { id: project.id, thumb: { url, type: thumb.type } };
+                    }
+                    return null;
+                })
+            );
+
+            // Single state update per category
+            const batch = {};
+            results.forEach((r) => {
+                if (r.status === 'fulfilled' && r.value) {
+                    batch[r.value.id] = r.value.thumb;
                 }
             });
+            if (Object.keys(batch).length > 0) {
+                setCardThumbnails(prev => ({ ...prev, ...batch }));
+            }
         };
 
         loadThumbnails(brandingProjects);
@@ -338,6 +381,7 @@ const WorkDetails = () => {
         loadThumbnails(paidAdsProjects);
         loadThumbnails(performanceMarketingProjects);
         loadThumbnails(videoEditingProjects);
+        loadThumbnails(influencerMarketingProjects);
     }, []);
 
     // ── Open popup + lazy-load all media for that project ────────────────────
@@ -363,6 +407,7 @@ const WorkDetails = () => {
         try {
             const loaded = await Promise.all(
                 project.loaders.map(async (loader) => {
+                    if (loader.type === 'instagram') return { url: loader.url, type: 'instagram' };
                     const mod = await loader.importFn();
                     return { url: mod.default || mod, type: loader.type };
                 })
@@ -452,7 +497,7 @@ const WorkDetails = () => {
                                                 className="work-details-image-placeholder"
                                                 style={{
                                                     objectFit: 'cover',
-                                                    objectPosition: project.category === 'WEBSITE DEVELOPMENT' ? 'left center' : 'center'
+                                                    objectPosition: 'center'
                                                 }}
                                                 muted
                                                 preload="metadata"
@@ -464,7 +509,7 @@ const WorkDetails = () => {
                                                 className="work-details-image-placeholder"
                                                 style={{
                                                     objectFit: 'cover',
-                                                    objectPosition: project.category === 'WEBSITE DEVELOPMENT' ? 'left center' : 'center'
+                                                    objectPosition: 'center'
                                                 }}
                                                 loading="lazy"
                                                 decoding="async"
@@ -518,6 +563,10 @@ const WorkDetails = () => {
                                                 style={{ height: 'auto', background: 'transparent', width: '100%' }}
                                                 autoPlay loop muted playsInline
                                             />
+                                        ) : item.type === 'instagram' ? (
+                                            <div key={idx} className="wd-popup-instagram-container" style={{ background: 'transparent', display: 'flex', justifyContent: 'center', width: '100%' }}>
+                                                <iframe src={`${item.url}embed`} width="100%" height="700" style={{ maxWidth: '400px', borderRadius: '12px' }} frameBorder="0" scrolling="no" allowTransparency="true" />
+                                            </div>
                                         ) : (
                                             <img
                                                 key={idx}

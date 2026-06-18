@@ -32,9 +32,9 @@
 
 /* Review card */
 .review-card {
-    width: 320px;
-    min-width: 320px;
-    min-height: 550px;
+    width: 340px;
+    min-width: 340px;
+    min-height: 500px;
     overflow: visible;
     /* Needed for stack effect */
     flex-shrink: 0;
@@ -90,7 +90,7 @@
 
 .review-card-top {
     background: #ffffff;
-    padding: 60px 40px 40px;
+    padding: 50px 30px;
     text-align: center;
     flex: 1;
     display: flex;
@@ -113,28 +113,28 @@
 }
 
 .review-user-icon {
-    margin-bottom: 20px;
+    margin-bottom: 70px;
 }
 
 .review-user-icon svg {
-    width: 80px;
-    height: 80px;
+    width: 100px;
+    height: 100px;
     fill: #000000;
 }
 
 .review-name {
     font-family: 'Poppins', sans-serif;
-    font-size: 28px;
+    font-size: 32px;
     font-weight: 700;
     color: #000000;
-    margin: 0 0 24px;
+    margin: 0 0 20px;
 }
 
 .review-text {
     font-family: 'Poppins', sans-serif;
     /* Matched to name */
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 16px;
+    line-height: 1.8;
     color: #000000;
     text-align: justify;
     margin: 0;
