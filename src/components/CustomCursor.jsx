@@ -20,10 +20,17 @@ function CustomCursor() {
     let animationFrameId
     let pendingTarget = null
     let idleCallbackId = null
+    let hasMoved = false
 
     const handleMouseMove = (e) => {
       mousePos.current.x = e.clientX
       mousePos.current.y = e.clientY
+      // Show cursor dots on first move (they start hidden via CSS opacity:0)
+      if (!hasMoved) {
+        hasMoved = true
+        if (largeRef.current) largeRef.current.style.opacity = '1'
+        if (smallRef.current) smallRef.current.style.opacity = '1'
+      }
     }
 
     // The expensive color check — runs only during idle time or after a short delay,

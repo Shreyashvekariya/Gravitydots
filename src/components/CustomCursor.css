@@ -5,9 +5,10 @@
   pointer-events: none;
   z-index: 99999;
   background-color: #000000;
-  transition: background-color 0.2s ease;
+  transition: background-color 0.2s ease, opacity 0.15s ease;
   will-change: left, top;
   contain: layout style paint;
+  opacity: 0;
 }
 
 .custom-cursor-large.white-cursor,
