@@ -2,6 +2,18 @@
   background: linear-gradient(to bottom, var(--white) 50%, var(--black) 50%);
 }
 
+/* Restore default cursor on work-details page (overrides global cursor:none) */
+.work-details-wrapper,
+.work-details-wrapper * {
+  cursor: auto !important;
+}
+
+.work-details-wrapper .details-category-item,
+.work-details-wrapper .work-details-card,
+.work-details-wrapper .wd-popup-close {
+  cursor: pointer !important;
+}
+
 .work-details-page {
   padding: 0 0 80px 0;
   background: #ffffff;
@@ -115,6 +127,38 @@
   gap: 30px;
   width: 100%;
   padding: 0 5%;
+}
+
+/* ── Inline Reels Grid (Influencer Marketing) ── */
+.work-details-reels-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  width: 100%;
+  padding: 0 5%;
+}
+
+.work-details-reel-item {
+  position: relative;
+  width: 100%;
+  height: 680px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fafafa;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.work-details-reel-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.work-details-reel-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 16px;
 }
 
 .work-details-card {
@@ -475,6 +519,10 @@
   .work-details-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  .work-details-reels-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 900px) {
@@ -494,6 +542,13 @@
   }
 }
 
+@media (max-width: 768px) {
+  .work-details-reels-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+}
+
 @media (max-width: 600px) {
   .details-category-item {
     padding: 10px 12px;
@@ -503,6 +558,20 @@
   .work-details-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+  }
+
+  .work-details-reels-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .work-details-reel-item {
+    border-radius: 12px;
+    height: 520px;
+  }
+
+  .work-details-reel-iframe {
+    border-radius: 12px;
   }
 
   .work-details-image-placeholder {

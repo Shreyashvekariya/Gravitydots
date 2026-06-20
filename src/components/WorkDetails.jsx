@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { INFLUENCER_REELS } from './dynamicProjectsData';
 import { useLocation } from 'react-router-dom';
 import './WorkDetails.css';
 
 // Static import ONLY for the Treasure9 Branding thumbnail override
 import treasure9BrandingThumb from '../assets/Work/Branding/Treasure9/6.webp';
 import gridVideoPath from '../assets/images/Grid video.mp4';
+import { buildInfluencerMarketingProjects, buildVideoEditingProjects } from './dynamicProjectsData';
 
 const CATEGORIES = [
     { name: 'Branding', bgColor: '#D53F52' },
@@ -271,37 +273,8 @@ const performanceMarketingProjects = sortProjects(Object.keys(performanceMarketi
     thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
 })), 'Performance Marketing');
 
-const videoEditingProjects = [
-    {
-        id: 'video-editing-0',
-        title: 'Video Portfolio',
-        category: 'VIDEO EDITING',
-        loaders: [
-            {
-                glbPath: '../assets/images/Grid video.mp4',
-                importFn: () => Promise.resolve({ default: gridVideoPath }),
-                fileName: 'Grid video.mp4',
-                type: 'video',
-            }
-        ],
-        thumbnailOverride: null,
-    }
-];
-
-const influencerMarketingProjects = [
-    {
-        id: 'influencer-marketing-0',
-        title: 'Instagram Reel Campaign',
-        category: 'INFLUENCER MARKETING',
-        loaders: [
-            {
-                type: 'instagram',
-                url: 'https://www.instagram.com/reel/DZfIxfgMeXq/',
-            }
-        ],
-        thumbnailOverride: null,
-    }
-];
+const videoEditingProjects = buildVideoEditingProjects(gridVideoPath);
+const influencerMarketingProjects = buildInfluencerMarketingProjects();
 
 const generateProjects = (category) => {
     if (category === 'Branding' && brandingProjects.length > 0) return brandingProjects;
@@ -341,6 +314,7 @@ const WorkDetails = () => {
     }, [location]);
 
     useEffect(() => { window.scrollTo(0, 0); }, []);
+
 
     // ── Load card thumbnails lazily on mount (batched to reduce re-renders) ────
     useEffect(() => {
@@ -481,52 +455,71 @@ const WorkDetails = () => {
                             ))}
                         </ul>
                     </nav>
-                    <main className="work-details-grid">
-                        {activeProjects.map((project) => {
-                            const thumb = cardThumbnails[project.id] || null;
-                            return (
-                                <div
-                                    key={project.id}
-                                    className="work-details-card"
-                                    onClick={() => openPopup(project)}
-                                >
-                                    {thumb ? (
-                                        thumb.type === 'video' ? (
-                                            <video
-                                                src={thumb.url}
-                                                className="work-details-image-placeholder"
-                                                style={{
-                                                    objectFit: 'cover',
-                                                    objectPosition: 'center'
-                                                }}
-                                                muted
-                                                preload="metadata"
-                                            />
-                                        ) : (
-                                            <img
-                                                src={thumb.url}
-                                                alt={project.title}
-                                                className="work-details-image-placeholder"
-                                                style={{
-                                                    objectFit: 'cover',
-                                                    objectPosition: 'center'
-                                                }}
-                                                loading="lazy"
-                                                decoding="async"
-                                            />
-                                        )
-                                    ) : (
-                                        <div className="work-details-image-placeholder wd-thumb-skeleton">
-                                            <div className="wd-skeleton-shimmer" />
-                                        </div>
-                                    )}
-                                    <div className="work-details-info">
-                                        <h4>{project.title}</h4>
-                                    </div>
+                    {activeCategory === 'Influencer Marketing' ? (
+                        <main className="work-details-reels-grid">
+                            {INFLUENCER_REELS.map((reel, idx) => (
+                                <div key={idx} className="work-details-reel-item">
+                                    <iframe
+                                        src={`${reel.url}embed/?cr=1&v=14&wp=326`}
+                                        className="work-details-reel-iframe"
+                                        frameBorder="0"
+                                        scrolling="no"
+                                        allowTransparency="true"
+                                        allow="encrypted-media"
+                                        title={`Influencer Reel ${idx + 1}`}
+                                        loading="lazy"
+                                    />
                                 </div>
-                            );
-                        })}
-                    </main>
+                            ))}
+                        </main>
+                    ) : (
+                        <main className="work-details-grid">
+                            {activeProjects.map((project) => {
+                                const thumb = cardThumbnails[project.id] || null;
+                                return (
+                                    <div
+                                        key={project.id}
+                                        className="work-details-card"
+                                        onClick={() => openPopup(project)}
+                                    >
+                                        {thumb ? (
+                                            thumb.type === 'video' ? (
+                                                <video
+                                                    src={thumb.url}
+                                                    className="work-details-image-placeholder"
+                                                    style={{
+                                                        objectFit: 'cover',
+                                                        objectPosition: 'center'
+                                                    }}
+                                                    muted
+                                                    preload="metadata"
+                                                />
+                                            ) : (
+                                                <img
+                                                    src={thumb.url}
+                                                    alt={project.title}
+                                                    className="work-details-image-placeholder"
+                                                    style={{
+                                                        objectFit: 'cover',
+                                                        objectPosition: 'center'
+                                                    }}
+                                                    loading="lazy"
+                                                    decoding="async"
+                                                />
+                                            )
+                                        ) : (
+                                            <div className="work-details-image-placeholder wd-thumb-skeleton">
+                                                <div className="wd-skeleton-shimmer" />
+                                            </div>
+                                        )}
+                                        <div className="work-details-info">
+                                            <h4>{project.title}</h4>
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </main>
+                    )}
                 </div>
             </section>
 

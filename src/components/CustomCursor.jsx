@@ -10,10 +10,13 @@ function CustomCursor() {
   const [isWhite, setIsWhite] = useState(false)
   const location = useLocation()
 
-  // Detect if we're on the work-details page for lighter animations
+  // Detect if we're on the work-details page — disable cursor entirely
   const isWorkPage = location.pathname === '/work-details'
 
   useEffect(() => {
+    // Skip all cursor logic on work-details page for better performance
+    if (isWorkPage) return;
+
     let animationFrameId
     let pendingTarget = null
     let idleCallbackId = null
@@ -75,7 +78,7 @@ function CustomCursor() {
     }
 
     // Single RAF loop — updates DOM directly, no React re-renders
-    const lerp = isWorkPage ? 0.25 : 0.15
+    const lerp = 0.15
     const animate = () => {
       const mx = mousePos.current.x
       const my = mousePos.current.y
@@ -115,6 +118,9 @@ function CustomCursor() {
       }
     }
   }, [isWorkPage])
+
+  // Don't render cursor elements on work-details page
+  if (isWorkPage) return null;
 
   return (
     <>
