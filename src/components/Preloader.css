@@ -1,3 +1,9 @@
+/* ============================================
+   PRELOADER — GravityDots
+   Split-assembly logo reveal with burst FX
+   ============================================ */
+
+/* ---- Overlay ---- */
 .preloader-overlay {
     position: fixed;
     top: 0;
@@ -5,73 +11,452 @@
     width: 100vw;
     height: 100vh;
     background-color: #ffffff;
-    z-index: 9999;
+    z-index: 99999;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+    transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1),
+                opacity 0.3s ease 0.7s;
+    will-change: transform, opacity;
+    overflow: hidden;
 }
 
-.preloader-overlay.hidden {
+.preloader-overlay.exit {
+    transform: translateY(-100%);
     opacity: 0;
-    visibility: hidden;
 }
 
-.preloader-box {
-    height: 5cm;
-    width: 5cm;
-    border: 5px solid var(--primary-red);
+/* Subtle grid background */
+.preloader-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.018) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+}
+
+/* ---- Floating Gravity Dots ---- */
+.preloader-gravity-dot {
+    position: absolute;
+    top: -10px;
+    border-radius: 50%;
+    background-color: var(--primary-red, #C41E3A);
+    opacity: 0.15;
+    animation: gravityFall linear infinite;
+    pointer-events: none;
+}
+
+@keyframes gravityFall {
+    0% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.15;
+    }
+    90% {
+        opacity: 0.15;
+    }
+    100% {
+        transform: translateY(105vh);
+        opacity: 0;
+    }
+}
+
+/* ---- Content ---- */
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 52px;
+    z-index: 2;
+}
+
+/* ---- Logo Assembly Container ---- */
+.preloader-logo-assembly {
+    position: relative;
+    width: clamp(200px, 30vw, 380px);
+    height: clamp(60px, 9vw, 110px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ---- Logo Halves ---- */
+.preloader-logo-half {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.preloader-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    pointer-events: auto;
+}
+
+/* Left half — clips to left 50%, flies in from the left */
+.preloader-logo-left {
+    clip-path: inset(0 50% 0 0);
+    animation: assembleFromLeft 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+/* Right half — clips to right 50%, flies in from the right */
+.preloader-logo-right {
+    clip-path: inset(0 0 0 50%);
+    animation: assembleFromRight 1.4s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes assembleFromLeft {
+    0% {
+        transform: translateX(-150%) rotate(-3deg) scale(0.85);
+        opacity: 0;
+        filter: blur(6px);
+    }
+    20% {
+        opacity: 1;
+        filter: blur(2px);
+    }
+    55% {
+        transform: translateX(-5%) rotate(-0.3deg) scale(0.99);
+        filter: blur(0);
+    }
+    78% {
+        transform: translateX(-1.2%) rotate(0deg) scale(1);
+    }
+    100% {
+        transform: translateX(0) rotate(0deg) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes assembleFromRight {
+    0% {
+        transform: translateX(150%) rotate(3deg) scale(0.85);
+        opacity: 0;
+        filter: blur(6px);
+    }
+    20% {
+        opacity: 1;
+        filter: blur(2px);
+    }
+    55% {
+        transform: translateX(5%) rotate(0.3deg) scale(0.99);
+        filter: blur(0);
+    }
+    78% {
+        transform: translateX(1.2%) rotate(0deg) scale(1);
+    }
+    100% {
+        transform: translateX(0) rotate(0deg) scale(1);
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+/* ---- Ripple Shockwave ---- */
+.preloader-ripple {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-red, #C41E3A);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.preloader-ripple.active {
+    animation: rippleExpand 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.preloader-ripple.ripple-2.active {
+    animation: rippleExpand 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.12s;
+}
+
+@keyframes rippleExpand {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 0.7;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(16);
+        opacity: 0;
+    }
+}
+
+/* ---- Burst Dots ---- */
+.preloader-burst-dot {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: var(--dot-size, 5px);
+    height: var(--dot-size, 5px);
+    border-radius: 50%;
+    background-color: var(--primary-red, #C41E3A);
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.preloader-burst-dot.burst {
+    animation: dotBurst 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--burst-delay, 0s);
+}
+
+@keyframes dotBurst {
+    0% {
+        transform: translate(-50%, -50%) scale(0);
+        opacity: 1;
+    }
+    30% {
+        opacity: 1;
+        transform: translate(
+            calc(-50% + var(--burst-x, 0px)),
+            calc(-50% + var(--burst-y, 0px))
+        ) scale(1.2);
+    }
+    100% {
+        transform: translate(
+            calc(-50% + var(--burst-x, 0px) * 1.5),
+            calc(-50% + var(--burst-y, 0px) * 1.5 + 30px)
+        ) scale(0);
+        opacity: 0;
+    }
+}
+
+/* ---- Red Scan Line ---- */
+.preloader-scan-line {
+    position: absolute;
+    top: -10%;
+    left: 0;
+    width: 2px;
+    height: 120%;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        var(--primary-red, #C41E3A) 30%,
+        var(--primary-red, #C41E3A) 70%,
+        transparent 100%
+    );
+    box-shadow: 0 0 12px rgba(196, 30, 58, 0.6),
+                0 0 30px rgba(196, 30, 58, 0.3);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-10px);
+}
+
+.preloader-scan-line.sweep {
+    animation: scanSweep 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.2s;
+}
+
+@keyframes scanSweep {
+    0% {
+        left: 0;
+        opacity: 1;
+    }
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
+}
+
+/* ---- Assembled glow pulse ---- */
+.preloader-logo-assembly.assembled .preloader-logo-left,
+.preloader-logo-assembly.assembled .preloader-logo-right {
+    animation: none;
+    transform: translateX(0) rotate(0deg) scale(1);
+    filter: blur(0);
+    opacity: 1;
+}
+
+.preloader-logo-assembly.assembled::after {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    border-radius: 12px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(196, 30, 58, 0.08) 0%,
+        transparent 70%
+    );
+    animation: glowPulse 1.5s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes glowPulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* ---- Progress Section ---- */
+.preloader-progress-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: clamp(200px, 28vw, 340px);
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: 0.5s;
+    opacity: 0;
+}
+
+.preloader-progress-track {
+    width: 100%;
+    height: 2px;
+    background-color: rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.preloader-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-red, #C41E3A), #e8344e);
+    border-radius: 4px;
+    transition: width 0.15s ease-out;
     position: relative;
 }
 
-.preloader-box::after {
+.preloader-progress-fill::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 2.5cm;
-    height: 2.5cm;
-    background-color: var(--primary-red);
-    transform-origin: top left;
-    animation: load-transform 2s infinite;
-    will-change: transform;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 6px;
+    height: 6px;
+    background-color: var(--primary-red, #C41E3A);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(196, 30, 58, 0.5);
 }
 
-@keyframes load-transform {
+.preloader-progress-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-family: 'Inter', -apple-system, sans-serif;
+}
+
+.preloader-loading-text {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #999;
+}
+
+.preloader-percent {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary-red, #C41E3A);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.5px;
+}
+
+/* ---- Corner Accents ---- */
+.preloader-corner {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    opacity: 0;
+    animation: cornerFadeIn 0.6s ease forwards;
+    animation-delay: 0.6s;
+}
+
+.preloader-corner-tl {
+    top: 32px;
+    left: 32px;
+    border-top: 2px solid var(--primary-red, #C41E3A);
+    border-left: 2px solid var(--primary-red, #C41E3A);
+}
+
+.preloader-corner-br {
+    bottom: 32px;
+    right: 32px;
+    border-bottom: 2px solid var(--primary-red, #C41E3A);
+    border-right: 2px solid var(--primary-red, #C41E3A);
+}
+
+/* ---- Shared Keyframes ---- */
+
+@keyframes fadeInUp {
     0% {
-        transform: translate(2.5cm, 2.5cm) scale(1, 1);
-        animation-timing-function: ease-in;
-    }
-    12.5% {
-        transform: translate(0cm, 2.5cm) scale(2, 1);
-        animation-timing-function: ease-out;
-    }
-    25% {
-        transform: translate(0cm, 2.5cm) scale(1, 1);
-        animation-timing-function: ease-in;
-    }
-    37.5% {
-        transform: translate(0cm, 0cm) scale(1, 2);
-        animation-timing-function: ease-out;
-    }
-    50% {
-        transform: translate(0cm, 0cm) scale(1, 1);
-        animation-timing-function: ease-in;
-    }
-    62.5% {
-        transform: translate(0cm, 0cm) scale(2, 1);
-        animation-timing-function: ease-out;
-    }
-    75% {
-        transform: translate(2.5cm, 0cm) scale(1, 1);
-        animation-timing-function: ease-in;
-    }
-    87.5% {
-        transform: translate(2.5cm, 0cm) scale(1, 2);
-        animation-timing-function: ease-out;
+        opacity: 0;
+        transform: translateY(16px);
     }
     100% {
-        transform: translate(2.5cm, 2.5cm) scale(1, 1);
-        animation-timing-function: ease-in;
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes cornerFadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 0.3; }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .preloader-content {
+        gap: 40px;
+    }
+
+    .preloader-logo-assembly {
+        width: clamp(160px, 55vw, 300px);
+        height: clamp(48px, 16vw, 90px);
+    }
+
+    .preloader-progress-section {
+        width: clamp(160px, 55vw, 300px);
+    }
+
+    .preloader-corner {
+        width: 28px;
+        height: 28px;
+    }
+
+    .preloader-corner-tl { top: 20px; left: 20px; }
+    .preloader-corner-br { bottom: 20px; right: 20px; }
+}
+
+@media (max-width: 480px) {
+    .preloader-content {
+        gap: 32px;
+    }
+
+    .preloader-logo-assembly {
+        width: clamp(140px, 65vw, 260px);
+        height: clamp(42px, 20vw, 78px);
+    }
+
+    .preloader-progress-section {
+        width: clamp(140px, 65vw, 260px);
+    }
+
+    .preloader-loading-text {
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+
+    .preloader-percent {
+        font-size: 11px;
     }
 }
