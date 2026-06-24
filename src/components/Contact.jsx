@@ -45,8 +45,8 @@ const Contact = () => {
                                 </svg>
                             </div>
                             <div className="contact-info-text">
-                                <p>+91 84015 89892</p>
-                                <p>+91 84013 89892</p>
+                                <p>+91 84015 89892 | +91 84013 89892</p>
+
                             </div>
                         </div>
                         <div className="contact-info-item">
@@ -117,8 +117,8 @@ const Contact = () => {
                             <button type="submit" className="submit-btn-modern">
                                 <span>Send Message</span>
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                                    <line x1="5" y1="12" x2="19" y2="12"/>
-                                    <polyline points="12 5 19 12 12 19"/>
+                                    <line x1="5" y1="12" x2="19" y2="12" />
+                                    <polyline points="12 5 19 12 12 19" />
                                 </svg>
                             </button>
                         </form>

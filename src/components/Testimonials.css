@@ -216,7 +216,7 @@
 
     .reviews-layout {
         flex-direction: column;
-        gap: 40px;
+        gap: 110px;
         padding-left: 0;
         align-items: center;
     }
@@ -239,6 +239,11 @@
 
     .review-card-top {
         padding: 50px 30px 30px;
+        justify-content: flex-start;
+    }
+
+    .review-user-icon {
+        margin-bottom: 40px;
     }
 
     .review-user-icon svg {
@@ -252,14 +257,15 @@
     }
 
     .review-text {
-        font-size: 13px;
+        font-size: 15px;
     }
 
     .review-arrow-wrapper {
         right: auto;
         left: 50%;
-        top: auto;
-        bottom: -30px;
+        top: 100%;
+        bottom: -50px;
+        margin-top: 53px;
         transform: translateX(-50%);
     }
 
@@ -288,13 +294,15 @@
     }
 
     .reviews-layout {
-        gap: 30px;
+        gap: 100px;
     }
 
     .review-card {
         width: 95%;
         max-width: 320px;
         min-height: 400px;
+        margin: 0 auto;
+        transform: translateX(-6px);
     }
 
     .review-card-back {
@@ -304,10 +312,11 @@
 
     .review-card-top {
         padding: 40px 25px 25px;
+        justify-content: flex-start;
     }
 
     .review-user-icon {
-        margin-bottom: 15px;
+        margin-bottom: 35px;
     }
 
     .review-user-icon svg {
@@ -321,8 +330,8 @@
     }
 
     .review-text {
-        font-size: 12px;
-        line-height: 1.5;
+        font-size: 14px;
+        line-height: 1.6;
     }
 
     .review-arrow {
@@ -346,11 +355,16 @@
         padding: 30px 0;
     }
 
+    .reviews-layout {
+        gap: 95px;
+    }
+
     .review-card {
         width: 92%;
         max-width: 280px;
         min-height: 380px;
-        margin-left: 20px;
+        margin: 0 auto;
+        transform: translateX(-5px);
     }
 
     .review-card-back {
@@ -360,20 +374,26 @@
 
     .review-card-top {
         padding: 35px 20px 20px;
+        justify-content: flex-start;
+    }
+
+    .review-user-icon {
+        margin-bottom: 35px;
     }
 
     .review-user-icon svg {
-        width: 55px;
-        height: 55px;
+        width: 75px;
+        height: 75px;
     }
 
     .review-name {
         font-size: 20px;
-        margin-bottom: 16px;
+        margin-bottom: 40px;
     }
 
     .review-text {
-        font-size: 11px;
+        font-size: 13px;
+        line-height: 1.6;
     }
 
     .review-arrow {

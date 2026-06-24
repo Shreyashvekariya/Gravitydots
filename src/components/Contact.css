@@ -1,6 +1,6 @@
 /* CONTACT PAGE STYLES */
 .contact-bg-wrapper {
-    background: #000000;
+    background: #ffffff;
     min-height: 10vh;
 }
 
@@ -21,7 +21,7 @@
 /* HERO SECTION */
 .contact-hero {
     max-width: 1400px;
-    margin: 0 auto 100px;
+    margin: 0 auto 50px;
     text-align: center;
 }
 
@@ -144,7 +144,7 @@
 /* CONTACT GRID */
 .contact-grid {
     max-width: 1400px;
-    margin: 0 auto 50px;
+    margin: 0 auto 10px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
@@ -155,15 +155,15 @@
 .contact-info-left {
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 15px;
     padding: 0;
 }
 
 .contact-info-left .contact-info-item {
     display: flex;
     align-items: center;
-    gap: 20px;
-    padding: 30px;
+    gap: 15px;
+    padding: 15px 20px;
     background: rgba(0, 0, 0, 0.05);
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 20px;
@@ -189,8 +189,8 @@
 }
 
 .contact-info-left .contact-info-icon {
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     border: 2px solid rgba(0, 0, 0, 0.2);
     background: rgba(0, 0, 0, 0.05);
     border-radius: 50%;
@@ -204,6 +204,8 @@
 .contact-info-left .contact-info-icon svg {
     color: #000000;
     transition: color 0.3s ease;
+    width: 20px;
+    height: 20px;
 }
 
 .contact-info-left .contact-info-text {
@@ -213,10 +215,10 @@
 
 .contact-info-left .contact-info-text p {
     font-family: 'Poppins', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
     color: #000000;
-    line-height: 1.8;
+    line-height: 1.6;
     margin: 0;
     letter-spacing: 0.3px;
 }
@@ -334,7 +336,7 @@
 
 .map-header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 10px;
 }
 
 .map-title {
@@ -348,6 +350,7 @@
 .map-subtitle {
     font-family: 'Times New Roman', serif;
     font-size: 18px;
+    margin-top: -10px;
     color: #aaa;
     font-style: italic;
 }
@@ -355,7 +358,7 @@
 .map-container {
     position: relative;
     width: 100%;
-    height: 450px;
+    height: 350px;
     border-radius: 30px;
     overflow: hidden;
     transition: all 0.3s ease;
@@ -453,17 +456,17 @@
 
 .map-info-box {
     position: absolute;
-    bottom: 30px;
+    bottom: 15px;
     left: 50%;
     transform: translateX(-50%);
     background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(15px);
-    border: 2px solid rgba(196, 30, 58, 0.6);
+
     border-radius: 20px;
-    padding: 25px 35px;
+    padding: 12px 20px;
     text-align: center;
     pointer-events: auto;
-    min-width: 320px;
+    min-width: auto;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     animation: slideUp 1s ease-out 0.5s both;
 }
@@ -487,28 +490,29 @@
 
 .map-info-box h4 {
     font-family: 'Poppins', sans-serif;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 700;
-    margin: 0 0 10px 0;
+    margin: 0 0 6px 0;
     color: #fff;
 }
 
 .map-info-box p {
     font-family: 'Times New Roman', serif;
-    font-size: 16px;
+    font-size: 13px;
     color: #aaa;
-    margin: 0 0 15px 0;
+    margin: 0 0 10px 0;
+    white-space: nowrap;
 }
 
 .directions-btn {
     display: inline-block;
-    padding: 10px 25px;
+    padding: 8px 20px;
     background: linear-gradient(135deg, #C41E3A 0%, #FF6B6B 100%);
     color: #fff;
     text-decoration: none;
     border-radius: 8px;
     font-family: 'Poppins', sans-serif;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     transition: all 0.3s;
 }
@@ -532,8 +536,24 @@
 
 @media (max-width: 768px) {
     .contact-page {
-        padding: 60px 20px 80px;
+        padding: 15px 20px 20px;
         border-radius: 20px 20px 40px 40px;
+    }
+
+    .contact-hero {
+        margin-bottom: 15px;
+    }
+
+    .contact-badge {
+        margin-bottom: 10px;
+    }
+
+    .contact-main-title {
+        font-size: clamp(28px, 6vw, 40px);
+        letter-spacing: 2px;
+        white-space: normal;
+        line-height: 1.2;
+        margin-bottom: 10px;
     }
 
     .contact-info-section {
@@ -552,45 +572,56 @@
         gap: 30px;
     }
 
-    .contact-info-item {
-        gap: 18px;
+    .contact-info-left .contact-info-item {
+        gap: 10px;
         flex-direction: column;
         text-align: center;
+        padding: 15px;
     }
 
-    .contact-info-text {
+    .contact-info-left .contact-info-text {
         text-align: center;
     }
 
-    .contact-info-text p {
-        font-size: 14px;
+    .contact-info-left .contact-info-text p {
+        font-size: 13px;
     }
 
-    .contact-info-icon {
-        width: 55px;
-        height: 55px;
+    .contact-info-left .contact-info-icon {
+        width: 40px;
+        height: 40px;
     }
 
-    .contact-info-icon svg {
-        width: 28px;
-        height: 28px;
+    .contact-info-left .contact-info-icon svg {
+        width: 18px;
+        height: 18px;
     }
 
     .contact-form-wrapper {
         padding: 30px 20px;
     }
 
+    .form-title {
+        font-size: clamp(28px, 6vw, 36px);
+        white-space: nowrap;
+        margin-bottom: 25px;
+    }
+
     .form-row {
         grid-template-columns: 1fr;
     }
 
+    .form-field textarea {
+        min-height: 100px;
+    }
+
     .map-container {
-        height: 400px;
+        height: 300px;
     }
 
     .map-info-box {
-        min-width: 250px;
-        padding: 20px 25px;
+        min-width: auto;
+        padding: 8px 15px;
     }
 }
 
@@ -598,6 +629,13 @@
     .contact-info-section {
         padding: 40px 20px;
         border-radius: 20px;
+    }
+
+    .contact-main-title {
+        font-size: clamp(24px, 5.5vw, 32px);
+        letter-spacing: 1px;
+        white-space: normal;
+        line-height: 1.2;
     }
 
     .contact-info-title {
@@ -612,33 +650,51 @@
         gap: 20px;
     }
 
-    .contact-info-item {
-        gap: 12px;
+    .contact-info-left .contact-info-item {
+        gap: 8px;
         flex-direction: column;
         text-align: center;
+        padding: 12px;
     }
 
-    .contact-info-text {
+    .contact-info-left .contact-info-text {
         text-align: center;
     }
 
-    .contact-info-text p {
+    .contact-info-left .contact-info-text p {
         font-size: 12px;
-        line-height: 1.5;
+        line-height: 1.4;
     }
 
-    .contact-info-icon {
-        width: 45px;
-        height: 45px;
+    .contact-info-left .contact-info-icon {
+        width: 35px;
+        height: 35px;
     }
 
-    .contact-info-icon svg {
-        width: 24px;
-        height: 24px;
+    .contact-info-left .contact-info-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    .form-title {
+        font-size: clamp(24px, 7vw, 30px);
+        white-space: nowrap;
+        margin-bottom: 20px;
+    }
+
+    .form-field textarea {
+        min-height: 80px;
     }
 }
 
 @media (max-width: 380px) {
+    .contact-main-title {
+        font-size: clamp(22px, 5vw, 28px);
+        letter-spacing: 1px;
+        white-space: normal;
+        line-height: 1.2;
+    }
+
     .contact-info-section {
         padding: 35px 15px;
     }

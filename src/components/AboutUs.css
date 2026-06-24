@@ -286,7 +286,7 @@
   color: #000000;
   margin: 0 0 0px;
   letter-spacing: 3px;
-  -webkit-text-stroke: 2px #000000;
+  -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
@@ -360,7 +360,7 @@
   color: #000000;
   margin: 0 0 30px;
   letter-spacing: 3px;
-  -webkit-text-stroke: 2px #000000;
+  -webkit-text-stroke: 1px #000000;
   -webkit-text-fill-color: transparent;
 }
 
@@ -444,6 +444,30 @@
   .team-section,
   .why-choose-section {
     padding: 60px 30px;
+  }
+
+  .about-hero {
+    padding-bottom: 20px;
+  }
+
+  .who-we-are {
+    padding-top: 0;
+    margin-top: 0;
+    padding-bottom: 20px;
+  }
+
+  .founders-section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  .team-section {
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+
+  .why-choose-section {
+    padding-top: 10px;
   }
 
   .section-title {
@@ -546,6 +570,7 @@
   .why-title {
     font-size: clamp(28px, 7vw, 36px);
     letter-spacing: 1px;
+    margin-bottom: 15px;
   }
 
   .why-badge {
@@ -567,6 +592,30 @@
   .team-section,
   .why-choose-section {
     padding: 40px 20px;
+  }
+
+  .about-hero {
+    padding-bottom: 10px;
+  }
+
+  .who-we-are {
+    padding-top: 10px;
+    margin-top: 0;
+    padding-bottom: 10px;
+  }
+
+  .founders-section {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .team-section {
+    padding-top: 0;
+    padding-bottom: 10px;
+  }
+
+  .why-choose-section {
+    padding-top: 10px;
   }
 
   .section-title {
@@ -683,6 +732,7 @@
   .why-title {
     font-size: clamp(24px, 6vw, 30px);
     letter-spacing: 0.5px;
+    margin-bottom: 15px;
   }
 
   .why-badge {

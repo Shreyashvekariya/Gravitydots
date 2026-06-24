@@ -8,29 +8,21 @@ function CustomCursor() {
   const mousePos = useRef({ x: 0, y: 0 })
   const smallPos = useRef({ x: 0, y: 0 })
   const [isWhite, setIsWhite] = useState(false)
+  const [hasMoved, setHasMoved] = useState(false)
   const location = useLocation()
 
-  // Detect if we're on the work-details page — disable cursor entirely
+  // Detect if we're on the work-details page for lighter animations
   const isWorkPage = location.pathname === '/work-details'
 
   useEffect(() => {
-    // Skip all cursor logic on work-details page for better performance
-    if (isWorkPage) return;
-
     let animationFrameId
     let pendingTarget = null
     let idleCallbackId = null
-    let hasMoved = false
 
     const handleMouseMove = (e) => {
       mousePos.current.x = e.clientX
       mousePos.current.y = e.clientY
-      // Show cursor dots on first move (they start hidden via CSS opacity:0)
-      if (!hasMoved) {
-        hasMoved = true
-        if (largeRef.current) largeRef.current.style.opacity = '1'
-        if (smallRef.current) smallRef.current.style.opacity = '1'
-      }
+      if (!hasMoved) setHasMoved(true)
     }
 
     // The expensive color check — runs only during idle time or after a short delay,
@@ -84,8 +76,7 @@ function CustomCursor() {
       scheduleColorCheck(e.target)
     }
 
-    // Single RAF loop — updates DOM directly, no React re-renders
-    const lerp = 0.15
+    const lerp = isWorkPage ? 1 : 0.15
     const animate = () => {
       const mx = mousePos.current.x
       const my = mousePos.current.y
@@ -96,13 +87,15 @@ function CustomCursor() {
         largeRef.current.style.top = my + 'px'
       }
 
-      // Smooth trailing for small dot
-      smallPos.current.x += (mx - smallPos.current.x) * lerp
-      smallPos.current.y += (my - smallPos.current.y) * lerp
+      // On work page, hide small dot; otherwise smooth trailing
+      if (!isWorkPage) {
+        smallPos.current.x += (mx - smallPos.current.x) * lerp
+        smallPos.current.y += (my - smallPos.current.y) * lerp
 
-      if (smallRef.current) {
-        smallRef.current.style.left = smallPos.current.x + 'px'
-        smallRef.current.style.top = smallPos.current.y + 'px'
+        if (smallRef.current) {
+          smallRef.current.style.left = smallPos.current.x + 'px'
+          smallRef.current.style.top = smallPos.current.y + 'px'
+        }
       }
 
       animationFrameId = requestAnimationFrame(animate)
@@ -126,19 +119,18 @@ function CustomCursor() {
     }
   }, [isWorkPage])
 
-  // Don't render cursor elements on work-details page
-  if (isWorkPage) return null;
-
   return (
     <>
       <div
         ref={largeRef}
-        className={`custom-cursor-large ${isWhite ? 'white-cursor' : ''}`}
+        className={`custom-cursor-large ${isWhite ? 'white-cursor' : ''} ${!hasMoved ? 'cursor-hidden' : ''}`}
       />
-      <div
-        ref={smallRef}
-        className={`custom-cursor-small ${isWhite ? 'white-cursor' : ''}`}
-      />
+      {!isWorkPage && (
+        <div
+          ref={smallRef}
+          className={`custom-cursor-small ${isWhite ? 'white-cursor' : ''} ${!hasMoved ? 'cursor-hidden' : ''}`}
+        />
+      )}
     </>
   )
 }

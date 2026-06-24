@@ -2,18 +2,6 @@
   background: linear-gradient(to bottom, var(--white) 50%, var(--black) 50%);
 }
 
-/* Restore default cursor on work-details page (overrides global cursor:none) */
-.work-details-wrapper,
-.work-details-wrapper * {
-  cursor: auto !important;
-}
-
-.work-details-wrapper .details-category-item,
-.work-details-wrapper .work-details-card,
-.work-details-wrapper .wd-popup-close {
-  cursor: pointer !important;
-}
-
 .work-details-page {
   padding: 0 0 80px 0;
   background: #ffffff;
@@ -23,20 +11,6 @@
   /* overflow:hidden + border-radius on a large scrollable element = massive repaint on every frame.
      Use isolation instead — this creates a stacking context without triggering a clip. */
   isolation: isolate;
-}
-
-@media (max-width: 768px) {
-  .work-details-page {
-    padding: 80px 0 60px 0;
-    border-radius: 40px 40px 60px 60px;
-  }
-}
-
-@media (max-width: 480px) {
-  .work-details-page {
-    padding: 60px 0 40px 0;
-    border-radius: 40px 40px 60px 60px;
-  }
 }
 
 .work-details-container {
@@ -56,6 +30,40 @@
   margin-top: 0;
   margin-bottom: 0;
   letter-spacing: -1px;
+}
+
+@media (max-width: 768px) {
+  .work-details-page {
+    padding: 40px 0 60px 0;
+    border-radius: 40px 40px 60px 60px;
+  }
+
+  .work-details-container {
+    gap: 25px;
+  }
+
+  .work-details-title {
+    font-size: clamp(22px, 8vw, 34px);
+    white-space: nowrap;
+    letter-spacing: -1px;
+  }
+}
+
+@media (max-width: 480px) {
+  .work-details-page {
+    padding: 20px 0 40px 0;
+    border-radius: 40px 40px 60px 60px;
+  }
+
+  .work-details-container {
+    gap: 15px;
+  }
+
+  .work-details-title {
+    font-size: clamp(22px, 8vw, 34px);
+    white-space: nowrap;
+    letter-spacing: -1px;
+  }
 }
 
 .work-details-layout {
@@ -186,15 +194,20 @@
 .wd-skeleton-shimmer {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.55) 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.55) 50%, transparent 100%);
   transform: translateX(-100%);
   animation: wd-shimmer 1.4s ease-in-out infinite;
   will-change: transform;
 }
 
 @keyframes wd-shimmer {
-  0%   { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 /* Popup loading spinner */
@@ -221,7 +234,9 @@
 }
 
 @keyframes wd-spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 
@@ -543,6 +558,28 @@
 }
 
 @media (max-width: 768px) {
+  .details-category-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .details-category-item {
+    margin: -1px 0 0 -1px;
+    white-space: normal;
+    text-align: center;
+    min-height: 50px;
+  }
+
+  .details-category-item:nth-child(1) { order: 1; }
+  .details-category-item:nth-child(2) { order: 2; }
+  .details-category-item:nth-child(3) { order: 3; }
+  .details-category-item:nth-child(4) { order: 4; }
+  .details-category-item:nth-child(5) { order: 9; grid-column: span 2; } /* SEO */
+  .details-category-item:nth-child(6) { order: 6; }
+  .details-category-item:nth-child(7) { order: 7; }
+  .details-category-item:nth-child(8) { order: 8; }
+  .details-category-item:nth-child(9) { order: 5; grid-column: auto; } /* Video Editing */
+
   .work-details-reels-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
