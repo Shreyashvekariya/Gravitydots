@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback, memo } from 'react';
 import { INFLUENCER_REELS } from './dynamicProjectsData';
 import { useLocation } from 'react-router-dom';
 import './WorkDetails.css';
@@ -294,18 +294,156 @@ const generateProjects = (category) => {
     }));
 };
 
+// ── Lazy popup image — only loads when scrolled into view ─────────────────
+const LazyPopupImage = memo(({ loader, alt, index }) => {
+    const containerRef = useRef(null);
+    const [mediaData, setMediaData] = useState(null);
+    const loadedRef = useRef(false);
+
+    useEffect(() => {
+        const el = containerRef.current;
+        if (!el) return;
+
+        // If it's an instagram embed, resolve immediately (no heavy asset)
+        if (loader.type === 'instagram') {
+            setMediaData({ url: loader.url, type: 'instagram' });
+            return;
+        }
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !loadedRef.current) {
+                    loadedRef.current = true;
+                    observer.disconnect();
+                    // Dynamically import the asset only when visible
+                    loader.importFn().then((mod) => {
+                        setMediaData({ url: mod.default || mod, type: loader.type });
+                    });
+                }
+            },
+            { rootMargin: '300px 0px' } // Start loading 300px before visible
+        );
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, [loader]);
+
+    if (!mediaData) {
+        return (
+            <div ref={containerRef} className="wd-popup-image-placeholder" style={{ minHeight: '200px', background: '#1a1a1a' }}>
+                <div className="wd-skeleton-shimmer" />
+            </div>
+        );
+    }
+
+    if (mediaData.type === 'video') {
+        return (
+            <video
+                ref={containerRef}
+                src={mediaData.url}
+                className="wd-popup-image-placeholder"
+                style={{ height: 'auto', background: 'transparent', width: '100%' }}
+                autoPlay loop muted playsInline
+            />
+        );
+    }
+
+    if (mediaData.type === 'instagram') {
+        return (
+            <div ref={containerRef} className="wd-popup-instagram-container" style={{ background: 'transparent', display: 'flex', justifyContent: 'center', width: '100%' }}>
+                <iframe src={`${mediaData.url}embed`} width="100%" height="700" style={{ maxWidth: '400px', borderRadius: '12px' }} frameBorder="0" scrolling="no" allowTransparency="true" />
+            </div>
+        );
+    }
+
+    return (
+        <img
+            ref={containerRef}
+            src={mediaData.url}
+            alt={alt}
+            className="wd-popup-image-placeholder"
+            style={{ height: 'auto', background: 'transparent' }}
+            loading="lazy"
+            decoding="async"
+        />
+    );
+});
+
+// ── Memoised project card — loads its own thumbnail via IntersectionObserver ──
+const ProjectCard = memo(({ project, onOpen }) => {
+    const cardRef = useRef(null);
+    const [thumb, setThumb] = useState(null);
+    const loadedRef = useRef(false);
+
+    useEffect(() => {
+        // If there's a static thumbnail override, use it immediately
+        if (project.thumbnailOverride) {
+            setThumb(project.thumbnailOverride);
+            loadedRef.current = true;
+            return;
+        }
+
+        const el = cardRef.current;
+        if (!el || loadedRef.current) return;
+
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && !loadedRef.current) {
+                    loadedRef.current = true;
+                    observer.disconnect();
+
+                    if (project.loaders && project.loaders.length > 0) {
+                        const loader = project.thumbLoader || project.loaders[0];
+                        if (loader.type === 'instagram') return;
+                        loader.importFn().then((mod) => {
+                            setThumb({ url: mod.default || mod, type: loader.type });
+                        });
+                    }
+                }
+            },
+            { rootMargin: '200px 0px' }
+        );
+        observer.observe(el);
+        return () => observer.disconnect();
+    }, [project]);
+
+    return (
+        <div ref={cardRef} className="work-details-card" onClick={() => onOpen(project)}>
+            {thumb ? (
+                thumb.type === 'video' ? (
+                    <video
+                        src={thumb.url}
+                        className="work-details-image-placeholder"
+                        style={{ objectFit: 'cover', objectPosition: 'center' }}
+                        muted
+                        preload="metadata"
+                    />
+                ) : (
+                    <img
+                        src={thumb.url}
+                        alt={project.title}
+                        className="work-details-image-placeholder"
+                        style={{ objectFit: 'cover', objectPosition: 'center' }}
+                        loading="lazy"
+                        decoding="async"
+                    />
+                )
+            ) : (
+                <div className="work-details-image-placeholder wd-thumb-skeleton">
+                    <div className="wd-skeleton-shimmer" />
+                </div>
+            )}
+            <div className="work-details-info">
+                <h4>{project.title}</h4>
+            </div>
+        </div>
+    );
+});
+
 // ── Component ────────────────────────────────────────────────────────────────
 const WorkDetails = () => {
     const location = useLocation();
     const [activeCategory, setActiveCategory] = useState(CATEGORIES[0].name);
     const [selectedProject, setSelectedProject] = useState(null);
-
-    // { projectId: { url, type } }  — one thumbnail per card
-    const [cardThumbnails, setCardThumbnails] = useState({});
-
-    // { projectId: [{ url, type }, ...] }  — full media, loaded on popup open
-    const [popupMedia, setPopupMedia] = useState({});
-    const [loadingPopup, setLoadingPopup] = useState(false);
 
     useEffect(() => {
         if (location.state && location.state.category) {
@@ -315,51 +453,8 @@ const WorkDetails = () => {
 
     useEffect(() => { window.scrollTo(0, 0); }, []);
 
-
-    // ── Load card thumbnails lazily on mount (batched to reduce re-renders) ────
-    useEffect(() => {
-        const loadThumbnails = async (projects) => {
-            // Resolve all thumbnails for this category concurrently
-            const results = await Promise.allSettled(
-                projects.map(async (project) => {
-                    if (project.thumbnailOverride) {
-                        return { id: project.id, thumb: project.thumbnailOverride };
-                    }
-                    if (project.loaders && project.loaders.length > 0) {
-                        const thumb = project.thumbLoader || project.loaders[0];
-                        if (thumb.type === 'instagram') return null;
-                        const mod = await thumb.importFn();
-                        const url = mod.default || mod;
-                        return { id: project.id, thumb: { url, type: thumb.type } };
-                    }
-                    return null;
-                })
-            );
-
-            // Single state update per category
-            const batch = {};
-            results.forEach((r) => {
-                if (r.status === 'fulfilled' && r.value) {
-                    batch[r.value.id] = r.value.thumb;
-                }
-            });
-            if (Object.keys(batch).length > 0) {
-                setCardThumbnails(prev => ({ ...prev, ...batch }));
-            }
-        };
-
-        loadThumbnails(brandingProjects);
-        loadThumbnails(graphicDesignProjects);
-        loadThumbnails(socialMediaProjects);
-        loadThumbnails(websiteDevelopmentProjects);
-        loadThumbnails(paidAdsProjects);
-        loadThumbnails(performanceMarketingProjects);
-        loadThumbnails(videoEditingProjects);
-        loadThumbnails(influencerMarketingProjects);
-    }, []);
-
-    // ── Open popup + lazy-load all media for that project ────────────────────
-    const openPopup = async (project) => {
+    // ── Open popup — no longer bulk-loads all images ─────────────────────────
+    const openPopup = useCallback((project) => {
         setSelectedProject(project);
 
         const scrollY = window.scrollY;
@@ -373,28 +468,9 @@ const WorkDetails = () => {
             const scrollBody = document.querySelector('.wd-popup-scroll-body');
             if (scrollBody) scrollBody.scrollTop = 0;
         }, 0);
+    }, []);
 
-        // Already loaded? Skip.
-        if (popupMedia[project.id] || !project.loaders) return;
-
-        setLoadingPopup(true);
-        try {
-            const loaded = await Promise.all(
-                project.loaders.map(async (loader) => {
-                    if (loader.type === 'instagram') return { url: loader.url, type: 'instagram' };
-                    const mod = await loader.importFn();
-                    return { url: mod.default || mod, type: loader.type };
-                })
-            );
-            setPopupMedia(prev => ({ ...prev, [project.id]: loaded }));
-        } catch (e) {
-            console.error('Media load failed:', e);
-        } finally {
-            setLoadingPopup(false);
-        }
-    };
-
-    const closePopup = () => {
+    const closePopup = useCallback(() => {
         const scrollY = Math.abs(parseInt(document.body.style.top || '0'));
         document.body.style.position = '';
         document.body.style.top = '';
@@ -403,7 +479,7 @@ const WorkDetails = () => {
         document.body.style.overflow = '';
         window.scrollTo(0, scrollY);
         setSelectedProject(null);
-    };
+    }, []);
 
     // Keyboard / wheel / touch locks
     useEffect(() => {
@@ -427,10 +503,9 @@ const WorkDetails = () => {
             window.removeEventListener('wheel', handleWheel);
             document.removeEventListener('touchmove', blockTouch);
         };
-    }, [selectedProject]);
+    }, [selectedProject, closePopup]);
 
     const activeProjects = generateProjects(activeCategory);
-    const currentPopupMedia = selectedProject ? popupMedia[selectedProject.id] : null;
 
     return (
         <div className="work-details-wrapper">
@@ -474,50 +549,13 @@ const WorkDetails = () => {
                         </main>
                     ) : (
                         <main className="work-details-grid">
-                            {activeProjects.map((project) => {
-                                const thumb = cardThumbnails[project.id] || null;
-                                return (
-                                    <div
-                                        key={project.id}
-                                        className="work-details-card"
-                                        onClick={() => openPopup(project)}
-                                    >
-                                        {thumb ? (
-                                            thumb.type === 'video' ? (
-                                                <video
-                                                    src={thumb.url}
-                                                    className="work-details-image-placeholder"
-                                                    style={{
-                                                        objectFit: 'cover',
-                                                        objectPosition: 'center'
-                                                    }}
-                                                    muted
-                                                    preload="metadata"
-                                                />
-                                            ) : (
-                                                <img
-                                                    src={thumb.url}
-                                                    alt={project.title}
-                                                    className="work-details-image-placeholder"
-                                                    style={{
-                                                        objectFit: 'cover',
-                                                        objectPosition: 'center'
-                                                    }}
-                                                    loading="lazy"
-                                                    decoding="async"
-                                                />
-                                            )
-                                        ) : (
-                                            <div className="work-details-image-placeholder wd-thumb-skeleton">
-                                                <div className="wd-skeleton-shimmer" />
-                                            </div>
-                                        )}
-                                        <div className="work-details-info">
-                                            <h4>{project.title}</h4>
-                                        </div>
-                                    </div>
-                                );
-                            })}
+                            {activeProjects.map((project) => (
+                                <ProjectCard
+                                    key={project.id}
+                                    project={project}
+                                    onOpen={openPopup}
+                                />
+                            ))}
                         </main>
                     )}
                 </div>
@@ -540,37 +578,15 @@ const WorkDetails = () => {
                             </div>
 
                             <div className="wd-popup-image-area">
-                                {loadingPopup ? (
-                                    /* Loading spinner */
-                                    <div className="wd-popup-loading">
-                                        <div className="wd-spinner" />
-                                        <p>Loading...</p>
-                                    </div>
-                                ) : currentPopupMedia ? (
-                                    currentPopupMedia.map((item, idx) =>
-                                        item.type === 'video' ? (
-                                            <video
-                                                key={idx}
-                                                src={item.url}
-                                                className="wd-popup-image-placeholder"
-                                                style={{ height: 'auto', background: 'transparent', width: '100%' }}
-                                                autoPlay loop muted playsInline
-                                            />
-                                        ) : item.type === 'instagram' ? (
-                                            <div key={idx} className="wd-popup-instagram-container" style={{ background: 'transparent', display: 'flex', justifyContent: 'center', width: '100%' }}>
-                                                <iframe src={`${item.url}embed`} width="100%" height="700" style={{ maxWidth: '400px', borderRadius: '12px' }} frameBorder="0" scrolling="no" allowTransparency="true" />
-                                            </div>
-                                        ) : (
-                                            <img
-                                                key={idx}
-                                                src={item.url}
-                                                alt={`${selectedProject.title} ${idx + 1}`}
-                                                className="wd-popup-image-placeholder"
-                                                style={{ height: 'auto', background: 'transparent' }}
-                                                loading="lazy"
-                                            />
-                                        )
-                                    )
+                                {selectedProject.loaders ? (
+                                    selectedProject.loaders.map((loader, idx) => (
+                                        <LazyPopupImage
+                                            key={idx}
+                                            loader={loader}
+                                            alt={`${selectedProject.title} ${idx + 1}`}
+                                            index={idx}
+                                        />
+                                    ))
                                 ) : (
                                     [1, 2, 3, 4].map((item) => (
                                         <div key={item} className="wd-popup-image-placeholder">

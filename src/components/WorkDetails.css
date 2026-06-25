@@ -94,9 +94,9 @@
 .details-category-item {
   background: #ffffff;
   color: #333;
-  padding: 16px 28px;
+  padding: 12px 20px;
   font-family: 'Montserrat', sans-serif;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: 600;
   cursor: pointer;
   display: flex;

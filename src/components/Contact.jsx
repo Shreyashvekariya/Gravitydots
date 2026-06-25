@@ -21,6 +21,7 @@ const Contact = () => {
     };
 
     return (
+        <div className="contact-outer-wrapper">
         <div className="contact-bg-wrapper">
             <section className="contact-page">
                 {/* Hero Section */}
@@ -154,6 +155,7 @@ const Contact = () => {
                     </div>
                 </div>
             </section>
+        </div>
         </div>
     );
 };

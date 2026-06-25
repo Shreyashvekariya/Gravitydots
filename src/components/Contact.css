@@ -1,16 +1,23 @@
 /* CONTACT PAGE STYLES */
+.contact-outer-wrapper {
+    background-color: #000000;
+}
+
 .contact-bg-wrapper {
     background: #ffffff;
     min-height: 10vh;
+    border-radius: 0 0 90px 90px;
+    overflow: hidden;
+    padding-bottom: 100px;
 }
 
 
 .contact-page {
-    background-color: #ffffff;
+    background-color: transparent;
     color: #000;
     min-height: calc(100vh - 1px);
-    padding: 40px 60px 100px;
-    border-radius: 0 0 90px 90px;
+    padding: 40px 60px 0;
+    border-radius: 0;
     overflow: hidden;
     transform: translateZ(0);
     backface-visibility: hidden;
@@ -535,9 +542,14 @@
 }
 
 @media (max-width: 768px) {
+    .contact-bg-wrapper {
+        border-radius: 0 0 60px 60px;
+        padding-bottom: 60px;
+    }
+
     .contact-page {
-        padding: 15px 20px 20px;
-        border-radius: 20px 20px 40px 40px;
+        padding: 15px 20px 0;
+        border-radius: 20px 20px 0 0;
     }
 
     .contact-hero {
@@ -626,6 +638,11 @@
 }
 
 @media (max-width: 480px) {
+    .contact-bg-wrapper {
+        border-radius: 0 0 60px 60px;
+        padding-bottom: 60px;
+    }
+
     .contact-info-section {
         padding: 40px 20px;
         border-radius: 20px;
