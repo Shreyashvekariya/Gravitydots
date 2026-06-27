@@ -13,15 +13,15 @@ export default function WhyChooseUs() {
 
                 <div className="why-pills-container">
                     <div className="why-pills-row row-single">
-                        <div className="why-pill">Experienced & passionate team</div>
+                        <div className="why-pill">Customised Digital Solutions for every business</div>
                     </div>
                     <div className="why-pills-row row-double">
-                        <div className="why-pill">Creative & strategy-driven approach</div>
-                        <div className="why-pill">Focus on real results, not just numbers</div>
+                        <div className="why-pill">Experienced & passionate team </div>
+                        <div className="why-pill">Strategy driven approch</div>
                     </div>
                     <div className="why-pills-row row-double">
-                        <div className="why-pill">Customized solutions for every business</div>
-                        <div className="why-pill">Transparent pricing & clear communication</div>
+                        <div className="why-pill">ROI Focused Marketing Strategies</div>
+                        <div className="why-pill">Dedicated Account Manager</div>
                     </div>
                 </div>
             </div>

@@ -581,8 +581,18 @@
   .details-category-item:nth-child(9) { order: 5; grid-column: auto; } /* Video Editing */
 
   .work-details-reels-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 16px;
+    padding: 0 10%;
+  }
+
+  .work-details-reel-item {
+    height: auto;
+    min-height: 500px;
+  }
+
+  .work-details-reel-iframe {
+    min-height: 500px;
   }
 }
 
@@ -598,17 +608,20 @@
   }
 
   .work-details-reels-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 12px;
+    padding: 0 5%;
   }
 
   .work-details-reel-item {
     border-radius: 12px;
-    height: 520px;
+    height: auto;
+    min-height: 480px;
   }
 
   .work-details-reel-iframe {
     border-radius: 12px;
+    min-height: 480px;
   }
 
   .work-details-image-placeholder {

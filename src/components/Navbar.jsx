@@ -19,26 +19,48 @@ function Navbar() {
       <div className="top-marquee">
         <div className="marquee-content">
           {/* First group */}
-          <span>We don't just market brands we build them</span>
+          <span>128+ Brands Served</span>
           <span className="dot">*</span>
-          <span>We don't just market brands we build them</span>
+          <span> Free Strategy Call</span>
           <span className="dot">*</span>
-          <span>We don't just market brands we build them</span>
+          <span>ROI Driven Marketing</span>
           <span className="dot">*</span>
-          <span>We don't just market brands we build them</span>
+          <span>Growth Focused Digital Solutions</span>
           <span className="dot">*</span>
-          <span>We don't just market brands we build them</span>
+          <span>Serving Clients Globally</span>
           <span className="dot">*</span>
           {/* Second group (duplicate for seamless loop) */}
-          <span>We don't just market brands we build them</span>
+          <span>128+ Brands Served</span>
           <span className="dot">*</span>
-          <span>We don't just market brands we build them</span>
+          <span> Free Strategy Call</span>
           <span className="dot">*</span>
-          <span>We don't just market brands we build them</span>
+          <span>ROI Driven Marketing</span>
           <span className="dot">*</span>
-          <span>We don't just market brands we build them</span>
+          <span>Growth Focused Digital Solutions</span>
           <span className="dot">*</span>
-          <span>We don't just market brands we build them</span>
+          <span>Serving Clients Globally</span>
+          <span className="dot">*</span>
+          {/* Third group */}
+          <span>128+ Brands Served</span>
+          <span className="dot">*</span>
+          <span> Free Strategy Call</span>
+          <span className="dot">*</span>
+          <span>ROI Driven Marketing</span>
+          <span className="dot">*</span>
+          <span>Growth Focused Digital Solutions</span>
+          <span className="dot">*</span>
+          <span>Serving Clients Globally</span>
+          <span className="dot">*</span>
+          {/* Fourth group */}
+          <span>128+ Brands Served</span>
+          <span className="dot">*</span>
+          <span> Free Strategy Call</span>
+          <span className="dot">*</span>
+          <span>ROI Driven Marketing</span>
+          <span className="dot">*</span>
+          <span>Growth Focused Digital Solutions</span>
+          <span className="dot">*</span>
+          <span>Serving Clients Globally</span>
           <span className="dot">*</span>
         </div>
       </div>

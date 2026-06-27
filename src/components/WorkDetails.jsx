@@ -34,7 +34,10 @@ export const PROJECT_ORDER = {
         "Ats",
         "Global Spice Connect"
     ],
-    'Website Development': [],
+    'Website Development': ["Satvik",
+        "Kinein",
+        "Ats",
+        "Global Spice Connect"],
     'Paid Ads': [],
 };
 
