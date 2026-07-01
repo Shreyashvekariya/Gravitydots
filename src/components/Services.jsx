@@ -18,9 +18,26 @@ function Services() {
   return (
     <section className="services" id="services">
       <div className="services-header">
-        <h2 className="bebas">GROW YOUR BRAND DIGITALLY</h2>
-        <p>We help businesses build strong digital identities, attract the right audience, and convert clicks into customers through result-driven digital marketing solutions.</p>
-        <h3 className="bebas tagline">CREATIVE. STRATEGIC. SCALABLE.</h3>
+        <h2 className="bebas text-red">RESULTS THAT SPEAK LOUDER THAN WORDS</h2>
+        <p>We measure success through numbers, not promises. Every number represents real business growth achieved through strategy, creativity and performance marketing.</p>
+        <div className="stats-container">
+          <div className="stat-item">
+            <span className="stat-title">ROAS<br/>AVG. AD RETURN</span>
+            <span className="stat-value">4.9X</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-title">AD SPEND<br/>MANAGED</span>
+            <span className="stat-value">₹70L+</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-title">ORGANIC<br/>GROWTH</span>
+            <span className="stat-value">320%</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-title">QUALIFIED LEADS<br/>GENERATED</span>
+            <span className="stat-value">1500+</span>
+          </div>
+        </div>
       </div>
       <div className="services-grid">
         {services.map((service, index) => (

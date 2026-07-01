@@ -3,7 +3,7 @@
   min-height: 10vh;
   border-radius: 0 0 90px 90px;
   overflow: hidden;
-  padding-bottom: 100px;
+  padding-bottom: 30px;
 }
 
 /* Fade in animations */
@@ -349,7 +349,7 @@
 
 /* Section 5: Why Choose Us */
 .why-choose-section {
-  padding: 20px 60px 70px;
+  padding: 20px 60px 20px;
   background: #ffffff;
   text-align: center;
 }
@@ -437,7 +437,7 @@
 @media (max-width: 768px) {
   .about-page-wrapper {
     border-radius: 0 0 60px 60px;
-    padding-bottom: 60px;
+    padding-bottom: 30px;
   }
 
   .about-hero,

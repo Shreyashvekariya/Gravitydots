@@ -13,8 +13,8 @@ function Grid() {
           <div className="card-header">
             <div className="dots-menu">⋮</div>
             <div className="card-content">
-              <h3>Casestudy</h3>
-              <span className="subtitle">Memorable Place</span>
+              <h3>Featured Case Studies</h3>
+              <span className="subtitle">Client Success Stories</span>
             </div>
           </div>
           <div className="card-image">
@@ -23,9 +23,9 @@ function Grid() {
         </div>
 
         {/* Video GIF Card */}
-        <div 
-          className="bento-item video-card" 
-          onClick={() => { navigate('/work-details', { state: { category: 'Video Editing' } }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} 
+        <div
+          className="bento-item video-card"
+          onClick={() => { navigate('/work-details', { state: { category: 'Video Editing' } }); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
           style={{ cursor: 'pointer' }}
         >
           <div className="video-header">
