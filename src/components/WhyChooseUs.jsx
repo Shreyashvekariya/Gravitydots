@@ -82,7 +82,7 @@ export default function WhyChooseUs() {
                             </div>
 
                             {/* PREVIEW IMAGE */}
-                            <div className="card preview-card" onClick={() => { navigate('/work-details', { state: { category: 'SEO' } }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer', overflow: 'hidden', padding: 0 }}>
+                            <div className="card preview-card" onClick={() => { navigate('/work-details', { state: { category: 'Search Engine Optimization (SEO)' } }); window.scrollTo({ top: 0, behavior: 'smooth' }); }} style={{ cursor: 'pointer', overflow: 'hidden', padding: 0 }}>
                                 <img src={seoImg} alt="SEO" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                             </div>
                         </div>

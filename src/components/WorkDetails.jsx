@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, memo } from 'react';
-import { INFLUENCER_REELS } from './dynamicProjectsData';
+import { INFLUENCER_REELS, VIDEO_CATEGORIES } from './dynamicProjectsData';
 import { useLocation } from 'react-router-dom';
 import './WorkDetails.css';
 
@@ -276,6 +276,40 @@ const performanceMarketingProjects = sortProjects(Object.keys(performanceMarketi
     thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
 })), 'Performance Marketing');
 
+// ── Non-eager glob for SEO ─────────────────────────────────────────
+const seoFilesLazy = import.meta.glob('../assets/Work/SEO/**/*.{webp,jpg,jpeg,png,mp4}');
+
+const seoLoadersMap = {};
+Object.keys(seoFilesLazy).forEach(glbPath => {
+    const parts = glbPath.split('/');
+    const fileName = parts.pop();
+    const folderName = parts.pop();
+    if (!seoLoadersMap[folderName]) seoLoadersMap[folderName] = [];
+    seoLoadersMap[folderName].push({
+        glbPath,
+        importFn: seoFilesLazy[glbPath],
+        fileName,
+        type: fileName.endsWith('.mp4') ? 'video' : 'image',
+    });
+});
+
+Object.values(seoLoadersMap).forEach(list => {
+    list.sort((a, b) => {
+        const na = parseFloat(a.fileName.match(/[\d.]+/)?.[0] || 0) || 0;
+        const nb = parseFloat(b.fileName.match(/[\d.]+/)?.[0] || 0) || 0;
+        return na - nb;
+    });
+});
+
+const seoProjects = sortProjects(Object.keys(seoLoadersMap).map((folderName, index) => ({
+    id: `seo-${index}`,
+    title: folderName,
+    category: 'SEARCH ENGINE OPTIMIZATION (SEO)',
+    loaders: seoLoadersMap[folderName],
+    thumbnailOverride: THUMBNAIL_OVERRIDES[folderName] || null,
+})), 'Search Engine Optimization (SEO)');
+
+
 const videoEditingProjects = buildVideoEditingProjects(gridVideoPath);
 const influencerMarketingProjects = buildInfluencerMarketingProjects();
 
@@ -286,6 +320,7 @@ const generateProjects = (category) => {
     if (category === 'Website Development' && websiteDevelopmentProjects.length > 0) return websiteDevelopmentProjects;
     if (category === 'Paid Ads' && paidAdsProjects.length > 0) return paidAdsProjects;
     if (category === 'Performance Marketing' && performanceMarketingProjects.length > 0) return performanceMarketingProjects;
+    if (category === 'Search Engine Optimization (SEO)' && seoProjects.length > 0) return seoProjects;
     if (category === 'Video Editing' && videoEditingProjects.length > 0) return videoEditingProjects;
     if (category === 'Influencer Marketing' && influencerMarketingProjects.length > 0) return influencerMarketingProjects;
     return Array(6).fill(null).map((_, i) => ({
@@ -310,6 +345,12 @@ const LazyPopupImage = memo(({ loader, alt, index }) => {
         // If it's an instagram embed, resolve immediately (no heavy asset)
         if (loader.type === 'instagram') {
             setMediaData({ url: loader.url, type: 'instagram' });
+            return;
+        }
+
+        // If it's a youtube embed, resolve immediately
+        if (loader.type === 'youtube') {
+            setMediaData({ url: loader.url, type: 'youtube', videoId: loader.videoId });
             return;
         }
 
@@ -354,6 +395,20 @@ const LazyPopupImage = memo(({ loader, alt, index }) => {
         return (
             <div ref={containerRef} className="wd-popup-instagram-container" style={{ background: 'transparent', display: 'flex', justifyContent: 'center', width: '100%' }}>
                 <iframe src={`${mediaData.url}embed`} width="100%" height="700" style={{ maxWidth: '400px', borderRadius: '12px' }} frameBorder="0" scrolling="no" allowTransparency="true" />
+            </div>
+        );
+    }
+
+    if (mediaData.type === 'youtube') {
+        return (
+            <div ref={containerRef} style={{ position: 'relative', width: '100%', paddingBottom: '56.25%', background: '#000' }}>
+                <iframe
+                    src={`${mediaData.url}?rel=0&modestbranding=1`}
+                    style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title="YouTube Video"
+                />
             </div>
         );
     }
@@ -447,10 +502,12 @@ const WorkDetails = () => {
     const location = useLocation();
     const [activeCategory, setActiveCategory] = useState(CATEGORIES[0].name);
     const [selectedProject, setSelectedProject] = useState(null);
+    const [activeVideoCategory, setActiveVideoCategory] = useState(null);
 
     useEffect(() => {
         if (location.state && location.state.category) {
             setActiveCategory(location.state.category);
+            setActiveVideoCategory(null);
         }
     }, [location]);
 
@@ -521,7 +578,7 @@ const WorkDetails = () => {
                                 <li
                                     key={category.name}
                                     className={`details-category-item ${activeCategory === category.name ? 'active' : ''}`}
-                                    onClick={() => setActiveCategory(category.name)}
+                                    onClick={() => { setActiveCategory(category.name); setActiveVideoCategory(null); }}
                                     style={activeCategory === category.name ? {
                                         backgroundColor: category.bgColor,
                                         borderColor: category.bgColor,
@@ -550,6 +607,48 @@ const WorkDetails = () => {
                                 </div>
                             ))}
                         </main>
+                    ) : activeCategory === 'Video Editing' ? (
+                        activeVideoCategory ? (
+                            <div className="work-details-video-category-view">
+                                <main className="work-details-reels-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
+                                    {VIDEO_CATEGORIES.find(c => c.id === activeVideoCategory)?.videos.map((videoId, idx) => (
+                                        <div key={idx} className="work-details-reel-item" style={{ height: 'auto', aspectRatio: '16/9' }}>
+                                            <iframe
+                                                src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`}
+                                                className="work-details-reel-iframe"
+                                                frameBorder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                allowFullScreen
+                                                title={`Video ${idx}`}
+                                                loading="lazy"
+                                                style={{ width: '100%', height: '100%', borderRadius: '12px' }}
+                                            />
+                                        </div>
+                                    ))}
+                                </main>
+                            </div>
+                        ) : (
+                            <main className="work-details-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)', gap: '30px' }}>
+                                {VIDEO_CATEGORIES.map((cat) => (
+                                    <div 
+                                        key={cat.id} 
+                                        className="work-details-card" 
+                                        onClick={() => setActiveVideoCategory(cat.id)}
+                                    >
+                                        <div className="work-details-image-placeholder wd-thumb-skeleton" style={{ background: '#1a1a1a' }}>
+                                            <img
+                                                src={cat.thumbnail}
+                                                alt={cat.title}
+                                                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                            />
+                                        </div>
+                                        <div className="work-details-info">
+                                            <h4>{cat.title}</h4>
+                                        </div>
+                                    </div>
+                                ))}
+                            </main>
+                        )
                     ) : (
                         <main className="work-details-grid">
                             {activeProjects.map((project) => (

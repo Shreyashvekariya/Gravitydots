@@ -53,8 +53,43 @@ export const INFLUENCER_REELS = [
 export const VIDEO_EDITING_ENTRIES = [
     {
         title: 'Video Portfolio',
-        fileName: 'Grid video.mp4',
+        type: 'youtube',
+        videoId: '3n8GxAn1Uo8',
     },
+];
+
+export const VIDEO_CATEGORIES = [
+    {
+        id: 'ai-base',
+        title: 'Ai Base Video',
+        thumbnail: 'https://img.youtube.com/vi/3n8GxAn1Uo8/maxresdefault.jpg',
+        videos: [
+            '3n8GxAn1Uo8', 'zvAnewfmdjI', 'MgwESkzTqQ0', 'bO5ieVuyicg', 'C7Dr7sDQ7YI', 
+            'p6RGZGucyl8', 'hwnGAsfRkHE', 'HmXrxA6yf3Q', 'LqeHxznCQcA', '9bw9W8I9MIs',
+            'heQE2s3Rm7s', 'PRvutrpiHfk', 'bJbu_X1YvFw', 'zTQXlwLY7NA', 'yDgzVpOJI2w',
+            '4ufnB0Es-CY', 'GcYmimybO1g', 'DBGaLEn68ek', 'vM-O8mkCdg', 'mhvpBd1akdw',
+            'ClYFN9QlOw0', 'grRIHemXTGU', 'q7o3tvX6ks8', 'gWPFZoFJOGg', 'FVirP-cYdCw',
+            'TTUn4dJSlzY', 'sMTPi7z7vhU', 'U1P-P6CW_5Q', '6VuFrlBPQjw', 'lVwwhXAlpV8'
+        ]
+    },
+    {
+        id: 'graphical-video',
+        title: 'Graphical Video',
+        thumbnail: 'https://img.youtube.com/vi/0m5LD2hDL8M/maxresdefault.jpg',
+        videos: [
+            '0m5LD2hDL8M', 'qhOALO1Y35o', 's6gBbOJ9ZJI', 'DZbndGpXNfE', 'AsAqa4-Oi68',
+            'VkrpBNzCSoA', 'CWviUjPvwgo', 'KM1i3krbECE', 'nUV6hTdeAYg', 'VqoOkxrUlXI'
+        ]
+    },
+    {
+        id: 'shoot-base',
+        title: 'Shoot Base Video',
+        thumbnail: 'https://img.youtube.com/vi/43iHW_nz8pE/maxresdefault.jpg',
+        videos: [
+            '43iHW_nz8pE', 'VZJ5DHP2qHQ', 'Q20Gt9gy9Tw', '5HM2DR8WwM4', 'AnkrgVrT8Ss',
+            'ucXq4Gegvuc', 'OWnzo74CbFw', 'rgufTxVI7O0', 'PGyHO5OqiXA'
+        ]
+    }
 ];
 
 // ── Builder functions (used by WorkDetails.jsx) ─────────────────────────────
@@ -75,18 +110,38 @@ export function buildInfluencerMarketingProjects() {
 }
 
 export function buildVideoEditingProjects(gridVideoPath) {
-    return VIDEO_EDITING_ENTRIES.map((entry, index) => ({
-        id: `video-editing-${index}`,
-        title: entry.title,
-        category: 'VIDEO EDITING',
-        loaders: [
-            {
-                glbPath: `../assets/images/${entry.fileName}`,
-                importFn: () => Promise.resolve({ default: gridVideoPath }),
-                fileName: entry.fileName,
-                type: 'video',
-            }
-        ],
-        thumbnailOverride: null,
-    }));
+    return VIDEO_EDITING_ENTRIES.map((entry, index) => {
+        if (entry.type === 'youtube') {
+            return {
+                id: `video-editing-${index}`,
+                title: entry.title,
+                category: 'VIDEO EDITING',
+                loaders: [
+                    {
+                        type: 'youtube',
+                        videoId: entry.videoId,
+                        url: `https://www.youtube.com/embed/${entry.videoId}`,
+                    }
+                ],
+                thumbnailOverride: {
+                    url: `https://img.youtube.com/vi/${entry.videoId}/maxresdefault.jpg`,
+                    type: 'image',
+                },
+            };
+        }
+        return {
+            id: `video-editing-${index}`,
+            title: entry.title,
+            category: 'VIDEO EDITING',
+            loaders: [
+                {
+                    glbPath: `../assets/images/${entry.fileName}`,
+                    importFn: () => Promise.resolve({ default: gridVideoPath }),
+                    fileName: entry.fileName,
+                    type: 'video',
+                }
+            ],
+            thumbnailOverride: null,
+        };
+    });
 }
