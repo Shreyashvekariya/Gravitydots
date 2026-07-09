@@ -1,0 +1,22 @@
+.app {
+  width: 100%;
+  position: relative;
+}
+
+.app *,
+.app *::before,
+.app *::after {
+  cursor: none !important;
+}
+
+.main-content {
+  position: relative;
+  background: transparent;
+  margin-bottom: 380px;
+}
+
+.rest-of-sections {
+  position: relative;
+  z-index: 2000;
+  background: var(--white);
+}

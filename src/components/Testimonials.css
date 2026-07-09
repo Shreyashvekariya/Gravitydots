@@ -1,0 +1,429 @@
+.reviews {
+    padding: 80px 0;
+    background: #ffffff;
+    overflow: hidden;
+    position: relative;
+}
+
+.reviews-layout {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+    /* Reduced gap */
+    margin: 0;
+    position: relative;
+    padding-left: 140px;
+}
+
+/* Left black strip */
+.reviews-strip {
+    width: 60px;
+    /* Thinner */
+    height: 100%;
+    min-height: 600px;
+    background: #000000;
+    border-radius: 0 30px 30px 0;
+    /* Rounded only on right side per image implication or full pill */
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* Review card */
+.review-card {
+    width: 340px;
+    min-width: 340px;
+    height: 600px;
+    overflow: visible;
+    /* Needed for stack effect */
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    margin-left: 40px;
+    /* Shift card right */
+    position: relative;
+    z-index: 2;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.review-card-inner {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 2px solid #000000;
+    border-radius: 24px;
+    overflow: visible;
+    position: relative;
+    z-index: 2;
+}
+
+/* Stack effect using ::after */
+/* Stack effect using separate div */
+.review-card-back {
+    position: absolute;
+    top: 20px;
+    /* Offset down */
+    left: 20px;
+    /* Offset right */
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    border: 2px solid #000000;
+    background: #ffffff;
+    z-index: 1;
+    /* Behind inner card */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* Align bottom bar to bottom */
+    overflow: hidden;
+    /* Clip bottom bar */
+}
+
+/* Remove bottom bar styling */
+
+.review-card-top {
+    background: #ffffff;
+    padding: 15px 30px 30px;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: smoothSlide 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 24px;
+}
+
+@keyframes smoothSlide {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.review-user-icon {
+    margin-top: -55px;
+    margin-bottom: 10px;
+}
+
+.user-logo-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #000000;
+}
+
+.review-header-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.review-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0;
+}
+
+.review-client-logo {
+    margin-top: 2px;
+}
+
+.client-logo-img {
+    height: 70px;
+    max-width: 220px;
+    object-fit: contain;
+}
+
+.review-text {
+    font-family: 'Poppins', sans-serif;
+    /* Matched to name */
+    font-size: 14px;
+    line-height: 1.6;
+    color: #000000;
+    text-align: justify;
+    margin: 0;
+    font-weight: 500;
+}
+
+.review-arrow-wrapper {
+    position: absolute;
+    right: -170px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.review-arrow {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid #000000;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.review-arrow svg {
+    stroke: #000000;
+    width: 32px;
+    height: 32px;
+}
+
+.review-arrow-wrapper:hover .review-arrow {
+    background: #f0f0f0;
+    transform: translateX(4px);
+}
+
+/* Right image */
+.reviews-image {
+    flex: 1;
+    border-radius: 80px 0 0 80px;
+    overflow: hidden;
+    height: 600px;
+    margin-left: 40px;
+    /* Space from stacked card */
+    transform: translateX(15%);
+    /* Move right so only 50% is visible */
+}
+
+.reviews-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    animation: imageSlide 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes imageSlide {
+    from {
+        opacity: 0;
+        transform: translateX(40px) scale(1.05);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@media (max-width: 900px) {
+    .reviews {
+        padding: 60px 0;
+    }
+
+    .reviews-layout {
+        flex-direction: column;
+        gap: 110px;
+        padding-left: 0;
+        align-items: center;
+    }
+
+    .reviews-strip {
+        display: none;
+    }
+
+    .review-card {
+        width: 90%;
+        max-width: 350px;
+        margin: 0 auto;
+        height: 400px;
+    }
+
+    .review-card-back {
+        top: 15px;
+        left: 15px;
+    }
+
+    .review-card-top {
+        padding: 30px 30px 30px;
+        justify-content: flex-start;
+    }
+
+    .review-user-icon {
+        margin-bottom: 20px;
+    }
+
+    .user-logo-img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .review-name {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+
+    .review-text {
+        font-size: 13px;
+    }
+
+    .review-arrow-wrapper {
+        right: auto;
+        left: 50%;
+        top: 100%;
+        bottom: -50px;
+        margin-top: 53px;
+        transform: translateX(-50%);
+    }
+
+    .review-arrow-wrapper:hover .review-arrow {
+        transform: translateY(4px);
+    }
+
+    .review-arrow {
+        width: 46px;
+        height: 46px;
+    }
+
+    .reviews-image {
+        width: 100%;
+        max-width: 500px;
+        margin: 0 auto;
+        transform: translateX(0);
+        border-radius: 40px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 600px) {
+    .reviews {
+        padding: 40px 0;
+    }
+
+    .reviews-layout {
+        gap: 100px;
+    }
+
+    .review-card {
+        width: 95%;
+        max-width: 320px;
+        height: 300px;
+        margin: 0 auto;
+        transform: translateX(-6px);
+    }
+
+    .review-card-back {
+        top: 12px;
+        left: 12px;
+    }
+
+    .review-card-top {
+        padding: 25px 25px 25px;
+        justify-content: flex-start;
+    }
+
+    .review-user-icon {
+        margin-bottom: 20px;
+    }
+
+    .user-logo-img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .review-name {
+        font-size: 20px;
+        margin-bottom: 18px;
+    }
+
+    .review-text {
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    .review-arrow {
+        width: 42px;
+        height: 42px;
+    }
+
+    .review-arrow svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .reviews-image {
+        height: 300px;
+        border-radius: 30px;
+    }
+}
+
+@media (max-width: 400px) {
+    .reviews {
+        padding: 30px 0;
+    }
+
+    .reviews-layout {
+        gap: 95px;
+    }
+
+    .review-card {
+        width: 92%;
+        max-width: 280px;
+        height: 250px;
+        margin: 0 auto;
+        transform: translateX(-5px);
+    }
+
+    .review-card-back {
+        top: 10px;
+        left: 10px;
+    }
+
+    .review-card-top {
+        padding: 35px 20px 20px;
+        justify-content: flex-start;
+    }
+
+    .review-user-icon {
+        margin-bottom: 20px;
+    }
+
+    .user-logo-img {
+        width: 75px;
+        height: 75px;
+    }
+
+    .review-name {
+        font-size: 18px;
+        margin-bottom: 40px;
+    }
+
+    .review-text {
+        font-size: 11px;
+        line-height: 1.6;
+    }
+
+    .review-arrow {
+        width: 38px;
+        height: 38px;
+    }
+
+    .reviews-image {
+        height: 250px;
+        border-radius: 25px;
+    }
+}
